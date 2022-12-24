@@ -18,7 +18,7 @@ class User < ApplicationRecord
     validates :username, length: { minimum: 3, maximum: 30 }, format: { without: URI::MailTo::EMAIL_REGEXP, message: "Can't be an email" } 
     validates :tag, presence: true, length: { is: 4 }
     validates :email, length: { minimum: 3, maximum: 255 }, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
-    validates :password, length: { in: 8..225}, allow_nil: true
+    validates :password, length: { in: 8..225 }, allow_nil: true
     validates :username, uniqueness: { scope: :tag }
     before_validation :ensure_session_token
 
