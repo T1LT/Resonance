@@ -42,11 +42,12 @@ const LoginFormPage = () => {
               <p className="above-inputs secondary-text">We're so excited to see you again!</p>
             </center>
           </div>
-          <ul>
+          {/* SHOW ERRORS WITH LABEL */}
+          {/* <ul>
             {errors.map((error) => (
               <li key={error}>{error}</li>
             ))}
-          </ul>
+          </ul> */}
           <label htmlFor="credential" className="secondary-text">
             USERNAME OR EMAIL <span>*</span>
           </label>

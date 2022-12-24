@@ -25,6 +25,7 @@
 .login-form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 55%;
   margin-left: 15px;
 }
@@ -68,20 +69,21 @@
   font-size: 16px;
   border-radius: 3px;
   border: none;
+  background: none;
+  color: white;
+  background-color: #202225;
 }
 
 .login-form > input:focus {
   outline: none;
 }
 
-#credential, #password {
-  background: none;
-  color: white;
-  background-color: #202225;
+.above-inputs-container {
+  margin-bottom: 12px;
 }
 
-.above-inputs-container {
-  margin-bottom: -15px;
+.above-inputs-container h1 {
+  font-size: 24px;
 }
 
 .above-inputs {
@@ -120,6 +122,7 @@
 .register-link {
   text-decoration: none;
   color: #01ADF1;
+  font-size: 15px;
 }
 
 .register-link:hover {

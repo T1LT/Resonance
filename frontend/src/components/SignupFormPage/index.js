@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-// import "./SignupForm.css";
+import "./SignupForm.css";
 
 const SignupFormPage = () => {
   const dispatch = useDispatch();
@@ -34,43 +34,60 @@ const SignupFormPage = () => {
   };
 
   return (
-    <div className="form-container">
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error) => (
-            <li key={error}>{error}</li>
-          ))}
-        </ul>
-        <input
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Tag"
-          value={tag}
-          onChange={(e) => setTag(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Sign Up</button>
-      </form>
+    <div className="form-parent">
+      <div className="register-form-container">
+        <form onSubmit={handleSubmit} className="register-form">
+          {/* SHOW ERRORS WITH LABEL */}
+          {/* <ul>
+            {errors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul> */}
+          <center>
+            <h1 className="register-heading">Create an account</h1>
+          </center>
+          <label htmlFor="email" className="secondary-text">EMAIL</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <label htmlFor="username" className="secondary-text">USERNAME</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <label htmlFor="tag" className="secondary-text">TAG</label>
+          <input
+            type="text"
+            name="tag"
+            id="tag"
+            value={tag}
+            onChange={(e) => setTag(e.target.value)}
+            required
+          />
+          <label htmlFor="password" className="secondary-text">PASSWORD</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Continue</button>
+          <Link to="/login" className="register-link">
+            Already have an account?
+          </Link>
+        </form>
+      </div>
     </div>
   );
 };
