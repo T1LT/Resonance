@@ -20,6 +20,7 @@ class User < ApplicationRecord
     validates :email, length: { minimum: 3, maximum: 255 }, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
     validates :password, length: { in: 8..225 }, allow_nil: true
     validates :username, uniqueness: { scope: :tag }
+    validates :status, inclusion: { in: ["online", "idle", "offline"] }
     before_validation :ensure_session_token
 
     def self.find_by_credentials(credential, password)
