@@ -53,6 +53,7 @@ const SignupFormPage = () => {
             type="email"
             name="email"
             id="email"
+            autoComplete="off"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -64,6 +65,7 @@ const SignupFormPage = () => {
             type="text"
             name="username"
             id="username"
+            autoComplete="off"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
@@ -75,6 +77,8 @@ const SignupFormPage = () => {
             type="text"
             name="tag"
             id="tag"
+            maxLength="4"
+            autoComplete="off"
             value={tag}
             onChange={(e) => setTag(e.target.value)}
             required
@@ -86,6 +90,7 @@ const SignupFormPage = () => {
             type="password"
             name="password"
             id="password"
+            autoComplete="off"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -100,8 +105,8 @@ const SignupFormPage = () => {
               href="https://discord.com/terms"
               target="_blank"
               className="register-link tos"
-              noreferrer
-              noopener
+              noreferrer="true"
+              noopener="true"
             >
               Terms of Service
             </a>{" "}
@@ -110,8 +115,8 @@ const SignupFormPage = () => {
               href="https://discord.com/privacy"
               target="_blank"
               className="register-link tos"
-              noreferrer
-              noopener
+              noreferrer="true"
+              noopener="true"
             >
               Privacy Policy
             </a>
