@@ -1,0 +1,132 @@
+.form-parent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("../../assets/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.form-container {
+  background-color: #36393f;
+  color: white;
+  font-family: "gg-sans-med";
+  padding: 20px;
+  width: 780px;
+  height: 410px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: rgb(41, 41, 41) 0px 8px 24px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 55%;
+  margin-left: 15px;
+}
+
+.qrcode {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  margin-top: 65px;
+}
+
+.qrcode h2 {
+  margin-bottom: 0;
+}
+
+.qrcode p {
+  margin-top: 5px;
+}
+
+.img-container {
+  background-color: white;
+  width: 200px;
+  padding: 5px 5px 0 5px;
+  border: none;
+  border-radius: 3px;
+}
+
+.secondary-text {
+  color: #B9BBBE;
+}
+
+.login-form > label {
+  font-family: "gg-sans-bold";
+  font-size: 12px;
+}
+
+.login-form > input {
+  font-family: "gg-sans-med";
+  margin: 10px 0px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 3px;
+  border: none;
+}
+
+.login-form > input:focus {
+  outline: none;
+}
+
+#credential, #password {
+  background: none;
+  color: white;
+  background-color: #202225;
+}
+
+.above-inputs-container {
+  margin-bottom: -15px;
+}
+
+.above-inputs {
+  margin: 5px;
+}
+
+.login-form > button {
+  padding: 12px;
+  border: none;
+  border-radius: 3px;
+  background-color: #5865F2;
+  color: white;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-family: "gg-sans-med";
+  transition: 0.3s;
+}
+
+.login-form > button:hover {
+  background-color: #4752C4;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-form > button:active {
+  background-color: #3C45A5;
+}
+
+.register-link-p {
+  margin: 2.5px 0;
+  font-size: 15px;
+}
+
+.register-link {
+  text-decoration: none;
+  color: #01ADF1;
+}
+
+.register-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+span {
+  color: #E74245;
+}
