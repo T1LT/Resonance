@@ -46,7 +46,9 @@ const SignupFormPage = () => {
           <center>
             <h1 className="register-heading">Create an account</h1>
           </center>
-          <label htmlFor="email" className="secondary-text">EMAIL</label>
+          <label htmlFor="email" className="secondary-text">
+            EMAIL
+          </label>
           <input
             type="email"
             name="email"
@@ -55,7 +57,9 @@ const SignupFormPage = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <label htmlFor="username" className="secondary-text">USERNAME</label>
+          <label htmlFor="username" className="secondary-text">
+            USERNAME
+          </label>
           <input
             type="text"
             name="username"
@@ -64,7 +68,9 @@ const SignupFormPage = () => {
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-          <label htmlFor="tag" className="secondary-text">TAG</label>
+          <label htmlFor="tag" className="secondary-text">
+            TAG
+          </label>
           <input
             type="text"
             name="tag"
@@ -73,7 +79,9 @@ const SignupFormPage = () => {
             onChange={(e) => setTag(e.target.value)}
             required
           />
-          <label htmlFor="password" className="secondary-text">PASSWORD</label>
+          <label htmlFor="password" className="secondary-text">
+            PASSWORD
+          </label>
           <input
             type="password"
             name="password"
@@ -86,6 +94,29 @@ const SignupFormPage = () => {
           <Link to="/login" className="register-link">
             Already have an account?
           </Link>
+          <p style={{ fontSize: "12px", marginTop: "20px" }}>
+            By registering, you agree to Resonance's{" "}
+            <a
+              href="https://discord.com/terms"
+              target="_blank"
+              className="register-link tos"
+              noreferrer
+              noopener
+            >
+              Terms of Service
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://discord.com/privacy"
+              target="_blank"
+              className="register-link tos"
+              noreferrer
+              noopener
+            >
+              Privacy Policy
+            </a>
+            .
+          </p>
         </form>
       </div>
     </div>
