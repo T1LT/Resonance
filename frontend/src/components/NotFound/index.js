@@ -12,7 +12,7 @@ const NotFound = () => {
       </p>
       <ul className="error-ul">
         <li>
-          <a href="/" target="_blank">
+          <a href="/">
             Portfolio
           </a>
         </li>
