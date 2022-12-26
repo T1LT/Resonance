@@ -1,6 +1,26 @@
+@font-face {
+  font-family: 'gg-sans';
+  src: url("./assets/ggsans.ttf ");
+}
+
+@font-face {
+  font-family: 'gg-sans-med';
+  src: url("./assets/ggsans-med.ttf");
+}
+
+@font-face {
+  font-family: 'gg-sans-bold';
+  src: url("./assets/ggsans-bold.ttf");
+}
+
+@font-face {
+  font-family: 'antique-olive';
+  src: url("./assets/antique-olive.ttf");
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: "gg-sans", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
