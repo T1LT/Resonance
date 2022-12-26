@@ -23,6 +23,16 @@ class User < ApplicationRecord
     validates :status, inclusion: { in: ["online", "idle", "offline"] }
     before_validation :ensure_session_token
 
+    has_many :servers,
+        foreign_key: :owner_id,
+        class_name: :Server,
+        dependent: :destroy
+    
+    has_many :server_memberships,
+        foreign_key: :user_id,
+        class_name: :ServerMembership,
+        dependent: :destroy
+
     def self.find_by_credentials(credential, password)
         if credential.include?('@')
             user = User.find_by(email: credential)
