@@ -1,7 +1,8 @@
 import { useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import Homepage from "./components/Homepage";
 import LoginFormPage from "./components/LoginFormPage";
+import NotFound from "./components/NotFound";
 import SignupFormPage from "./components/SignupFormPage";
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
         <Route exact path="/" component={Homepage} />
         <Route path="/login" component={LoginFormPage} />
         <Route path="/register" component={SignupFormPage} />
+        <Route path="/error" component={NotFound} />
+        <Redirect to="/error" />
       </Switch>
     </>
   );
