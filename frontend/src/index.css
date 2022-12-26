@@ -13,6 +13,11 @@
   src: url("./assets/ggsans-bold.ttf");
 }
 
+@font-face {
+  font-family: 'antique-olive';
+  src: url("./assets/antique-olive.ttf");
+}
+
 body {
   margin: 0;
   font-family: "gg-sans", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

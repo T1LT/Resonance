@@ -34,22 +34,30 @@ const LoginFormPage = () => {
     <div className="form-parent">
       <div className="form-container">
         <form onSubmit={handleSubmit} className="login-form">
+          <div className="media-logo">
+            <center>
+              <h1>Resonance</h1>
+            </center>
+          </div>
           <div className="above-inputs-container">
             <center>
               <h1 className="above-inputs">Welcome back!</h1>
             </center>
             <center>
-              <p className="above-inputs secondary-text">We're so excited to see you again!</p>
+              <p className="above-inputs secondary-text excited-text">
+                We're so excited to see you again!
+              </p>
             </center>
           </div>
-          {/* SHOW ERRORS WITH LABEL */}
-          {/* <ul>
-            {errors.map((error) => (
-              <li key={error}>{error}</li>
-            ))}
-          </ul> */}
-          <label htmlFor="credential" className="secondary-text">
-            USERNAME OR EMAIL <span>*</span>
+          <label
+            htmlFor="credential"
+            className="secondary-text"
+            id={errors.length && "error-label"}
+          >
+            USERNAME OR EMAIL{" "}
+            <span id={errors.length && "error-label"}>
+              {errors.length ? `- ${errors[0]}` : "*"}
+            </span>
           </label>
           <input
             type="text"
@@ -60,8 +68,15 @@ const LoginFormPage = () => {
             onChange={(e) => setCredential(e.target.value)}
             required
           />
-          <label htmlFor="password" className="secondary-text">
-            PASSWORD <span>*</span>
+          <label
+            htmlFor="password"
+            className="secondary-text"
+            id={errors.length && "error-label"}
+          >
+            PASSWORD{" "}
+            <span id={errors.length && "error-label"}>
+              {errors.length ? `- ${errors[0]}` : "*"}
+            </span>
           </label>
           <input
             type="password"

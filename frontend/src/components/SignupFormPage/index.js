@@ -33,21 +33,33 @@ const SignupFormPage = () => {
     });
   };
 
+  const findError = (error) => {
+    const regex = new RegExp(error);
+    let found = errors.find(e => e.match(regex));
+    return found ? ("- " + found) : "";
+  };
+
   return (
     <div className="form-parent">
       <div className="register-form-container">
         <form onSubmit={handleSubmit} className="register-form">
-          {/* SHOW ERRORS WITH LABEL */}
-          {/* <ul>
-            {errors.map((error) => (
-              <li key={error}>{error}</li>
-            ))}
-          </ul> */}
+          <div className="register-media-logo">
+            <center>
+              <h1>Resonance</h1>
+            </center>
+          </div>
           <center>
             <h1 className="register-heading">Create an account</h1>
           </center>
-          <label htmlFor="email" className="secondary-text">
-            EMAIL
+          <label
+            htmlFor="email"
+            className="secondary-text"
+            id={findError("Email") !== "" && "error-label"}
+          >
+            EMAIL{" "}
+            <span id={findError !== "" && "error-label"}>
+              {errors.length ? findError("Email") : ""}
+            </span>
           </label>
           <input
             type="email"
@@ -58,8 +70,15 @@ const SignupFormPage = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <label htmlFor="username" className="secondary-text">
-            USERNAME
+          <label
+            htmlFor="username"
+            className="secondary-text"
+            id={findError("Username") !== "" && "error-label"}
+          >
+            USERNAME{" "}
+            <span id={errors.length && "error-label"}>
+              {errors.length ? findError("Username") : ""}
+            </span>
           </label>
           <input
             type="text"
@@ -70,8 +89,15 @@ const SignupFormPage = () => {
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-          <label htmlFor="tag" className="secondary-text">
-            TAG
+          <label
+            htmlFor="tag"
+            className="secondary-text"
+            id={findError("Tag") !== "" && "error-label"}
+          >
+            TAG{" "}
+            <span id={errors.length && "error-label"}>
+              {errors.length ? findError("Tag") : ""}
+            </span>
           </label>
           <input
             type="text"
@@ -83,8 +109,15 @@ const SignupFormPage = () => {
             onChange={(e) => setTag(e.target.value)}
             required
           />
-          <label htmlFor="password" className="secondary-text">
-            PASSWORD
+          <label
+            htmlFor="password"
+            className="secondary-text"
+            id={findError("Password") !== "" && "error-label"}
+          >
+            PASSWORD{" "}
+            <span id={errors.length && "error-label"}>
+              {errors.length ? findError("Password") : ""}
+            </span>
           </label>
           <input
             type="password"
