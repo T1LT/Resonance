@@ -52,10 +52,10 @@ const LoginFormPage = () => {
           <label
             htmlFor="credential"
             className="secondary-text"
-            id={errors.length && "error-label"}
+            id={errors.length ? "error-label" : undefined}
           >
             USERNAME OR EMAIL{" "}
-            <span id={errors.length && "error-label"}>
+            <span id={errors.length ? "error-label" : undefined}>
               {errors.length ? `- ${errors[0]}` : "*"}
             </span>
           </label>
@@ -71,10 +71,10 @@ const LoginFormPage = () => {
           <label
             htmlFor="password"
             className="secondary-text"
-            id={errors.length && "error-label"}
+            id={errors.length ? "error-label" : undefined}
           >
             PASSWORD{" "}
-            <span id={errors.length && "error-label"}>
+            <span id={errors.length ? "error-label" : undefined}>
               {errors.length ? `- ${errors[0]}` : "*"}
             </span>
           </label>

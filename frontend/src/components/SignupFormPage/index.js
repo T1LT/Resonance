@@ -54,10 +54,10 @@ const SignupFormPage = () => {
           <label
             htmlFor="email"
             className="secondary-text"
-            id={findError("Email") !== "" && "error-label"}
+            id={findError("Email") !== "" ? "error-label" : undefined}
           >
             EMAIL{" "}
-            <span id={findError !== "" && "error-label"}>
+            <span id={findError !== "" ? "error-label": undefined}>
               {errors.length ? findError("Email") : ""}
             </span>
           </label>
@@ -73,7 +73,7 @@ const SignupFormPage = () => {
           <label
             htmlFor="username"
             className="secondary-text"
-            id={findError("Username") !== "" && "error-label"}
+            id={findError("Username") !== "" ? "error-label" : undefined}
           >
             USERNAME{" "}
             <span id={errors.length && "error-label"}>
@@ -92,10 +92,10 @@ const SignupFormPage = () => {
           <label
             htmlFor="tag"
             className="secondary-text"
-            id={findError("Tag") !== "" && "error-label"}
+            id={findError("Tag") !== "" ? "error-label" : undefined}
           >
             TAG{" "}
-            <span id={errors.length && "error-label"}>
+            <span id={errors.length ? "error-label" : undefined}>
               {errors.length ? findError("Tag") : ""}
             </span>
           </label>
@@ -112,10 +112,10 @@ const SignupFormPage = () => {
           <label
             htmlFor="password"
             className="secondary-text"
-            id={findError("Password") !== "" && "error-label"}
+            id={findError("Password") !== "" ? "error-label" : undefined}
           >
             PASSWORD{" "}
-            <span id={errors.length && "error-label"}>
+            <span id={errors.length ? "error-label" : undefined}>
               {errors.length ? findError("Password") : ""}
             </span>
           </label>
