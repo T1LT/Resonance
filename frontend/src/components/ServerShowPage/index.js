@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { fetchServer } from "../../store/server";
 import ServerHeader from "./ServerHeader";
 import "./ServerShowPage.css";
@@ -8,10 +8,13 @@ import "./ServerShowPage.css";
 const ServerShowPage = () => {
   const dispatch = useDispatch();
   const { serverId } = useParams();
+  const sessionUser = useSelector(store => store.session.user);
   const server = useSelector((store) => store.servers[serverId]);
   useEffect(() => {
     dispatch(fetchServer(serverId));
   }, [dispatch, serverId]);
+
+  if (!sessionUser) return <Redirect to="/login" />
 
   return (
     <div className="server-show">

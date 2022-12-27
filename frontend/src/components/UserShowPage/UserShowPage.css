@@ -1,5 +1,7 @@
 .user-show {
   width: 100%;
+  position: fixed;
+  left: 80px;
   background-color: #2F3136;
   color: white;
 }
