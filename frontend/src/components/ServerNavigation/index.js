@@ -32,7 +32,7 @@ const ServerNavigation = () => {
               <div key={server.id}>
                 <span onClick={() => history.push(`/servers/${server.id}`)}>
                   <NavLink to={`/servers/${server.id}`} className="bubble">
-                    {server.server_name[0]}
+                    {server.serverName[0]}
                   </NavLink>
                 </span>
               </div>

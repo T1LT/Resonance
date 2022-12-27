@@ -7,8 +7,7 @@ const UserShowPage = () => {
   const sessionUser = useSelector((store) => store.session.user);
   return (
     <div className="user-show">
-      {!sessionUser && <Redirect to="/login" />}
-      <h1>User Show</h1>
+      {sessionUser ? <h1>{sessionUser.username}#{sessionUser.tag}</h1> : <Redirect to="/login" />}
     </div>
   );
 };
