@@ -21,8 +21,8 @@ const ServerNavigation = () => {
         <div className="navbar">
           <nav>
             <ul className="squircles">
-              <NavLink to="/me">
-                <li className="squircle purple-boi">
+              <NavLink to="/me" className="squircle purple-boi">
+                <li>
                   <p>X</p>
                   <div className="popper-boi">
                     <h4 className="popper-text">Home</h4>
@@ -31,8 +31,8 @@ const ServerNavigation = () => {
               </NavLink>
               <li className="divider"></li>
               {Object.values(servers)?.map(server => (
-                <NavLink to={`/servers/${server.id}`} key={server.id}>
-                  <li className="squircle purple-boi">
+                <NavLink to={`/servers/${server.id}`} key={server.id} className="squircle purple-boi">
+                  <li>
                     <p>{server.serverName[0]}</p>
                     <div className="popper-boi">
                       <h4 className="popper-text">{server.serverName}</h4>
@@ -40,8 +40,8 @@ const ServerNavigation = () => {
                   </li>
                 </NavLink>
               ))}
-              <NavLink to="/servers/new">
-                <li className="squircle green-boi">
+              <NavLink to="/servers/new" className="squircle green-boi">
+                <li>
                     <p>+</p>
                     <div className="popper-boi">
                       <h4 className="popper-text">Add Server</h4>

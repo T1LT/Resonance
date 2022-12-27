@@ -42,6 +42,11 @@ nav ul {
 nav a {
   text-decoration: none;
   color: white;
+  user-select: none;
+}
+
+nav p {
+  user-select: none;
 }
 
 .squircles {
@@ -91,15 +96,30 @@ nav a {
   border-radius: 5px;
   top: 50%;
   transform: translate(-100%, -50%) scale(0);
-  transform: transform 180ms;
+  transition: transform 180ms;
+}
+
+.active.squircle::before {
+  transform: translate(-100%, -50%) scale(0.5);
+  transition: transform 180ms;
 }
 
 .purple-boi:hover {
   background-color: var(--color-blurple);
 }
 
+.active {
+  background-color: var(--color-blurple);
+  border-radius: 36%;
+}
+
 .green-boi {
   color: var(--color-fantastic-green);
+}
+
+.green-boi.active {
+  background: var(--color-fantastic-green);
+  color: var(--color-full-white);
 }
 
 .green-boi:hover {
@@ -130,6 +150,7 @@ nav a {
   transition: opacity 64ms, transform 128ms cubic-bezier(0.43, 0.09, 0.38, 2.56);
   pointer-events: none;
   color: var(--color-full-white);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   z-index: 101;
 }
 
