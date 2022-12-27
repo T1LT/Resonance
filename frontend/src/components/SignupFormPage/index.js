@@ -13,7 +13,7 @@ const SignupFormPage = () => {
   const [tag, setTag] = useState("");
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/@me" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();

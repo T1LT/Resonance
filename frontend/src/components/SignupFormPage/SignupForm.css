@@ -1,7 +1,7 @@
 .register-form-container {
   background-color: #36393f;
   color: white;
-  font-family: "gg-sans-med";
+  font-family: "gg-sans-med", serif;
   padding: 20px;
   width: 480px;
   height: 520px;
@@ -19,12 +19,12 @@
 }
 
 .register-form > label {
-  font-family: "gg-sans-bold";
+  font-family: "gg-sans-bold", serif;
   font-size: 12px;
 }
 
 .register-form > input {
-  font-family: "gg-sans-med";
+  font-family: "gg-sans-med", serif;
   margin: 10px 0px;
   padding: 12px;
   font-size: 16px;
@@ -49,7 +49,7 @@
   margin-top: 5px;
   margin-bottom: 10px;
   font-size: 16px;
-  font-family: "gg-sans-med";
+  font-family: "gg-sans-med", serif;
   transition: 0.3s;
 }
 
@@ -83,7 +83,7 @@
 .register-media-logo h1 {
   margin-top: 45px;
   margin-bottom: 20px;
-  font-family: "antique-olive";
+  font-family: "antique-olive", serif;
   font-size: 16px;
 }
 

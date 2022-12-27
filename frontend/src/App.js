@@ -4,6 +4,7 @@ import Homepage from "./components/Homepage";
 import LoginFormPage from "./components/LoginFormPage";
 import NotFound from "./components/NotFound";
 import SignupFormPage from "./components/SignupFormPage";
+import UserShowPage from "./components/UserShowPage";
 
 function App() {
   useEffect(() => {
@@ -30,6 +31,7 @@ function App() {
         <Route exact path="/" component={Homepage} />
         <Route path="/login" component={LoginFormPage} />
         <Route path="/register" component={SignupFormPage} />
+        <Route path="/@me" component={UserShowPage} />
         <Route path="/error" component={NotFound} />
         <Redirect to="/error" />
       </Switch>
