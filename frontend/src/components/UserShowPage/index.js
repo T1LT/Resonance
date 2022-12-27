@@ -21,7 +21,7 @@ const UserShowPage = () => {
           <button onClick={() => dispatch(logout())}>Log Out</button>
           <h1>Servers</h1>
           <ul className="servers-list">
-            {Object.values(sessionUser?.servers).map((server) => (
+            {Object.values(servers)?.map((server) => (
               <li key={server.id}>
                 <Link to={`/servers/${server.id}`}>{server.server_name}</Link>
               </li>
