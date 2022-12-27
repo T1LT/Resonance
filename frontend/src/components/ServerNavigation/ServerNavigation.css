@@ -1,0 +1,44 @@
+.user-content {
+  display: flex;
+}
+
+.line {
+  border: 2px solid #373A3F;
+  /* FIX THIS: */
+  margin-bottom: 15 !important;
+}
+
+.servers-list {
+  padding: 10px 20px 25px 10px;
+  width: 45px;
+  height: calc(100vh - 35px);
+  margin: 0;
+  background-color: #202225;
+}
+
+.servers-list div {
+  margin-top: 15px;
+  margin-bottom: 38px;
+}
+
+.servers-list a, span {
+  text-decoration: none;
+  font-style: normal;
+  color: white;
+  font-weight: bold;
+  user-select: none;
+}
+
+.bubble {
+  font-family: "gg-sans-bold";
+  background-color: #36393F;
+  border-radius: 33px;
+  padding: 15px 20px;
+}
+
+.bubble:hover, .active {
+  background-color: #5865F2;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.25s;
+}

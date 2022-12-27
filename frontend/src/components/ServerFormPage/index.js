@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, useHistory } from 'react-router-dom';
 import { createServer } from '../../store/server';
 
 const ServerFormPage = () => {
@@ -8,6 +8,7 @@ const ServerFormPage = () => {
   const history = useHistory();
   const [serverName, setServerName] = useState("");
   const [errors, setErrors] = useState([]);
+  const sessionUser = useSelector(store => store.session.user);
   const handleSubmit = e => {
     e.preventDefault();
     setErrors([]);
@@ -25,6 +26,7 @@ const ServerFormPage = () => {
         else setErrors([res.statusText]);
       });
   };
+  if (!sessionUser) return <Redirect to="/login" />;
   return (
     <div className='server-form'>
       <form onSubmit={handleSubmit}>

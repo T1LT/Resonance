@@ -1,9 +1,11 @@
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Homepage from "./components/Homepage";
 import LoginFormPage from "./components/LoginFormPage";
 import NotFound from "./components/NotFound";
 import ServerFormPage from "./components/ServerFormPage";
+import ServerNavigation from "./components/ServerNavigation";
 import ServerShowPage from "./components/ServerShowPage";
 import SignupFormPage from "./components/SignupFormPage";
 import UserShowPage from "./components/UserShowPage";
@@ -28,7 +30,8 @@ function App() {
     );
   }, []);
   return (
-    <>
+    <div className="main-app">
+      <ServerNavigation />
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/login" component={LoginFormPage} />
@@ -39,7 +42,7 @@ function App() {
         <Route path="/error" component={NotFound} />
         <Redirect to="/error" />
       </Switch>
-    </>
+    </div>
   );
 }
 

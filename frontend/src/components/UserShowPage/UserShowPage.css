@@ -1,18 +1,5 @@
-.user-content h1 {
-  margin: 0;
+.user-show {
+  width: 100%;
+  background-color: #2F3136;
+  color: white;
 }
-
-.servers-list {
-  list-style-type: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.servers-list li {
-  margin: 5px 0;
-}
-
-/* .servers-list a {
-  text-decoration: none;
-  color: black;
-} */

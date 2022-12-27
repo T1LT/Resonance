@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { fetchServer } from "../../store/server";
+import ServerHeader from "./ServerHeader";
+import "./ServerShowPage.css";
 
 const ServerShowPage = () => {
   const dispatch = useDispatch();
@@ -10,16 +12,33 @@ const ServerShowPage = () => {
   useEffect(() => {
     dispatch(fetchServer(serverId));
   }, [dispatch, serverId]);
+
   return (
-    <div>
-      <h1>{server.server_name}</h1>
-      <ul>
-        {Object.values(server.users).map((user) => (
-          <li key={user.id}>
-            <strong>{user.username}</strong>#{user.tag}
-          </li>
-        ))}
-      </ul>
+    <div className="server-show">
+      {server && (
+        <div className="server-parent">
+          <ServerHeader server={server} />
+          <div className="panels-container">
+            <div className="server-panel">
+              <p># general</p>
+              <p># memes</p>
+              <p># testing</p>
+            </div>
+            <div className="channel-container">
+              <h1>Channel Component Here</h1>
+            </div>
+            <div className="user-panel">
+              <ul>
+                {Object.values(server.users).map((user) => (
+                  <li key={user.id}>
+                    <strong>{user.username}</strong> #{user.tag}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
