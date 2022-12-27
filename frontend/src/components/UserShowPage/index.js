@@ -10,14 +10,18 @@ const UserShowPage = () => {
   const sessionUser = useSelector(store => store.session.user);
   const servers = useSelector(store => store.servers);
   useEffect(() => {
-    dispatch(fetchServers());
-  }, [dispatch]);
+    if (sessionUser) {
+      dispatch(fetchServers());
+    }
+  }, [dispatch, sessionUser]);
   return (
     <div>
       {!sessionUser && <Redirect to="/login" />}
       {sessionUser && (
         <div className="user-content">
-          <h2>Welcome {sessionUser.username + "#" + sessionUser.tag}!</h2>
+          <h2>
+            Welcome {sessionUser.username}#{sessionUser.tag}!
+          </h2>
           <button onClick={() => dispatch(logout())}>Log Out</button>
           <h1>Servers</h1>
           <ul className="servers-list">
@@ -27,6 +31,7 @@ const UserShowPage = () => {
               </li>
             ))}
           </ul>
+          <Link to="/servers/new">Create Server</Link>
         </div>
       )}
     </div>

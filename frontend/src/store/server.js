@@ -72,7 +72,7 @@ export const deleteServer = (serverId) => async dispatch => {
 const serverReducer = (state = {}, action) => {
   switch (action.type) {
     case ADD_SERVERS:
-      return { ...state, ...action.payload }
+      return { ...action.payload }
     case ADD_SERVER:
       return { ...state, [action.payload.id]: action.payload };
     case REMOVE_SERVER:

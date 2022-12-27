@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import Homepage from "./components/Homepage";
 import LoginFormPage from "./components/LoginFormPage";
 import NotFound from "./components/NotFound";
+import ServerFormPage from "./components/ServerFormPage";
 import ServerShowPage from "./components/ServerShowPage";
 import SignupFormPage from "./components/SignupFormPage";
 import UserShowPage from "./components/UserShowPage";
@@ -33,6 +34,7 @@ function App() {
         <Route path="/login" component={LoginFormPage} />
         <Route path="/register" component={SignupFormPage} />
         <Route path="/me" component={UserShowPage} />
+        <Route path="/servers/new" component={ServerFormPage} />
         <Route path="/servers/:serverId" component={ServerShowPage} />
         <Route path="/error" component={NotFound} />
         <Redirect to="/error" />
