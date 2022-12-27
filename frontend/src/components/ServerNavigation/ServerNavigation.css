@@ -100,7 +100,7 @@ nav p {
 }
 
 .active.squircle::before {
-  transform: translate(-100%, -50%) scale(0.5);
+  transform: translate(-112%, -50%) scale(0.75);
   transition: transform 180ms;
 }
 
