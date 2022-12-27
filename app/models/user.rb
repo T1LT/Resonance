@@ -23,7 +23,7 @@ class User < ApplicationRecord
     validates :status, inclusion: { in: ["online", "idle", "offline"] }
     before_validation :ensure_session_token
 
-    has_many :servers,
+    has_many :owned_servers,
         foreign_key: :owner_id,
         class_name: :Server,
         dependent: :destroy
@@ -31,6 +31,11 @@ class User < ApplicationRecord
     has_many :server_memberships,
         foreign_key: :user_id,
         class_name: :ServerMembership,
+        dependent: :destroy
+
+    has_many :servers,
+        through: :server_memberships,
+        source: :server,
         dependent: :destroy
 
     def self.find_by_credentials(credential, password)
