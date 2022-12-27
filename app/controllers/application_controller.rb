@@ -47,7 +47,7 @@ class ApplicationController < ActionController::API
         else
             @message = "#{error.class} - #{error.message}"
             @stack = Rails::BacktraceCleaner.new.clean(error.backtrace)
-            render 'api/error/internal_server_error', status: 500
+            render 'api/errors/internal_server_error', status: 500
             logger.error "\n#{@message}:\n\t#{@stack.join("\n\t")}\n"
         end
     end

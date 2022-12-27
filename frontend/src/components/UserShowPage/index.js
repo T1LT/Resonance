@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
+import { fetchServers } from '../../store/server';
 import { logout } from "../../store/session";
 import "./UserShowPage.css"
 
 const UserShowPage = () => {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((store) => store.session.user);
+  const sessionUser = useSelector(store => store.session.user);
+  const servers = useSelector(store => store.servers);
+  useEffect(() => {
+    dispatch(fetchServers());
+  }, [dispatch]);
   return (
     <div>
       {!sessionUser && <Redirect to="/login" />}

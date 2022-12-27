@@ -1,5 +1,5 @@
 json.user do
-    json.extract! @user, :id, :email, :username, :tag, :created_at, :updated_at
+    json.partial! "api/users/user", user: @user
     json.servers do
         @user.servers.each do |server|
             json.set! server.id do
