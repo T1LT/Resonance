@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import { fetchServer } from "../../store/server";
@@ -6,6 +6,7 @@ import ServerHeader from "./ServerHeader";
 import "./ServerShowPage.css";
 
 const ServerShowPage = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const { serverId } = useParams();
   const sessionUser = useSelector(store => store.session.user);
@@ -13,14 +14,17 @@ const ServerShowPage = () => {
   useEffect(() => {
     dispatch(fetchServer(serverId));
   }, [dispatch, serverId]);
-
+  const handleOutsideClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsOpen(false);
+  };
   if (!sessionUser) return <Redirect to="/login" />
-
   return (
-    <div className="server-show">
+    <div className="server-show" onClick={handleOutsideClick}>
       {server && (
         <div className="server-parent">
-          <ServerHeader server={server} />
+          <ServerHeader server={server} isOpen={isOpen} setIsOpen={setIsOpen} handleOutsideClick={handleOutsideClick} />
           <div className="panels-container">
             <div className="server-panel">
               <p># general</p>
