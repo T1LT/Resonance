@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { logout } from "../../store/session";
 import { fetchServers } from "../../store/server";
 import "./ServerNavigation.css";
+import logo from "../../assets/logo.png";
 
 const ServerNavigation = ({ setIsOpen }) => {
   const dispatch = useDispatch();
@@ -22,15 +23,19 @@ const ServerNavigation = ({ setIsOpen }) => {
             <ul className="squircles">
               <NavLink to="/me" className="squircle purple-boi">
                 <li>
-                  <p>X</p>
+                  <img src={logo} alt="logo" className="logo-icon" />
                   <div className="popper-boi">
                     <h4 className="popper-text">Home</h4>
                   </div>
                 </li>
               </NavLink>
               <li className="divider"></li>
-              {Object.values(servers)?.map(server => (
-                <NavLink to={`/servers/${server.id}`} key={server.id} className="squircle purple-boi">
+              {Object.values(servers)?.map((server) => (
+                <NavLink
+                  to={`/servers/${server.id}`}
+                  key={server.id}
+                  className="squircle purple-boi"
+                >
                   <li>
                     <p>{server.serverName[0]}</p>
                     <div className="popper-boi">
@@ -39,13 +44,19 @@ const ServerNavigation = ({ setIsOpen }) => {
                   </li>
                 </NavLink>
               ))}
-              <li className="squircle green-boi" onClick={() => setIsOpen(true)}>
-                  <p className="plus-minus">+</p>
-                  <div className="popper-boi">
-                    <h4 className="popper-text">Add Server</h4>
-                  </div>
+              <li
+                className="squircle green-boi"
+                onClick={() => setIsOpen(true)}
+              >
+                <p className="plus-minus">+</p>
+                <div className="popper-boi">
+                  <h4 className="popper-text">Add Server</h4>
+                </div>
               </li>
-              <li className="squircle green-boi" onClick={() => dispatch(logout())}>
+              <li
+                className="squircle green-boi"
+                onClick={() => dispatch(logout())}
+              >
                 <p className="plus-minus">-</p>
                 <div className="popper-boi">
                   <h4 className="popper-text">Logout</h4>

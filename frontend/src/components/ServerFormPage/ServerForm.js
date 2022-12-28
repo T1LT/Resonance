@@ -16,7 +16,10 @@ const ServerForm = ({ setIsOpen }) => {
     e.preventDefault();
     setErrors([]);
     return dispatch(createServer({ serverName }))
-      .then(() => history.push("/me"))
+      .then(() => {
+        history.push("/me");
+        setIsOpen(false);
+      })
       .catch(async (res) => {
         let data;
         try {
@@ -56,6 +59,7 @@ const ServerForm = ({ setIsOpen }) => {
             type="text"
             name="name"
             id="name"
+            autoComplete="off"
             value={serverName}
             onChange={(e) => setServerName(e.target.value)}
           />
@@ -74,8 +78,14 @@ const ServerForm = ({ setIsOpen }) => {
           </p>
         </div>
         <div className="server-form-footer">
-          <button id="back-button" onClick={() => setIsOpen(false)}>Back</button>
-          <button>Create</button>
+          <button
+            type="button"
+            id="back-button"
+            onClick={() => setIsOpen(false)}
+          >
+            Back
+          </button>
+          <button type="submit">Create</button>
         </div>
       </form>
     </div>
