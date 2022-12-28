@@ -169,3 +169,8 @@ nav p {
 .popper-text {
   margin: 0;
 }
+
+.plus-minus {
+  font-family: "gg-sans-med", sans-serif;
+  font-size: 36px;
+}

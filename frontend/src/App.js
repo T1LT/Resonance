@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Homepage from "./components/Homepage";
@@ -11,6 +11,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import UserShowPage from "./components/UserShowPage";
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     console.log(
       "%cHold Up!",
@@ -31,13 +32,13 @@ function App() {
   }, []);
   return (
     <div className="main-app">
-      <ServerNavigation />
+      <ServerNavigation setIsOpen={setIsOpen} />
+      <ServerFormPage isOpen={isOpen} setIsOpen={setIsOpen} />
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/login" component={LoginFormPage} />
         <Route path="/register" component={SignupFormPage} />
         <Route path="/me" component={UserShowPage} />
-        <Route path="/servers/new" component={ServerFormPage} />
         <Route path="/servers/:serverId" component={ServerShowPage} />
         <Route path="/error" component={NotFound} />
         <Redirect to="/error" />

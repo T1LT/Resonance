@@ -35,8 +35,8 @@ const SignupFormPage = () => {
 
   const findError = (error) => {
     const regex = new RegExp(error);
-    let found = errors.find(e => e.match(regex));
-    return found ? ("- " + found) : "";
+    let found = errors.find((e) => e.match(regex));
+    return found ? "- " + found : "";
   };
 
   return (
@@ -57,7 +57,7 @@ const SignupFormPage = () => {
             id={findError("Email") !== "" ? "error-label" : undefined}
           >
             EMAIL{" "}
-            <span id={findError !== "" ? "error-label": undefined}>
+            <span id={findError !== "" ? "error-label" : undefined}>
               {errors.length ? findError("Email") : ""}
             </span>
           </label>
