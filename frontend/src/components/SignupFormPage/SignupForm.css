@@ -21,6 +21,7 @@
 .register-form > label {
   font-family: "gg-sans-bold", serif;
   font-size: 12px;
+  user-select: none;
 }
 
 .register-form > input {

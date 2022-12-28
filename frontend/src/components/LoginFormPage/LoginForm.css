@@ -60,6 +60,7 @@
 .login-form > label {
   font-family: "gg-sans-bold", sans-serif;
   font-size: 12px;
+  user-select: none;
 }
 
 .login-form > input {
