@@ -38,8 +38,8 @@ const ServerForm = ({ isEdit, setIsOpen }) => {
         });
     } else {
       return dispatch(createServer({ serverName }))
-        .then(() => {
-          history.push("/me");
+        .then(async (server) => {
+          history.push(`/servers/${server.id}`);
           setIsOpen(false);
         })
         .catch(async (res) => {

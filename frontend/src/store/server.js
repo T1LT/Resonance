@@ -46,6 +46,7 @@ export const createServer = (serverData) => async (dispatch) => {
   if (res.ok) {
     const server = await res.json();
     dispatch(addServer(server));
+    return server;
   }
 };
 
