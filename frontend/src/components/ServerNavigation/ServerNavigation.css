@@ -27,16 +27,11 @@ nav {
   position: fixed;
   top: 0;
   bottom: 0;
-  overflow-y: scroll;
   overflow: visible;
 }
 
 nav::-webkit-scrollbar {
   display: none;
-}
-
-nav ul {
-  overflow-x: visible;
 }
 
 nav a {

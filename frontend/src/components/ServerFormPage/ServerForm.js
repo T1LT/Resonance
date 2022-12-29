@@ -1,42 +1,65 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { createServer } from "../../store/server";
+import { useHistory, useParams } from "react-router-dom";
+import { createServer, updateServer } from "../../store/server";
 import "./ServerFormPage.css";
 
-const ServerForm = ({ setIsOpen }) => {
+const ServerForm = ({ isEdit, setIsOpen }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const sessionUser = useSelector((store) => store.session.user);
-  const [serverName, setServerName] = useState(
-    `${sessionUser.username}'s Server`
-  );
+  const [serverName, setServerName] = useState("");
   const [errors, setErrors] = useState([]);
+  const serverId = Number(history.location.pathname.substring(9));
+  const server = useSelector((store) => store.servers[serverId]);
+
+  useEffect(() => {
+    if (isEdit) setServerName(server.serverName);
+  }, [serverId]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(createServer({ serverName }))
-      .then(() => {
-        history.push("/me");
-        setIsOpen(false);
-      })
-      .catch(async (res) => {
-        let data;
-        try {
-          data = await res.clone().json();
-        } catch {
-          data = await res.text();
-        }
-        if (data?.errors) setErrors(data.errors);
-        else if (data) setErrors([data]);
-        else setErrors([res.statusText]);
-      });
+    if (isEdit) {
+      return dispatch(updateServer({ ...server, serverName }))
+        .then(() => {
+          history.push(`/servers/${serverId}`);
+          setIsOpen(false);
+        })
+        .catch(async (res) => {
+          let data;
+          try {
+            data = await res.clone().json();
+          } catch {
+            data = await res.text();
+          }
+          if (data?.errors) setErrors(data.errors);
+          else if (data) setErrors([data]);
+          else setErrors([res.statusText]);
+        });
+    } else {
+      return dispatch(createServer({ serverName }))
+        .then(() => {
+          history.push("/me");
+          setIsOpen(false);
+        })
+        .catch(async (res) => {
+          let data;
+          try {
+            data = await res.clone().json();
+          } catch {
+            data = await res.text();
+          }
+          if (data?.errors) setErrors(data.errors);
+          else if (data) setErrors([data]);
+          else setErrors([res.statusText]);
+        });
+    }
   };
   return (
     <div className="server-form">
       <form onSubmit={handleSubmit}>
         <div className="server-form-header">
-          <h2>Customize your server</h2>
+          <h2>{isEdit ? "Edit " : "Customize "} your server</h2>
           <center>
             <p>
               Give your server a personality with a name. You can always change
@@ -50,7 +73,7 @@ const ServerForm = ({ setIsOpen }) => {
             className="server-name-label"
             id={errors.length ? "error-label" : undefined}
           >
-            SERVER NAME{" "}
+            {isEdit && "NEW "}SERVER NAME{" "}
             <span id={errors.length ? "error-label" : undefined}>
               {errors.length ? `- ${errors[0]}` : ""}
             </span>
@@ -63,19 +86,21 @@ const ServerForm = ({ setIsOpen }) => {
             value={serverName}
             onChange={(e) => setServerName(e.target.value)}
           />
-          <p style={{ fontSize: "12px", marginTop: 0 }}>
-            By creating a server, you agree to Resonance's{" "}
-            <a
-              href="https://discord.com/guidelines"
-              target="_blank"
-              className="register-link tos"
-              noreferrer="true"
-              noopener="true"
-              style={{ color: "#0068E0" }}
-            >
-              <strong>Community Guidelines</strong>
-            </a>
-          </p>
+          {!isEdit && (
+            <p style={{ fontSize: "12px", marginTop: 0 }}>
+              By creating a server, you agree to Resonance's{" "}
+              <a
+                href="https://discord.com/guidelines"
+                target="_blank"
+                className="register-link tos"
+                noreferrer="true"
+                noopener="true"
+                style={{ color: "#0068E0" }}
+              >
+                <strong>Community Guidelines</strong>
+              </a>
+            </p>
+          )}
         </div>
         <div className="server-form-footer">
           <button
@@ -85,7 +110,7 @@ const ServerForm = ({ setIsOpen }) => {
           >
             Back
           </button>
-          <button type="submit">Create</button>
+          <button type="submit">{isEdit ? "Update" : "Create"}</button>
         </div>
       </form>
     </div>

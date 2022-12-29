@@ -21,7 +21,7 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-const ServerFormPage = ({ isOpen, setIsOpen }) => {
+const ServerFormPage = ({ isEdit, isOpen, setIsOpen }) => {
   const sessionUser = useSelector((store) => store.session.user);
   if (!sessionUser) return <Redirect to="/login" />;
   return (
@@ -32,7 +32,7 @@ const ServerFormPage = ({ isOpen, setIsOpen }) => {
       contentLabel="Add Server Modal"
       overlayClassName="Overlay"
     >
-      <ServerForm setIsOpen={setIsOpen} />
+      <ServerForm isEdit={isEdit} setIsOpen={setIsOpen} />
     </Modal>
   );
 };

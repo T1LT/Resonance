@@ -6,7 +6,7 @@ import sessionReducer from './session';
 let enhancer;
 export const rootReducer = combineReducers({
   session: sessionReducer,
-  servers: serverReducer
+  servers: serverReducer,
 });
 
 if (process.env.NODE_ENV === 'production') {

@@ -50,7 +50,7 @@ export const createServer = (serverData) => async (dispatch) => {
 };
 
 export const updateServer = (serverData) => async (dispatch) => {
-  const res = await csrfFetch(`/api/servers/${server.id}`, {
+  const res = await csrfFetch(`/api/servers/${serverData.id}`, {
     method: "PATCH",
     body: JSON.stringify({ server: serverData }),
   });
@@ -68,6 +68,28 @@ export const deleteServer = (serverId) => async (dispatch) => {
     dispatch(removeServer(serverId));
   }
 };
+
+// join server logic:
+export const createMembership = (data) => async dispatch => {
+  const res = await csrfFetch("/api/server_memberships", {
+    method: "POST",
+    body: JSON.stringify(data)
+  });
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(addServer(data.server));
+  }
+};
+// corresponding dispatch call:
+// dispatch(
+//   createMembership({
+//     server_id: server.id,
+//     user_id: sessionUser.id,
+//   })
+// );
+
+// leave server logic:
+// export const removeMembership = () => async dispatch => {};
 
 const serverReducer = (state = {}, action) => {
   switch (action.type) {

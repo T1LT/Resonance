@@ -158,3 +158,11 @@ svg {
   opacity: 0.15;
   margin: 3px 0;
 }
+
+#invite-button {
+  color: #949CF7;
+}
+
+#invite-button:hover {
+  color: white;
+}

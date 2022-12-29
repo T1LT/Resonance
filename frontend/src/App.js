@@ -12,6 +12,7 @@ import UserShowPage from "./components/UserShowPage";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
   useEffect(() => {
     console.log(
       "%cHold Up!",
@@ -32,14 +33,16 @@ function App() {
   }, []);
   return (
     <div className="main-app">
-      <ServerNavigation setIsOpen={setIsOpen} />
-      <ServerFormPage isOpen={isOpen} setIsOpen={setIsOpen} />
+      <ServerNavigation setIsEdit={setIsEdit} setIsOpen={setIsOpen} />
+      <ServerFormPage isEdit={isEdit} isOpen={isOpen} setIsOpen={setIsOpen} />
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/login" component={LoginFormPage} />
         <Route path="/register" component={SignupFormPage} />
         <Route path="/me" component={UserShowPage} />
-        <Route path="/servers/:serverId" component={ServerShowPage} />
+        <Route path="/servers/:serverId">
+          <ServerShowPage setIsOpen={setIsOpen} setIsEdit={setIsEdit} />
+        </Route>
         <Route path="/error" component={NotFound} />
         <Redirect to="/error" />
       </Switch>

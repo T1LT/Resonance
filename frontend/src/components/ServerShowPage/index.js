@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
-import { fetchServer } from "../../store/server";
+import { createMembership, fetchServer } from "../../store/server";
 import ServerHeader from "./ServerHeader";
 import "./ServerShowPage.css";
 
-const ServerShowPage = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const ServerShowPage = ({ setIsOpen, setIsEdit }) => {
+  const [isDropOpen, setIsDropOpen] = useState(false);
   const dispatch = useDispatch();
   const { serverId } = useParams();
-  const sessionUser = useSelector(store => store.session.user);
+  const sessionUser = useSelector((store) => store.session.user);
   const server = useSelector((store) => store.servers[serverId]);
   useEffect(() => {
     dispatch(fetchServer(serverId));
@@ -17,14 +17,22 @@ const ServerShowPage = () => {
   const handleOutsideClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsOpen(false);
+    setIsDropOpen(false);
   };
-  if (!sessionUser) return <Redirect to="/login" />
+
+  if (!sessionUser) return <Redirect to="/login" />;
   return (
     <div className="server-show" onClick={handleOutsideClick}>
       {server && (
         <div className="server-parent">
-          <ServerHeader server={server} isOpen={isOpen} setIsOpen={setIsOpen} handleOutsideClick={handleOutsideClick} />
+          <ServerHeader
+            server={server}
+            setIsOpen={setIsOpen}
+            isDropOpen={isDropOpen}
+            setIsDropOpen={setIsDropOpen}
+            setIsEdit={setIsEdit}
+            handleOutsideClick={handleOutsideClick}
+          />
           <div className="panels-container">
             <div className="server-panel">
               <p># general</p>

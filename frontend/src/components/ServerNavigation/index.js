@@ -6,7 +6,7 @@ import { fetchServers } from "../../store/server";
 import "./ServerNavigation.css";
 import logo from "../../assets/logo.png";
 
-const ServerNavigation = ({ setIsOpen }) => {
+const ServerNavigation = ({ setIsEdit, setIsOpen }) => {
   const dispatch = useDispatch();
   const servers = useSelector((store) => store.servers);
   const sessionUser = useSelector((store) => store.session.user);
@@ -46,7 +46,10 @@ const ServerNavigation = ({ setIsOpen }) => {
               ))}
               <li
                 className="squircle green-boi"
-                onClick={() => setIsOpen(true)}
+                onClick={() => {
+                  setIsOpen(true);
+                  setIsEdit(false);
+                }}
               >
                 <p className="plus-minus">+</p>
                 <div className="popper-boi">
