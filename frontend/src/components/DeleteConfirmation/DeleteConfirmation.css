@@ -1,0 +1,58 @@
+.delete-container p {
+  font-family: "gg-sans", sans-serif;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.delete-container h2 {
+  margin: 10px 5px;
+}
+
+p > strong {
+  font-family: "gg-sans-med", sans-serif;
+  font-weight: bolder;
+}
+
+.delete-footer button {
+  padding: 12px;
+  border: none;
+  border-radius: 3px;
+  width: 115px;
+  height: 40px;
+  background-color: #e43e41;
+  color: white;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-family: "gg-sans-med", sans-serif;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.delete-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#cancel-button {
+  background-color: #36393F;
+  color: white;
+  font-family: "gg-sans-med", sans-serif;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#cancel-button:hover {
+  text-decoration: underline;
+}
+
+#confirm-delete-button:hover {
+  background-color: #A12D2F;
+}
+
+#confirm-delete-button:active {
+  background-color: #8C2729;
+}

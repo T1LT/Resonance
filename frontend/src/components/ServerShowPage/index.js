@@ -5,7 +5,7 @@ import { createMembership, fetchServer } from "../../store/server";
 import ServerHeader from "./ServerHeader";
 import "./ServerShowPage.css";
 
-const ServerShowPage = ({ setIsOpen, setIsEdit }) => {
+const ServerShowPage = ({ setIsOpen, setIsEdit, setIsDeleteOpen }) => {
   const [isDropOpen, setIsDropOpen] = useState(false);
   const dispatch = useDispatch();
   const { serverId } = useParams();
@@ -32,6 +32,7 @@ const ServerShowPage = ({ setIsOpen, setIsEdit }) => {
             setIsDropOpen={setIsDropOpen}
             setIsEdit={setIsEdit}
             handleOutsideClick={handleOutsideClick}
+            setIsDeleteOpen={setIsDeleteOpen}
           />
           <div className="panels-container">
             <div className="server-panel">

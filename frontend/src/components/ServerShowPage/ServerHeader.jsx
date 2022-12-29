@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CloseIcon from "@mui/icons-material/Close";
@@ -7,7 +7,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
-import { deleteServer } from "../../store/server";
 import "./ServerShowPage.css";
 
 const ServerHeader = ({
@@ -17,20 +16,14 @@ const ServerHeader = ({
   setIsDropOpen,
   setIsEdit,
   handleOutsideClick,
+  setIsDeleteOpen
 }) => {
   const sessionUser = useSelector((store) => store.session.user);
-  const dispatch = useDispatch();
   const history = useHistory();
   const handleDrawerClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDropOpen((prev) => !prev);
-  };
-  const handleDelete = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    dispatch(deleteServer(server.id));
-    history.push("/me");
   };
   const handleLeave = (e) => {
     e.preventDefault();
@@ -75,7 +68,7 @@ const ServerHeader = ({
                     <div className="options-divider"></div>
                   </li>
                   <li className="menu-item">
-                    <button id="delete-button" onClick={handleDelete}>
+                    <button id="delete-button" onClick={() => setIsDeleteOpen(true)}>
                       Delete Server
                       <DeleteIcon fontSize="small" sx={{ mt: 0, pr: 0 }} />
                     </button>

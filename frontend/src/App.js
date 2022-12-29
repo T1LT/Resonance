@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
+import DeleteConfirmation from "./components/DeleteConfirmation";
 import Homepage from "./components/Homepage";
 import LoginFormPage from "./components/LoginFormPage";
 import NotFound from "./components/NotFound";
@@ -13,6 +13,7 @@ import UserShowPage from "./components/UserShowPage";
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   useEffect(() => {
     console.log(
       "%cHold Up!",
@@ -35,13 +36,14 @@ function App() {
     <div className="main-app">
       <ServerNavigation setIsEdit={setIsEdit} setIsOpen={setIsOpen} />
       <ServerFormPage isEdit={isEdit} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <DeleteConfirmation isDeleteOpen={isDeleteOpen} setIsDeleteOpen={setIsDeleteOpen} />
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/login" component={LoginFormPage} />
         <Route path="/register" component={SignupFormPage} />
         <Route path="/me" component={UserShowPage} />
         <Route path="/servers/:serverId">
-          <ServerShowPage setIsOpen={setIsOpen} setIsEdit={setIsEdit} />
+          <ServerShowPage setIsOpen={setIsOpen} setIsEdit={setIsEdit} setIsDeleteOpen={setIsDeleteOpen} />
         </Route>
         <Route path="/error" component={NotFound} />
         <Redirect to="/error" />
