@@ -7,6 +7,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
+import Alert from "@mui/material/Alert";
+import CryptoJS from "crypto-js";
 import "./ServerShowPage.css";
 
 const ServerHeader = ({
@@ -16,8 +18,9 @@ const ServerHeader = ({
   setIsDropOpen,
   setIsEdit,
   handleOutsideClick,
-  setIsDeleteOpen
+  setIsDeleteOpen,
 }) => {
+  const [copiedAlert, setCopiedAlert] = useState(false);
   const sessionUser = useSelector((store) => store.session.user);
   const history = useHistory();
   const handleDrawerClick = (e) => {
@@ -30,22 +33,48 @@ const ServerHeader = ({
     e.stopPropagation();
     history.push("/me");
   };
+  const handleInvite = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const hash = CryptoJS.AES.encrypt(JSON.stringify(server.id), "secret");
+    const url = `http://localhost:3000/invite/${hash}`;
+    await navigator.clipboard.writeText(url);
+    setCopiedAlert(true);
+    setTimeout(() => {
+      setCopiedAlert(false);
+    }, 3000);
+  };
+  const unmountedStyle = {
+    width: "120px",
+    fontFamily: "gg-sans-med",
+    fontWeight: "bold",
+    opacity: 0,
+    transition: "opacity 0.5s",
+  };
+  const mountedStyle = {
+    width: "120px",
+    fontFamily: "gg-sans-med",
+    fontWeight: "bold",
+    opacity: 1,
+    transition: "opacity 0.5s",
+  };
+
   return (
     <div className="server-header" onClick={handleOutsideClick}>
       <div className="header-left">
         <h4>{server.serverName}</h4>
         <div onClick={handleDrawerClick}>
           {isDropOpen ? (
-            <CloseIcon fontSize="small" />
+            <CloseIcon className="svg" fontSize="small" />
           ) : (
-            <KeyboardArrowDownIcon fontSize="small" />
+            <KeyboardArrowDownIcon className="svg" fontSize="small" />
           )}
         </div>
         {isDropOpen ? (
           <div className="menu-container">
             <ul className="menu">
               <li className="menu-item">
-                <button id="invite-button">
+                <button id="invite-button" onClick={handleInvite}>
                   Invite People
                   <PersonAddIcon fontSize="small" sx={{ mt: 0, pr: 0 }} />
                 </button>
@@ -68,7 +97,10 @@ const ServerHeader = ({
                     <div className="options-divider"></div>
                   </li>
                   <li className="menu-item">
-                    <button id="delete-button" onClick={() => setIsDeleteOpen(true)}>
+                    <button
+                      id="delete-button"
+                      onClick={() => setIsDeleteOpen(true)}
+                    >
                       Delete Server
                       <DeleteIcon fontSize="small" sx={{ mt: 0, pr: 0 }} />
                     </button>
@@ -94,7 +126,11 @@ const ServerHeader = ({
           </div>
         ) : null}
       </div>
-      <div className="rest-of-the-header"></div>
+      <div className="rest-of-the-header">
+        <Alert sx={copiedAlert ? mountedStyle : unmountedStyle} severity="info">
+          Link Copied!
+        </Alert>
+      </div>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import DeleteConfirmation from "./components/DeleteConfirmation";
 import Homepage from "./components/Homepage";
+import Invite from "./components/Invite";
 import LoginFormPage from "./components/LoginFormPage";
 import NotFound from "./components/NotFound";
 import ServerFormPage from "./components/ServerFormPage";
@@ -45,6 +46,7 @@ function App() {
         <Route path="/servers/:serverId">
           <ServerShowPage setIsOpen={setIsOpen} setIsEdit={setIsEdit} setIsDeleteOpen={setIsDeleteOpen} />
         </Route>
+        <Route path="/invite/:hash" component={Invite} />
         <Route path="/error" component={NotFound} />
         <Redirect to="/error" />
       </Switch>

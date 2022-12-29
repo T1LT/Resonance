@@ -84,7 +84,7 @@
   position: relative;
 }
 
-svg {
+.svg {
   cursor: pointer;
   margin-top: 15px;
   padding-right: 10px;
@@ -94,6 +94,8 @@ svg {
   width: calc(100% - 240px);
   background-color: #36393F;
   color: white;
+  display: flex;
+  justify-content: center;
 }
 
 .menu-container {
