@@ -45,6 +45,7 @@ const ServerShowPage = ({ setIsOpen, setIsEdit, setIsDeleteOpen }) => {
             </div>
             <div className="user-panel">
               <ul>
+                {/* add onClick drop down here */}
                 {Object.values(server.users).map((user) => (
                   <li key={user.id}>
                     <strong>{user.username}</strong> #{user.tag}

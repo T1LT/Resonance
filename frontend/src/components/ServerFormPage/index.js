@@ -31,6 +31,7 @@ const ServerFormPage = ({ isEdit, isOpen, setIsOpen }) => {
       style={customStyles}
       contentLabel="Add Server Modal"
       overlayClassName="Overlay"
+      closeTimeoutMS={200}
     >
       <ServerForm isEdit={isEdit} setIsOpen={setIsOpen} />
     </Modal>

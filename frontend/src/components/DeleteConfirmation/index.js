@@ -43,6 +43,7 @@ const DeleteConfirmation = ({ isDeleteOpen, setIsDeleteOpen }) => {
       style={customStyles}
       contentLabel="Delete Confirmation Modal"
       overlayClassName="Overlay"
+      closeTimeoutMS={200}
     >
       <div className="delete-container">
         <h2>Delete '{server?.serverName}'</h2>
