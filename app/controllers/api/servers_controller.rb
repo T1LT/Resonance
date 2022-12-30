@@ -39,9 +39,8 @@ class Api::ServersController < ApplicationController
         @server = Server.find(params[:id])
         if @server.owner_id == current_user.id
             @server.destroy
-            render :show
         else
-            render json: { errors: ["Only the owner of the server can delete this server"] }, status: 422
+            render json: { errors: ["Only the owner of the server can delete this server."] }, status: 422
         end
     end
 
