@@ -46,7 +46,7 @@ const DeleteConfirmation = ({ isDeleteOpen, setIsDeleteOpen }) => {
       closeTimeoutMS={200}
     >
       <div className="delete-container">
-        <h2>Delete '{server?.serverName}'</h2>
+        <h2 className="truncate">Delete '{server?.serverName}'</h2>
         <p>
           Are you sure you want to delete <strong>{server?.serverName}</strong>?
           This action cannot be undone.

@@ -65,7 +65,7 @@ const ServerHeader = ({
   return (
     <div className="server-header" onClick={handleOutsideClick}>
       <div className="header-left">
-        <h4>{server.serverName}</h4>
+        <h4 className="truncate">{server.serverName}</h4>
         <div onClick={handleDrawerClick}>
           {isDropOpen ? (
             <CloseIcon className="svg" fontSize="small" />

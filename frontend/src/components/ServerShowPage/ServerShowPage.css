@@ -9,7 +9,6 @@
 .panels-container {
   height: 100%;
   display: flex;
-  /* justify-content: space-between; */
 }
 
 .channel-container {
@@ -65,6 +64,12 @@
   font-size: 16px;
   font-family: "gg-sans-bold";
   margin: 15px;
+}
+
+.truncate {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .header-left {

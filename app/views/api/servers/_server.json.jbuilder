@@ -6,7 +6,7 @@ json.users do
     server.users.each do |user|
         json.set! user.id do
             json.partial! "api/users/user", user: user
-            if @user.id === user.id
+            if @user && @user.id == user.id
                 json.membership_id @membership_id
             end
         end
