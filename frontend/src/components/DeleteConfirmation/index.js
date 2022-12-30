@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ModalContext } from "../../App";
-import { deleteServer } from "../../store/server";
+import { deleteServer, removeMembership } from "../../store/server";
 import "./DeleteConfirmation.css";
 
 const customStyles = {
@@ -31,6 +31,7 @@ const DeleteConfirmation = () => {
   const history = useHistory();
   const serverId = Number(history.location.pathname.substring(9));
   const server = useSelector((store) => store.servers[serverId]);
+  const sessionUser = useSelector((store) => store.session.user);
   const handleDelete = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -41,6 +42,7 @@ const DeleteConfirmation = () => {
   const handleLeave = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    setIsDeleteOpen(false);
     dispatch(
       removeMembership(server.id, server.users[sessionUser.id].membershipId)
     );

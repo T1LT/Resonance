@@ -19,11 +19,10 @@ const ServerHeader = ({
   setIsDropOpen,
   handleOutsideClick,
 }) => {
-  const { setIsOpen, setIsEdit, setIsDeleteOpen, setIsLeave } = useContext(ModalContext);
+  const { setIsOpen, setIsEdit, setIsDeleteOpen, setIsLeave } =
+    useContext(ModalContext);
   const [copiedAlert, setCopiedAlert] = useState(false);
-  const dispatch = useDispatch();
   const sessionUser = useSelector((store) => store.session.user);
-  const history = useHistory();
   const handleDrawerClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -44,7 +43,7 @@ const ServerHeader = ({
     setCopiedAlert(true);
     setTimeout(() => {
       setCopiedAlert(false);
-    }, 3000);
+    }, 2000);
   };
   const unmountedStyle = {
     width: "120px",
