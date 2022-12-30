@@ -24,16 +24,21 @@ class Api::ChannelsController < ApplicationController
 
     def update
         @channel = Channel.find(params[:id])
-        if @channel.update(channel_params)
-            render :show
+        @server = @channel.server
+        if current_user.id == @server.owner_id 
+            if @channel.update(channel_params)
+                render :show
+            else
+                render json: { errors: @channel.errors.full_messages }, status: 422
+            end
         else
-            render json: { errors: @channel.errors.full_messages }, status: 422
+            render json: { errors: ["Only the owner of this server can edit this channel."] }, status: 422
         end
     end
 
     def destroy
-        @server = Server.find(params[:server_id])
         @channel = Channel.find(params[:id])
+        @server = @channel.server
         if current_user.id == @server.owner_id
             @channel.destroy
         else
