@@ -1,5 +1,5 @@
 class Api::ServerMembershipsController < ApplicationController
-    wrap_parameters include: ServerMembership.attribute_names
+    # wrap_parameters include: ServerMembership.attribute_names
 
     def create
         @server_membership = ServerMembership.new(server_membership_params)
@@ -12,7 +12,7 @@ class Api::ServerMembershipsController < ApplicationController
     end
 
     def destroy
-        @server_membership = ServerMembership.find_by(server_membership_params)
+        @server_membership = ServerMembership.find(params[:id])
         @user = current_user
         if @server_membership.user_id == current_user.id && @server_membership.destroy
             render "api/users/show"

@@ -9,6 +9,8 @@ class Api::ServersController < ApplicationController
 
     def show
         @server = Server.find(params[:id])
+        @user = current_user
+        @membership_id = ServerMembership.find_by(user_id: @user.id, server_id: @server.id).id
         render :show
     end
 

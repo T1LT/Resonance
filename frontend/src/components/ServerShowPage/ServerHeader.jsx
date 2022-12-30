@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CloseIcon from "@mui/icons-material/Close";
@@ -10,6 +10,7 @@ import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import Alert from "@mui/material/Alert";
 import CryptoJS from "crypto-js";
 import "./ServerShowPage.css";
+import { removeMembership } from "../../store/server";
 
 const ServerHeader = ({
   server,
@@ -21,6 +22,7 @@ const ServerHeader = ({
   setIsDeleteOpen,
 }) => {
   const [copiedAlert, setCopiedAlert] = useState(false);
+  const dispatch = useDispatch();
   const sessionUser = useSelector((store) => store.session.user);
   const history = useHistory();
   const handleDrawerClick = (e) => {
@@ -31,6 +33,7 @@ const ServerHeader = ({
   const handleLeave = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    dispatch(removeMembership(server.id, server.users[sessionUser.id].membershipId));
     history.push("/me");
   };
   const handleInvite = async (e) => {

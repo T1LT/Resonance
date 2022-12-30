@@ -81,16 +81,16 @@ export const createMembership = (data) => async dispatch => {
     dispatch(addServer(data.server));
   }
 };
-// corresponding dispatch call:
-// dispatch(
-//   createMembership({
-//     server_id: server.id,
-//     user_id: sessionUser.id,
-//   })
-// );
 
 // leave server logic:
-// export const removeMembership = () => async dispatch => {};
+export const removeMembership = (serverId, membershipId) => async dispatch => {
+  const res = await csrfFetch(`/api/server_memberships/${membershipId}`, {
+    method: "DELETE"
+  });
+  if (res.ok) {
+    dispatch(removeServer(serverId));
+  }
+};
 
 const serverReducer = (state = {}, action) => {
   switch (action.type) {
