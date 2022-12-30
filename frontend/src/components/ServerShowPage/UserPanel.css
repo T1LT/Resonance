@@ -1,0 +1,80 @@
+.user-squircle {
+  width: 32px;
+  height: 32px;
+  margin-left: 3px;
+  margin-right: 10px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-panel-ul {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding-inline-start: 0;
+  margin-block-start: 9px;
+  margin-block-end: 0;
+  overflow-y: scroll;
+}
+
+.user-panel-ul::-webkit-scrollbar {
+  display: none;
+}
+
+.user-panel-ul > li {
+  padding: 7px 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1px 10px;
+  border-radius: 4px;
+  user-select: none;
+  color: #96989D;
+}
+
+.user-panel-ul > li:hover {
+  background-color: #3C3F45;
+  color: #DCDDDE;
+  cursor: pointer;
+}
+
+.user-panel-ul > li:active {
+  background-color: #3F4248;
+  color: #fff;
+}
+
+.user-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: inherit;
+}
+
+.user-text {
+  margin: 0;
+  font-family: "gg-sans-med", sans-serif;
+  font-weight: bold;
+}
+
+#blue {
+  background-color: #5C64F4;
+}
+
+#mustard {
+  background-color: #FCA21C;
+}
+
+#red {
+  background-color: #EC4444;
+}
+
+#green {
+  background-color: #3CA45B;
+}
+
+#grey {
+  background-color: #747C8C;
+}

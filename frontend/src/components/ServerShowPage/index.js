@@ -4,6 +4,7 @@ import { Redirect, useParams } from "react-router-dom";
 import { createMembership, fetchServer } from "../../store/server";
 import ServerHeader from "./ServerHeader";
 import "./ServerShowPage.css";
+import UserPanel from "./UserPanel";
 
 const ServerShowPage = ({ setIsOpen, setIsEdit, setIsDeleteOpen }) => {
   const [isDropOpen, setIsDropOpen] = useState(false);
@@ -44,14 +45,7 @@ const ServerShowPage = ({ setIsOpen, setIsEdit, setIsDeleteOpen }) => {
               <h1>Channel Component Here</h1>
             </div>
             <div className="user-panel">
-              <ul>
-                {/* add onClick drop down here */}
-                {Object.values(server.users).map((user) => (
-                  <li key={user.id}>
-                    <strong>{user.username}</strong> #{user.tag}
-                  </li>
-                ))}
-              </ul>
+              <UserPanel server={server} />
             </div>
           </div>
         </div>

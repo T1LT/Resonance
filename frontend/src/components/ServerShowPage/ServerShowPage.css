@@ -4,17 +4,17 @@
   width: 100%;
   background-color: #2F3136;
   color: white;
-
 }
 
 .panels-container {
   height: 100%;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .channel-container {
-  width: calc(100% - 480px);
+  width: calc(100vw - 560px);
+  left: 80px;
   background-color: #36393F;
 }
 
@@ -34,17 +34,6 @@
   justify-content: flex-start;
   background-color: #2F3136;
   color: white;
-}
-
-.user-panel ul {
-  list-style-type: none;
-  padding-inline-start: 0;
-  margin-block-start: 0;
-  margin-block-end: 0;
-}
-
-.user-panel ul > li {
-  margin: 15px 20px;
 }
 
 .server-panel {
