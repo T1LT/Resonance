@@ -3,7 +3,7 @@ class Api::ServersController < ApplicationController
 
     def index
         @user = current_user
-        @servers = current_user.servers
+        @servers = @user.servers
         render :index
     end
 

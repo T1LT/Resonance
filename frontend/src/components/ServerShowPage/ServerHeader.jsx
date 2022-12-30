@@ -19,7 +19,7 @@ const ServerHeader = ({
   setIsDropOpen,
   handleOutsideClick,
 }) => {
-  const { setIsOpen, setIsEdit, setIsDeleteOpen } = useContext(ModalContext);
+  const { setIsOpen, setIsEdit, setIsDeleteOpen, setIsLeave } = useContext(ModalContext);
   const [copiedAlert, setCopiedAlert] = useState(false);
   const dispatch = useDispatch();
   const sessionUser = useSelector((store) => store.session.user);
@@ -32,10 +32,8 @@ const ServerHeader = ({
   const handleLeave = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    dispatch(
-      removeMembership(server.id, server.users[sessionUser.id].membershipId)
-    );
-    history.push("/me");
+    setIsLeave(true);
+    setIsDeleteOpen(true);
   };
   const handleInvite = async (e) => {
     e.preventDefault();
@@ -103,7 +101,10 @@ const ServerHeader = ({
                   <li className="menu-item">
                     <button
                       id="delete-button"
-                      onClick={() => setIsDeleteOpen(true)}
+                      onClick={() => {
+                        setIsLeave(false);
+                        setIsDeleteOpen(true);
+                      }}
                     >
                       Delete Server
                       <DeleteIcon fontSize="small" sx={{ mt: 0, pr: 0 }} />

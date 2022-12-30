@@ -15,8 +15,9 @@ export const ModalContext = createContext();
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [isLeave, setIsLeave] = useState(false);
   useEffect(() => {
     console.log(
       "%cHold Up!",
@@ -37,7 +38,18 @@ function App() {
   }, []);
   return (
     <div className="main-app">
-      <ModalContext.Provider value={{ isOpen, setIsOpen, isEdit, setIsEdit, isDeleteOpen, setIsDeleteOpen }}>
+      <ModalContext.Provider
+        value={{
+          isOpen,
+          setIsOpen,
+          isEdit,
+          setIsEdit,
+          isDeleteOpen,
+          setIsDeleteOpen,
+          isLeave,
+          setIsLeave,
+        }}
+      >
         <ServerNavigation />
         <ServerFormPage />
         <DeleteConfirmation />

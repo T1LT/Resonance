@@ -12,21 +12,21 @@ const customStyles = {
     left: "50%",
     right: "auto",
     bottom: "auto",
-    height: "160px",
+    height: "170px",
     width: "440px",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     border: "none",
     borderRadius: "5px",
     backgroundColor: "#36393F",
-    overflow: "hidden"
+    overflow: "hidden",
   },
 };
 
 Modal.setAppElement("#root");
 
 const DeleteConfirmation = () => {
-  const { isDeleteOpen, setIsDeleteOpen } = useContext(ModalContext);
+  const { isDeleteOpen, setIsDeleteOpen, isLeave } = useContext(ModalContext);
   const dispatch = useDispatch();
   const history = useHistory();
   const serverId = Number(history.location.pathname.substring(9));
@@ -38,7 +38,14 @@ const DeleteConfirmation = () => {
     setIsDeleteOpen(false);
     history.push("/me");
   };
-
+  const handleLeave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch(
+      removeMembership(server.id, server.users[sessionUser.id].membershipId)
+    );
+    history.push("/me");
+  };
   return (
     <Modal
       isOpen={isDeleteOpen}
@@ -49,10 +56,15 @@ const DeleteConfirmation = () => {
       closeTimeoutMS={200}
     >
       <div className="delete-container">
-        <h2 className="truncate">Delete '{server?.serverName}'</h2>
+        <h2 className="truncate">
+          {isLeave ? "Leave" : "Delete"} '{server?.serverName}'
+        </h2>
         <p>
-          Are you sure you want to delete <strong>{server?.serverName}</strong>?
-          This action cannot be undone.
+          Are you sure you want to {isLeave ? "leave" : "delete"}{" "}
+          <strong>{server?.serverName}</strong>?
+          {isLeave
+            ? " You won't be able to rejoin this server unless you are re-invited."
+            : " This action cannot be undone."}
         </p>
         <div className="delete-footer">
           <button
@@ -64,10 +76,10 @@ const DeleteConfirmation = () => {
           </button>
           <button
             type="button"
-            onClick={handleDelete}
+            onClick={isLeave ? handleLeave : handleDelete}
             id="confirm-delete-button"
           >
-            Delete Server
+            {isLeave ? "Leave" : "Delete"} Server
           </button>
         </div>
       </div>
