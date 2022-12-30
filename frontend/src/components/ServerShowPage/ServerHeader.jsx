@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -11,16 +11,15 @@ import Alert from "@mui/material/Alert";
 import CryptoJS from "crypto-js";
 import "./ServerShowPage.css";
 import { removeMembership } from "../../store/server";
+import { ModalContext } from "../../App";
 
 const ServerHeader = ({
   server,
-  setIsOpen,
   isDropOpen,
   setIsDropOpen,
-  setIsEdit,
   handleOutsideClick,
-  setIsDeleteOpen,
 }) => {
+  const { setIsOpen, setIsEdit, setIsDeleteOpen } = useContext(ModalContext);
   const [copiedAlert, setCopiedAlert] = useState(false);
   const dispatch = useDispatch();
   const sessionUser = useSelector((store) => store.session.user);
@@ -33,7 +32,9 @@ const ServerHeader = ({
   const handleLeave = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    dispatch(removeMembership(server.id, server.users[sessionUser.id].membershipId));
+    dispatch(
+      removeMembership(server.id, server.users[sessionUser.id].membershipId)
+    );
     history.push("/me");
   };
   const handleInvite = async (e) => {

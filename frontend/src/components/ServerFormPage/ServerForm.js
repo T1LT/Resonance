@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { ModalContext } from "../../App";
 import { createServer, updateServer } from "../../store/server";
 import "./ServerFormPage.css";
 
-const ServerForm = ({ isEdit, setIsOpen }) => {
+const ServerForm = () => {
+  const { isEdit, setIsOpen } = useContext(ModalContext);
   const dispatch = useDispatch();
   const history = useHistory();
   const [serverName, setServerName] = useState("");

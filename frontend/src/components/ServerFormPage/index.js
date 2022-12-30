@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import Modal from "react-modal";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { ModalContext } from "../../App";
 import ServerForm from "./ServerForm";
 import "./ServerFormPage.css";
 
@@ -21,7 +22,8 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-const ServerFormPage = ({ isEdit, isOpen, setIsOpen }) => {
+const ServerFormPage = () => {
+  const { isOpen, setIsOpen } = useContext(ModalContext);
   const sessionUser = useSelector((store) => store.session.user);
   if (!sessionUser) return <Redirect to="/login" />;
   return (
@@ -33,7 +35,7 @@ const ServerFormPage = ({ isEdit, isOpen, setIsOpen }) => {
       overlayClassName="Overlay"
       closeTimeoutMS={200}
     >
-      <ServerForm isEdit={isEdit} setIsOpen={setIsOpen} />
+      <ServerForm />
     </Modal>
   );
 };

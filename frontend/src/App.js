@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import DeleteConfirmation from "./components/DeleteConfirmation";
 import Homepage from "./components/Homepage";
@@ -10,6 +10,8 @@ import ServerNavigation from "./components/ServerNavigation";
 import ServerShowPage from "./components/ServerShowPage";
 import SignupFormPage from "./components/SignupFormPage";
 import UserShowPage from "./components/UserShowPage";
+
+export const ModalContext = createContext();
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,21 +37,21 @@ function App() {
   }, []);
   return (
     <div className="main-app">
-      <ServerNavigation setIsEdit={setIsEdit} setIsOpen={setIsOpen} />
-      <ServerFormPage isEdit={isEdit} isOpen={isOpen} setIsOpen={setIsOpen} />
-      <DeleteConfirmation isDeleteOpen={isDeleteOpen} setIsDeleteOpen={setIsDeleteOpen} />
-      <Switch>
-        <Route exact path="/" component={Homepage} />
-        <Route path="/login" component={LoginFormPage} />
-        <Route path="/register" component={SignupFormPage} />
-        <Route path="/me" component={UserShowPage} />
-        <Route path="/servers/:serverId">
-          <ServerShowPage setIsOpen={setIsOpen} setIsEdit={setIsEdit} setIsDeleteOpen={setIsDeleteOpen} />
-        </Route>
-        <Route path="/invite/:hash" component={Invite} />
-        <Route path="/error" component={NotFound} />
-        <Redirect to="/error" />
-      </Switch>
+      <ModalContext.Provider value={{ isOpen, setIsOpen, isEdit, setIsEdit, isDeleteOpen, setIsDeleteOpen }}>
+        <ServerNavigation />
+        <ServerFormPage />
+        <DeleteConfirmation />
+        <Switch>
+          <Route exact path="/" component={Homepage} />
+          <Route path="/login" component={LoginFormPage} />
+          <Route path="/register" component={SignupFormPage} />
+          <Route path="/me" component={UserShowPage} />
+          <Route path="/servers/:serverId" component={ServerShowPage} />
+          <Route path="/invite/:hash" component={Invite} />
+          <Route path="/error" component={NotFound} />
+          <Redirect to="/error" />
+        </Switch>
+      </ModalContext.Provider>
     </div>
   );
 }

@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { logout } from "../../store/session";
 import { fetchServers } from "../../store/server";
 import "./ServerNavigation.css";
 import logo from "../../assets/logo.png";
+import { ModalContext } from "../../App";
 
-const ServerNavigation = ({ setIsEdit, setIsOpen }) => {
+const ServerNavigation = () => {
+  const { setIsEdit, setIsOpen } = useContext(ModalContext);
   const dispatch = useDispatch();
   const servers = useSelector((store) => store.servers);
   const sessionUser = useSelector((store) => store.session.user);

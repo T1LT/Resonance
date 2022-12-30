@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
-import { createMembership, fetchServer } from "../../store/server";
+import { fetchServer } from "../../store/server";
 import ServerHeader from "./ServerHeader";
 import "./ServerShowPage.css";
 import UserPanel from "./UserPanel";
 
-const ServerShowPage = ({ setIsOpen, setIsEdit, setIsDeleteOpen }) => {
+const ServerShowPage = () => {
   const [isDropOpen, setIsDropOpen] = useState(false);
   const dispatch = useDispatch();
   const { serverId } = useParams();
@@ -28,12 +28,9 @@ const ServerShowPage = ({ setIsOpen, setIsEdit, setIsDeleteOpen }) => {
         <div className="server-parent">
           <ServerHeader
             server={server}
-            setIsOpen={setIsOpen}
             isDropOpen={isDropOpen}
             setIsDropOpen={setIsDropOpen}
-            setIsEdit={setIsEdit}
             handleOutsideClick={handleOutsideClick}
-            setIsDeleteOpen={setIsDeleteOpen}
           />
           <div className="panels-container">
             <div className="server-panel">

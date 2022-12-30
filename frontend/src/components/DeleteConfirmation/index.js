@@ -1,6 +1,8 @@
+import { useContext } from "react";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { ModalContext } from "../../App";
 import { deleteServer } from "../../store/server";
 import "./DeleteConfirmation.css";
 
@@ -23,7 +25,8 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-const DeleteConfirmation = ({ isDeleteOpen, setIsDeleteOpen }) => {
+const DeleteConfirmation = () => {
+  const { isDeleteOpen, setIsDeleteOpen } = useContext(ModalContext);
   const dispatch = useDispatch();
   const history = useHistory();
   const serverId = Number(history.location.pathname.substring(9));
