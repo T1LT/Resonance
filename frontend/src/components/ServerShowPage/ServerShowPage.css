@@ -54,7 +54,7 @@
 .channels-list {
   width: 100%;
   margin-block-end: 0;
-  margin-block: 10px;
+  margin-block-start: 9px;
 }
 
 .channel-item {

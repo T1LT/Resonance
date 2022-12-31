@@ -18,7 +18,7 @@ class Api::ServersController < ApplicationController
         @server = Server.new(server_params)
         @server.owner_id = current_user.id
         if @server.save
-            # --- create general channel here ---
+            Channel.create(channel_name: "general", server_id: @server.id)
             @server_memberships = ServerMembership.create(user_id: current_user.id, server_id: @server.id)
             render :show
         else

@@ -39,6 +39,7 @@ const ServerShowPage = () => {
           <div className="panels-container">
             <div className="server-panel">
               <ul className="channels-list">
+                {/* CHANGE TO NAVLINK */}
                 {channels?.map((channel) => (
                   <li key={channel.id} className="channel-item">
                     <TagIcon sx={{ mr: "5px", transform: "skew(-10deg)" }} />
