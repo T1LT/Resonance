@@ -51,6 +51,36 @@
   font-family: "gg-sans-bold";
 }
 
+.channels-list {
+  width: 100%;
+  margin-block-end: 0;
+  margin-block: 10px;
+}
+
+.channel-item {
+  padding: 7px 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1px 10px;
+  border-radius: 4px;
+  user-select: none;
+  color: #96989D;
+  font-family: "gg-sans-med", sans-serif;
+  font-weight: bold;
+}
+
+.channel-item:hover {
+  background-color: #3C3F45;
+  color: #DCDDDE;
+  cursor: pointer;
+}
+
+.channel-item:active {
+  background-color: #3F4248;
+  color: #fff;
+}
+
 .server-header {
   display: flex;
   border-bottom: 1px solid #202225;
