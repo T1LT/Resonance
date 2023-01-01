@@ -46,3 +46,29 @@
 #edit-channel:hover {
   background-color: var(--color-lightest-dark);
 }
+
+.message-form {
+  width: 100%;
+  position: sticky;
+}
+
+.message-form > input {
+  width: calc(100% - 20px);
+  font-family: "gg-sans-med", sans-serif;
+  margin: 10px 0px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 3px;
+  border: none;
+  background: none;
+  color: var(--color-full-white);
+  background-color: var(--color-lightest-dark);
+}
+
+.message-form > input:focus {
+  outline: none;
+}
+
+.message-form > input::placeholder {
+  color: var(--color-third-text);
+}

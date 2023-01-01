@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect, useParams } from "react-router-dom";
 import { fetchChannels } from "../../store/channel";
@@ -7,11 +7,14 @@ import ServerHeader from "./ServerHeader";
 import "./ServerShowPage.css";
 import UserPanel from "./UserPanel";
 import TagIcon from "@mui/icons-material/Tag";
+import AddIcon from "@mui/icons-material/Add";
 import DeleteConfirmation from "../DeleteConfirmation";
 import ServerFormPage from "../ServerFormPage";
 import ChannelShowPage from "../ChannelShowPage";
+import { ModalContext } from "../../App";
 
 const ServerShowPage = () => {
+  const { setIsChannelModalOpen } = useContext(ModalContext);
   const [isDropOpen, setIsDropOpen] = useState(false);
   const dispatch = useDispatch();
   const { serverId, channelId } = useParams();
@@ -27,9 +30,19 @@ const ServerShowPage = () => {
     e.stopPropagation();
     setIsDropOpen(false);
   };
+  const handleCreateChannel = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsChannelModalOpen(true);
+  };
 
   if (!sessionUser) return <Redirect to="/login" />;
-  if (!channelId) return <Redirect to={`/servers/${server.id}/channels/${server.defaultChannel.id}`} />;
+  if (!channelId)
+    return (
+      <Redirect
+        to={`/servers/${server.id}/channels/${server.defaultChannel.id}`}
+      />
+    );
   return (
     <>
       <ServerFormPage />
@@ -45,6 +58,14 @@ const ServerShowPage = () => {
             />
             <div className="panels-container">
               <div className="server-panel">
+                <div className="text-channels">
+                  <p>TEXT CHANNELS</p>
+                  <AddIcon
+                    fontSize="small"
+                    onClick={handleCreateChannel}
+                    sx={{ cursor: "pointer" }}
+                  />
+                </div>
                 <ul className="channels-list">
                   {channels?.map((channel) => (
                     <li key={channel.id}>

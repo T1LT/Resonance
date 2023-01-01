@@ -37,6 +37,9 @@ const ChannelShowPage = () => {
       </div>
       {/* message items go here */}
       {/* message form goes here */}
+      <form className="message-form">
+        <input type="text" name="content" id="message" placeholder={`Message #${channel?.channelName}`} />
+      </form>
     </>
   );
 };
