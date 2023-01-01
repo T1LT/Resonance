@@ -104,7 +104,7 @@ nav p {
   background-color: var(--color-blurple);
 }
 
-.active {
+.squircle.active {
   background-color: var(--color-blurple);
   border-radius: 36%;
 }

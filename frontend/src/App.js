@@ -54,7 +54,11 @@ function App() {
           <Route path="/login" component={LoginFormPage} />
           <Route path="/register" component={SignupFormPage} />
           <Route path="/me" component={UserShowPage} />
-          <Route path="/servers/:serverId/channels/:channelId" component={ServerShowPage} />
+          <Route
+            path="/servers/:serverId/channels/:channelId"
+            component={ServerShowPage}
+          />
+          <Route path="/servers/:serverId" component={ServerShowPage} />
           <Route path="/invite/:hash" component={Invite} />
           <Route path="/error" component={NotFound} />
           <Redirect to="/error" />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useParams } from "react-router-dom";
+import { NavLink, Redirect, useParams } from "react-router-dom";
 import { fetchChannels } from "../../store/channel";
 import { fetchServer } from "../../store/server";
 import ServerHeader from "./ServerHeader";
@@ -13,7 +13,7 @@ import ServerFormPage from "../ServerFormPage";
 const ServerShowPage = () => {
   const [isDropOpen, setIsDropOpen] = useState(false);
   const dispatch = useDispatch();
-  const { serverId } = useParams();
+  const { serverId, channelId } = useParams();
   const sessionUser = useSelector((store) => store.session.user);
   const server = useSelector((store) => store.servers[serverId]);
   const channels = useSelector((store) => Object.values(store.channels));
@@ -28,6 +28,7 @@ const ServerShowPage = () => {
   };
 
   if (!sessionUser) return <Redirect to="/login" />;
+  if (!channelId) return <Redirect to={`/servers/${server.id}/channels/${server.defaultChannel.id}`} />;
   return (
     <>
       <ServerFormPage />
@@ -46,9 +47,19 @@ const ServerShowPage = () => {
                 <ul className="channels-list">
                   {/* CHANGE TO NAVLINK */}
                   {channels?.map((channel) => (
-                    <li key={channel.id} className="channel-item truncate">
-                      <TagIcon sx={{ mr: "5px", transform: "skew(-10deg)" }} />
-                      {channel.channelName}
+                    <li key={channel.id}>
+                      <NavLink
+                        to={`/servers/${server.id}/channels/${channel.id}`}
+                        className="channel-item"
+                        activeClassName="channel-active"
+                      >
+                        <TagIcon
+                          sx={{ mr: "5px", transform: "skew(-10deg)" }}
+                        />
+                        <p className="channel-item-text truncate">
+                          {channel.channelName}
+                        </p>
+                      </NavLink>
                     </li>
                   ))}
                 </ul>
