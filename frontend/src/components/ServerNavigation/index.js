@@ -34,12 +34,12 @@ const ServerNavigation = () => {
               <li className="divider"></li>
               {Object.values(servers)?.map((server) => (
                 <NavLink
-                  to={`/servers/${server.id}`}
+                  to={`/servers/${server?.id}/channels/${server?.defaultChannel?.id}`}
                   key={server.id}
                   className="squircle purple-boi"
                 >
                   <li>
-                    <p>{server.serverName[0]}</p>
+                    <p>{server.serverName[0].toUpperCase()}</p>
                     <div className="popper-boi">
                       <h4 className="popper-text">{server.serverName}</h4>
                     </div>

@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CloseIcon from "@mui/icons-material/Close";
 import EditIcon from "@mui/icons-material/Edit";
@@ -10,7 +9,6 @@ import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import Alert from "@mui/material/Alert";
 import CryptoJS from "crypto-js";
 import "./ServerShowPage.css";
-import { removeMembership } from "../../store/server";
 import { ModalContext } from "../../App";
 
 const ServerHeader = ({
@@ -37,7 +35,10 @@ const ServerHeader = ({
   const handleInvite = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const hash = CryptoJS.AES.encrypt(JSON.stringify(server.id), "secret");
+    const hash = CryptoJS.AES.encrypt(
+      JSON.stringify(`${server.id}/channels/${server.defaultChannel.id}`),
+      process.env.REACT_APP_SECRET_KEY
+    );
     const url = `http://localhost:3000/invite/${hash}`;
     await navigator.clipboard.writeText(url);
     setCopiedAlert(true);

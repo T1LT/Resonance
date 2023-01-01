@@ -1,11 +1,9 @@
 import { useEffect, useState, createContext } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import DeleteConfirmation from "./components/DeleteConfirmation";
 import Homepage from "./components/Homepage";
 import Invite from "./components/Invite";
 import LoginFormPage from "./components/LoginFormPage";
 import NotFound from "./components/NotFound";
-import ServerFormPage from "./components/ServerFormPage";
 import ServerNavigation from "./components/ServerNavigation";
 import ServerShowPage from "./components/ServerShowPage";
 import SignupFormPage from "./components/SignupFormPage";
@@ -51,14 +49,12 @@ function App() {
         }}
       >
         <ServerNavigation />
-        <ServerFormPage />
-        <DeleteConfirmation />
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route path="/login" component={LoginFormPage} />
           <Route path="/register" component={SignupFormPage} />
           <Route path="/me" component={UserShowPage} />
-          <Route path="/servers/:serverId" component={ServerShowPage} />
+          <Route path="/servers/:serverId/channels/:channelId" component={ServerShowPage} />
           <Route path="/invite/:hash" component={Invite} />
           <Route path="/error" component={NotFound} />
           <Redirect to="/error" />

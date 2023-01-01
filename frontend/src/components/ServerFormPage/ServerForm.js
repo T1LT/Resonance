@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { ModalContext } from "../../App";
 import { createServer, updateServer } from "../../store/server";
 import "./ServerFormPage.css";
@@ -11,7 +11,7 @@ const ServerForm = () => {
   const history = useHistory();
   const [serverName, setServerName] = useState("");
   const [errors, setErrors] = useState([]);
-  const serverId = Number(history.location.pathname.substring(9));
+  const { serverId } = useParams();
   const server = useSelector((store) => store.servers[serverId]);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const ServerForm = () => {
     if (isEdit) {
       return dispatch(updateServer({ ...server, serverName }))
         .then(() => {
-          history.push(`/servers/${serverId}`);
+          history.push(`/servers/${serverId}/channels/${server.defaultChannel.id}`);
           setIsOpen(false);
         })
         .catch(async (res) => {
@@ -41,7 +41,7 @@ const ServerForm = () => {
     } else {
       return dispatch(createServer({ serverName }))
         .then(async (server) => {
-          history.push(`/servers/${server.id}`);
+          history.push(`/servers/${server.id}/channels/${server.defaultChannel.id}`);
           setIsOpen(false);
         })
         .catch(async (res) => {

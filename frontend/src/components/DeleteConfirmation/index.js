@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { ModalContext } from "../../App";
 import { deleteServer, removeMembership } from "../../store/server";
 import "./DeleteConfirmation.css";
@@ -29,7 +29,7 @@ const DeleteConfirmation = () => {
   const { isDeleteOpen, setIsDeleteOpen, isLeave } = useContext(ModalContext);
   const dispatch = useDispatch();
   const history = useHistory();
-  const serverId = Number(history.location.pathname.substring(9));
+  const { serverId } = useParams();
   const server = useSelector((store) => store.servers[serverId]);
   const sessionUser = useSelector((store) => store.session.user);
   const handleDelete = (e) => {

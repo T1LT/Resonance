@@ -7,6 +7,8 @@ import ServerHeader from "./ServerHeader";
 import "./ServerShowPage.css";
 import UserPanel from "./UserPanel";
 import TagIcon from "@mui/icons-material/Tag";
+import DeleteConfirmation from "../DeleteConfirmation";
+import ServerFormPage from "../ServerFormPage";
 
 const ServerShowPage = () => {
   const [isDropOpen, setIsDropOpen] = useState(false);
@@ -27,37 +29,41 @@ const ServerShowPage = () => {
 
   if (!sessionUser) return <Redirect to="/login" />;
   return (
-    <div className="server-show" onClick={handleOutsideClick}>
-      {server && (
-        <div className="server-parent">
-          <ServerHeader
-            server={server}
-            isDropOpen={isDropOpen}
-            setIsDropOpen={setIsDropOpen}
-            handleOutsideClick={handleOutsideClick}
-          />
-          <div className="panels-container">
-            <div className="server-panel">
-              <ul className="channels-list">
-                {/* CHANGE TO NAVLINK */}
-                {channels?.map((channel) => (
-                  <li key={channel.id} className="channel-item">
-                    <TagIcon sx={{ mr: "5px", transform: "skew(-10deg)" }} />
-                    {channel.channelName}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="channel-container">
-              <h1>Channel Component Here</h1>
-            </div>
-            <div className="user-panel">
-              <UserPanel server={server} />
+    <>
+      <ServerFormPage />
+      <DeleteConfirmation />
+      <div className="server-show" onClick={handleOutsideClick}>
+        {server && (
+          <div className="server-parent">
+            <ServerHeader
+              server={server}
+              isDropOpen={isDropOpen}
+              setIsDropOpen={setIsDropOpen}
+              handleOutsideClick={handleOutsideClick}
+            />
+            <div className="panels-container">
+              <div className="server-panel">
+                <ul className="channels-list">
+                  {/* CHANGE TO NAVLINK */}
+                  {channels?.map((channel) => (
+                    <li key={channel.id} className="channel-item truncate">
+                      <TagIcon sx={{ mr: "5px", transform: "skew(-10deg)" }} />
+                      {channel.channelName}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="channel-container">
+                <h1>Channel Component Here</h1>
+              </div>
+              <div className="user-panel">
+                <UserPanel server={server} />
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 };
 

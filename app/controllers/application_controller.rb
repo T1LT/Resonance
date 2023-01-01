@@ -5,6 +5,7 @@ class ApplicationController < ActionController::API
     rescue_from ActionController::InvalidAuthenticityToken,
         with: :invalid_authenticity_token
     before_action :snake_case_params, :attach_authenticity_token
+    helper_method :current_user
 
     def current_user
         @current_user ||= User.find_by(session_token: session[:session_token])
@@ -41,7 +42,7 @@ class ApplicationController < ActionController::API
     end
 
     def invalid_authenticity_token
-        render json: { message: "Invalid authenticity token" }, status: 422
+        render json: { message: "Invalid authenticity token" }, status: :unauthorized
     end
 
     def unhandled_error(error)
