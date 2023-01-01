@@ -18,8 +18,11 @@
   src: url("./assets/antique-olive.ttf");
 }
 
-body {
+* {
   margin: 0;
+}
+
+body {
   font-family: "gg-sans", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

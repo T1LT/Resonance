@@ -16,6 +16,7 @@ function App() {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [isLeave, setIsLeave] = useState(false);
+  const [isChannelModalOpen, setIsChannelModalOpen] = useState(false);
   useEffect(() => {
     console.log(
       "%cHold Up!",
@@ -46,6 +47,8 @@ function App() {
           setIsDeleteOpen,
           isLeave,
           setIsLeave,
+          isChannelModalOpen,
+          setIsChannelModalOpen
         }}
       >
         <ServerNavigation />

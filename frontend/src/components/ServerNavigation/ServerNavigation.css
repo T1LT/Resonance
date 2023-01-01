@@ -3,9 +3,13 @@
   --color-not-quite-black: #23272a;
   --color-dark: #2c2f33;
   --color-lighter-dark: #45494e;
+  --color-lightest-dark: #40444B;
   --color-full-white: #fff;
   --color-actually-black: #000;
   --color-fantastic-green: #00ae7a;
+  --color-secondary-text: #DCDDDE;
+  --color-third-text: #96989D;
+  --color-link-text: #01ADF1;
 }
 
 .navbar {

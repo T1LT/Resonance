@@ -9,6 +9,7 @@ import UserPanel from "./UserPanel";
 import TagIcon from "@mui/icons-material/Tag";
 import DeleteConfirmation from "../DeleteConfirmation";
 import ServerFormPage from "../ServerFormPage";
+import ChannelShowPage from "../ChannelShowPage";
 
 const ServerShowPage = () => {
   const [isDropOpen, setIsDropOpen] = useState(false);
@@ -45,7 +46,6 @@ const ServerShowPage = () => {
             <div className="panels-container">
               <div className="server-panel">
                 <ul className="channels-list">
-                  {/* CHANGE TO NAVLINK */}
                   {channels?.map((channel) => (
                     <li key={channel.id}>
                       <NavLink
@@ -65,7 +65,7 @@ const ServerShowPage = () => {
                 </ul>
               </div>
               <div className="channel-container">
-                <h1>Channel Component Here</h1>
+                <ChannelShowPage />
               </div>
               <div className="user-panel">
                 <UserPanel server={server} />

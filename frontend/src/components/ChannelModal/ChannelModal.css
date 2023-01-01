@@ -1,0 +1,11 @@
+#delete-channel-button {
+  background-color: #e43e41;
+}
+
+#delete-channel-button:hover {
+  background-color: #A12D2F;
+}
+
+#delete-channel-button:active {
+  background-color: #8C2729;
+}
