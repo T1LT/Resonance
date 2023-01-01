@@ -6,10 +6,12 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
+import TagIcon from "@mui/icons-material/Tag";
 import Alert from "@mui/material/Alert";
 import CryptoJS from "crypto-js";
 import "./ServerShowPage.css";
 import { ModalContext } from "../../App";
+import { useParams } from "react-router-dom";
 
 const ServerHeader = ({
   server,
@@ -19,8 +21,10 @@ const ServerHeader = ({
 }) => {
   const { setIsOpen, setIsEdit, setIsDeleteOpen, setIsLeave } =
     useContext(ModalContext);
+  const { channelId } = useParams();
   const [copiedAlert, setCopiedAlert] = useState(false);
   const sessionUser = useSelector((store) => store.session.user);
+  const channel = useSelector((store) => store.channels[channelId]);
   const handleDrawerClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -50,6 +54,7 @@ const ServerHeader = ({
     width: "120px",
     fontFamily: "gg-sans-med",
     fontWeight: "bold",
+    display: "none",
     opacity: 0,
     transition: "opacity 0.5s",
   };
@@ -57,6 +62,7 @@ const ServerHeader = ({
     width: "120px",
     fontFamily: "gg-sans-med",
     fontWeight: "bold",
+    display: "flex",
     opacity: 1,
     transition: "opacity 0.5s",
   };
@@ -135,6 +141,16 @@ const ServerHeader = ({
         <Alert sx={copiedAlert ? mountedStyle : unmountedStyle} severity="info">
           Link Copied!
         </Alert>
+        <div className="channel-name">
+          {channel && (
+            <>
+              <TagIcon
+                sx={{ mr: "5px", transform: "skew(-10deg)", opacity: "0.5" }}
+              />
+              <h4>{channel.channelName}</h4>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -24,22 +24,30 @@ const ChannelShowPage = () => {
   return (
     <>
       <ChannelModal channel={channel} />
-      <div className="channel-info">
-        <div className="channel-squircle">
-          <TagIcon sx={{ transform: "skew(-10deg)", fontSize: "54px" }} />
-        </div>
-        <h1>Welcome to #{channel?.channelName}!</h1>
-        <p>This is the start of the #{channel?.channelName} channel.</p>
-        <div id="edit-channel" onClick={handleEditClick}>
-          <EditIcon sx={{ mr: "5px", fontSize: "16px" }} />
-          Edit Channel
-        </div>
-      </div>
-      {/* message items go here */}
-      {/* message form goes here */}
-      <form className="message-form">
-        <input type="text" name="content" id="message" placeholder={`Message #${channel?.channelName}`} />
-      </form>
+      {channel && (
+        <>
+          <div className="channel-info">
+            <div className="channel-squircle">
+              <TagIcon sx={{ transform: "skew(-10deg)", fontSize: "54px" }} />
+            </div>
+            <h1>Welcome to #{channel.channelName}!</h1>
+            <p>This is the start of the #{channel.channelName} channel.</p>
+            <div id="edit-channel" onClick={handleEditClick}>
+              <EditIcon sx={{ mr: "5px", fontSize: "16px" }} />
+              Edit Channel
+            </div>
+          </div>
+          {/* message items go here */}
+          <form className="message-form">
+            <input
+              type="text"
+              name="content"
+              id="message"
+              placeholder={`Message #${channel.channelName}`}
+            />
+          </form>
+        </>
+      )}
     </>
   );
 };

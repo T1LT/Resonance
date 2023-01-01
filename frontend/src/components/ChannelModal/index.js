@@ -18,7 +18,7 @@ const customStyles = {
     bottom: "auto",
     // height: "100%",
     // width: "100%",
-    height: "240px",
+    height: "200px",
     width: "440px",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
@@ -72,7 +72,9 @@ const ChannelModal = ({ channel }) => {
     return dispatch(deleteChannel(channel.id))
       .then(() => {
         setIsChannelModalOpen(false);
-        history.push(`/servers/${serverId}/channels/${server.defaultChannel.id}`)
+        history.push(
+          `/servers/${serverId}/channels/${server.defaultChannel.id}`
+        );
         setChannelName("");
       })
       .catch(async (res) => {
@@ -119,7 +121,7 @@ const ChannelModal = ({ channel }) => {
           />
         </div>
         <div className="server-form-footer">
-        {/* conditionally render delete button */}
+          {/* conditionally render delete button */}
           <button
             type="button"
             onClick={handleDelete}
