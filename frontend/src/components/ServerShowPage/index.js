@@ -61,11 +61,13 @@ const ServerShowPage = () => {
               <div className="server-panel">
                 <div className="text-channels">
                   <p>TEXT CHANNELS</p>
-                  <AddIcon
-                    fontSize="small"
-                    onClick={handleCreateChannel}
-                    sx={{ cursor: "pointer" }}
-                  />
+                  {server.ownerId === sessionUser.id && (
+                    <AddIcon
+                      fontSize="small"
+                      onClick={handleCreateChannel}
+                      sx={{ cursor: "pointer" }}
+                    />
+                  )}
                 </div>
                 <ul className="channels-list">
                   {channels?.map((channel) => (
