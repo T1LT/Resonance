@@ -9,13 +9,14 @@ import { ModalContext } from "../../App";
 import ChannelModal from "../ChannelModal";
 
 const ChannelShowPage = () => {
-  const { setIsChannelModalOpen } = useContext(ModalContext);
+  const { setIsChannelModalOpen, setIsChannelEdit } = useContext(ModalContext);
   const { channelId } = useParams();
   const channel = useSelector((store) => store.channels[channelId]);
   const dispatch = useDispatch();
   const handleEditClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    setIsChannelEdit(true);
     setIsChannelModalOpen(true);
   };
   useEffect(() => {

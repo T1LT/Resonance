@@ -17,7 +17,9 @@ function App() {
   const [isEdit, setIsEdit] = useState(false);
   const [isLeave, setIsLeave] = useState(false);
   const [isChannelModalOpen, setIsChannelModalOpen] = useState(false);
+  const [isChannelEdit, setIsChannelEdit] = useState(true);
   useEffect(() => {
+    // modularize this:
     console.log(
       "%cHold Up!",
       "color: #5865F2; font-size: 72px; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;"
@@ -48,7 +50,9 @@ function App() {
           isLeave,
           setIsLeave,
           isChannelModalOpen,
-          setIsChannelModalOpen
+          setIsChannelModalOpen,
+          isChannelEdit,
+          setIsChannelEdit
         }}
       >
         <ServerNavigation />

@@ -14,7 +14,7 @@ import ChannelShowPage from "../ChannelShowPage";
 import { ModalContext } from "../../App";
 
 const ServerShowPage = () => {
-  const { setIsChannelModalOpen } = useContext(ModalContext);
+  const { setIsChannelModalOpen, setIsChannelEdit } = useContext(ModalContext);
   const [isDropOpen, setIsDropOpen] = useState(false);
   const dispatch = useDispatch();
   const { serverId, channelId } = useParams();
@@ -33,6 +33,7 @@ const ServerShowPage = () => {
   const handleCreateChannel = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    setIsChannelEdit(false);
     setIsChannelModalOpen(true);
   };
 

@@ -38,8 +38,8 @@ export const fetchChannel = (channelId) => async dispatch => {
   }
 };
 
-export const createChannel = (serverId, channelData) => async dispatch => {
-  const res = await csrfFetch(`/api/servers/${serverId}/channels`, {
+export const createChannel = (channelData) => async dispatch => {
+  const res = await csrfFetch(`/api/servers/${channelData.server_id}/channels`, {
     method: "POST",
     body: JSON.stringify(channelData)
   });

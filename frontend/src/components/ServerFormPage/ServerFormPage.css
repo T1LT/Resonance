@@ -89,6 +89,10 @@
   padding-left: 15px;
 }
 
+#back-button:hover {
+  text-decoration: underline;
+}
+
 .server-form button:hover {
   background-color: #4752C4;
   cursor: pointer;

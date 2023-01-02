@@ -34,7 +34,7 @@ Modal.setAppElement("#root");
 const ChannelModal = ({ channel }) => {
   const [channelName, setChannelName] = useState("");
   const [errors, setErrors] = useState([]);
-  const { isChannelModalOpen, setIsChannelModalOpen } =
+  const { isChannelModalOpen, setIsChannelModalOpen, isChannelEdit } =
     useContext(ModalContext);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -42,30 +42,50 @@ const ChannelModal = ({ channel }) => {
   const server = useSelector((store) => store.servers[serverId]);
   const handleSubmit = (e) => {
     e.preventDefault();
-    // if isChannelEdit
-    const channelData = {
-      id: channel.id,
-      channel_name: channelName,
-      server_id: channel.serverId,
-    };
-    return dispatch(updateChannel(channelData))
-      .then(() => {
-        setIsChannelModalOpen(false);
-        setChannelName("");
-      })
-      .catch(async (res) => {
-        let data;
-        try {
-          data = await res.clone().json();
-        } catch {
-          data = await res.text();
-        }
-        if (data?.errors) setErrors(data.errors);
-        else if (data) setErrors([data]);
-        else setErrors([res.statusText]);
-      });
-    // else
-    // dispatch(createChannel(channelData));
+    if (isChannelEdit) {
+      const channelData = {
+        id: channel.id,
+        channel_name: channelName,
+        server_id: serverId,
+      };
+      return dispatch(updateChannel(channelData))
+        .then(() => {
+          setIsChannelModalOpen(false);
+          setChannelName("");
+        })
+        .catch(async (res) => {
+          let data;
+          try {
+            data = await res.clone().json();
+          } catch {
+            data = await res.text();
+          }
+          if (data?.errors) setErrors(data.errors);
+          else if (data) setErrors([data]);
+          else setErrors([res.statusText]);
+        });
+    } else {
+      const channelData = {
+        channel_name: channelName,
+        server_id: serverId,
+      };
+      return dispatch(createChannel(channelData))
+        .then(() => {
+          setIsChannelModalOpen(false);
+          setChannelName("");
+        })
+        .catch(async (res) => {
+          let data;
+          try {
+            data = await res.clone().json();
+          } catch {
+            data = await res.text();
+          }
+          if (data?.errors) setErrors(data.errors);
+          else if (data) setErrors([data]);
+          else setErrors([res.statusText]);
+        });
+    }
   };
   const handleDelete = (e) => {
     e.preventDefault();
@@ -99,7 +119,9 @@ const ChannelModal = ({ channel }) => {
       closeTimeoutMS={200}
     >
       <form onSubmit={handleSubmit} className="server-form">
-        <h2>Edit #{channel?.channelName}</h2>
+        <h2>
+          {isChannelEdit ? `Edit #${channel?.channelName}` : "Create channel"}
+        </h2>
         <div className="server-form-inputs">
           <label
             htmlFor="channelName"
@@ -121,21 +143,30 @@ const ChannelModal = ({ channel }) => {
           />
         </div>
         <div className="server-form-footer">
-          {/* conditionally render delete button */}
-          <button
-            type="button"
-            onClick={handleDelete}
-            style={{ width: "125px" }}
-            id="delete-channel-button"
-          >
-            Delete Channel
-          </button>
+          {isChannelEdit ? (
+            <button
+              type="button"
+              onClick={handleDelete}
+              style={{ width: "125px" }}
+              id="delete-channel-button"
+            >
+              Delete Channel
+            </button>
+          ) : (
+            <button
+              type="button"
+              id="back-button"
+              onClick={() => setIsChannelModalOpen(false)}
+            >
+              Back
+            </button>
+          )}
           <button
             type="submit"
             onClick={handleSubmit}
             style={{ width: "125px" }}
           >
-            Update Channel
+            {isChannelEdit ? "Update" : "Create"} Channel
           </button>
         </div>
       </form>
