@@ -19,7 +19,7 @@ const ServerHeader = ({
   setIsDropOpen,
   handleOutsideClick,
 }) => {
-  const { setIsOpen, setIsEdit, setIsDeleteOpen, setIsLeave } =
+  const { setIsOpen, setIsEdit, setIsDeleteOpen, setIsLeave, setConfirmationType } =
     useContext(ModalContext);
   const { channelId } = useParams();
   const [copiedAlert, setCopiedAlert] = useState(false);
@@ -108,6 +108,7 @@ const ServerHeader = ({
                     <button
                       id="delete-button"
                       onClick={() => {
+                        setConfirmationType("server");
                         setIsLeave(false);
                         setIsDeleteOpen(true);
                       }}

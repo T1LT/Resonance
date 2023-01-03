@@ -2,11 +2,7 @@ import React, { useContext, useState } from "react";
 import Modal from "react-modal";
 import { ModalContext } from "../../App";
 import "./ChannelModal.css";
-import {
-  updateChannel,
-  createChannel,
-  deleteChannel,
-} from "../../store/channel";
+import { updateChannel, createChannel } from "../../store/channel";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
@@ -34,11 +30,16 @@ Modal.setAppElement("#root");
 const ChannelModal = ({ channel }) => {
   const [channelName, setChannelName] = useState("");
   const [errors, setErrors] = useState([]);
-  const { isChannelModalOpen, setIsChannelModalOpen, isChannelEdit } =
-    useContext(ModalContext);
+  const {
+    isChannelModalOpen,
+    setIsChannelModalOpen,
+    isChannelEdit,
+    setIsDeleteOpen,
+    setConfirmationType
+  } = useContext(ModalContext);
   const dispatch = useDispatch();
-  const history = useHistory();
   const { serverId } = useParams();
+  const history = useHistory();
   const server = useSelector((store) => store.servers[serverId]);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,7 +71,8 @@ const ChannelModal = ({ channel }) => {
         server_id: serverId,
       };
       return dispatch(createChannel(channelData))
-        .then(() => {
+        .then((channel) => {
+          history.push(`/servers/${server.id}/channels/${channel.id}`)
           setIsChannelModalOpen(false);
           setChannelName("");
         })
@@ -89,30 +91,18 @@ const ChannelModal = ({ channel }) => {
   };
   const handleDelete = (e) => {
     e.preventDefault();
-    return dispatch(deleteChannel(channel.id))
-      .then(() => {
-        setIsChannelModalOpen(false);
-        history.push(
-          `/servers/${serverId}/channels/${server.defaultChannel.id}`
-        );
-        setChannelName("");
-      })
-      .catch(async (res) => {
-        let data;
-        try {
-          data = await res.clone().json();
-        } catch {
-          data = await res.text();
-        }
-        if (data?.errors) setErrors(data.errors);
-        else if (data) setErrors([data]);
-        else setErrors([res.statusText]);
-      });
+    setConfirmationType("channel");
+    setIsChannelModalOpen(false);
+    setIsDeleteOpen(true);
   };
   return (
     <Modal
       isOpen={isChannelModalOpen}
-      onRequestClose={() => setIsChannelModalOpen(false)}
+      onRequestClose={() => {
+        setIsChannelModalOpen(false);
+        setErrors([]);
+        setChannelName("");
+      }}
       style={customStyles}
       contentLabel="Channel CRUD Modal"
       overlayClassName="Overlay"
@@ -144,14 +134,26 @@ const ChannelModal = ({ channel }) => {
         </div>
         <div className="server-form-footer">
           {isChannelEdit ? (
-            <button
-              type="button"
-              onClick={handleDelete}
-              style={{ width: "125px" }}
-              id="delete-channel-button"
-            >
-              Delete Channel
-            </button>
+            <>
+              {channel?.id !== server.defaultChannel.id ? (
+                <button
+                  type="button"
+                  onClick={handleDelete}
+                  style={{ width: "125px" }}
+                  id="delete-channel-button"
+                >
+                  Delete Channel
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  id="back-button"
+                  onClick={() => setIsChannelModalOpen(false)}
+                >
+                  Back
+                </button>
+              )}
+            </>
           ) : (
             <button
               type="button"

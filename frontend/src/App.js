@@ -18,6 +18,7 @@ function App() {
   const [isLeave, setIsLeave] = useState(false);
   const [isChannelModalOpen, setIsChannelModalOpen] = useState(false);
   const [isChannelEdit, setIsChannelEdit] = useState(true);
+  const [confirmationType, setConfirmationType] = useState("server");
   useEffect(() => {
     // modularize this:
     console.log(
@@ -52,7 +53,9 @@ function App() {
           isChannelModalOpen,
           setIsChannelModalOpen,
           isChannelEdit,
-          setIsChannelEdit
+          setIsChannelEdit,
+          confirmationType,
+          setConfirmationType
         }}
       >
         <ServerNavigation />

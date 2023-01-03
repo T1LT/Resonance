@@ -14,8 +14,14 @@ import ChannelShowPage from "../ChannelShowPage";
 import { ModalContext } from "../../App";
 
 const ServerShowPage = () => {
-  const { setIsChannelModalOpen, setIsChannelEdit } = useContext(ModalContext);
+  const {
+    setIsChannelModalOpen,
+    setIsChannelEdit,
+    setConfirmationType,
+    setIsDeleteOpen,
+  } = useContext(ModalContext);
   const [isDropOpen, setIsDropOpen] = useState(false);
+  const [isChannelDropOpen, setisChannelDropOpen] = useState(false);
   const dispatch = useDispatch();
   const { serverId, channelId } = useParams();
   const sessionUser = useSelector((store) => store.session.user);
@@ -29,6 +35,7 @@ const ServerShowPage = () => {
     e.preventDefault();
     e.stopPropagation();
     setIsDropOpen(false);
+    setisChannelDropOpen(false);
   };
   const handleCreateChannel = (e) => {
     e.preventDefault();
@@ -36,6 +43,35 @@ const ServerShowPage = () => {
     setIsChannelEdit(false);
     setIsChannelModalOpen(true);
   };
+  
+  // const handleChannelRightClick = (e) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   console.log(e);
+  //   setisChannelDropOpen(true);
+  // };
+  /* {isChannelDropOpen && (
+        <div className="menu-container">
+          <ul className="menu">
+            <li className="menu-item">
+              <button id="invite-button" onClick={() => {
+                setIsChannelEdit(true);
+                setIsChannelModalOpen(true);
+              }}>Edit Channel</button>
+            </li>
+            <li>
+              <div className="options-divider"></div>
+            </li>
+            <li className="menu-item" onClick={() => {
+              setConfirmationType("channel");
+              setIsDeleteOpen(true);
+            }}>
+              <button id="delete-button">Delete Channel</button>
+            </li>
+          </ul>
+        </div>
+      )} 
+  */
 
   if (!sessionUser) return <Redirect to="/login" />;
   if (!channelId)

@@ -50,6 +50,10 @@ p > strong {
   text-decoration: underline;
 }
 
+#confirm-delete-button {
+  width: 120px;
+}
+
 #confirm-delete-button:hover {
   background-color: #A12D2F;
 }

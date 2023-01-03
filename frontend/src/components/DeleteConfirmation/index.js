@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { ModalContext } from "../../App";
+import { deleteChannel } from "../../store/channel";
 import { deleteServer, removeMembership } from "../../store/server";
 import "./DeleteConfirmation.css";
 
@@ -26,18 +27,29 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 const DeleteConfirmation = () => {
-  const { isDeleteOpen, setIsDeleteOpen, isLeave } = useContext(ModalContext);
+  const { isDeleteOpen, setIsDeleteOpen, isLeave, confirmationType } =
+    useContext(ModalContext);
   const dispatch = useDispatch();
   const history = useHistory();
-  const { serverId } = useParams();
+  const { serverId, channelId } = useParams();
   const server = useSelector((store) => store.servers[serverId]);
+  const channel = useSelector((store) => store.channels[channelId]);
   const sessionUser = useSelector((store) => store.session.user);
   const handleDelete = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    dispatch(deleteServer(server.id));
     setIsDeleteOpen(false);
-    history.push("/me");
+    if (confirmationType === "server") {
+      dispatch(deleteServer(server.id));
+      history.push("/me");
+    } else {
+      return dispatch(deleteChannel(channel.id))
+        .then(() => {
+          history.push(
+            `/servers/${serverId}/channels/${server.defaultChannel.id}`
+          );
+        });
+    }
   };
   const handleLeave = (e) => {
     e.preventDefault();
@@ -59,11 +71,11 @@ const DeleteConfirmation = () => {
     >
       <div className="delete-container">
         <h2 className="truncate">
-          {isLeave ? "Leave" : "Delete"} '{server?.serverName}'
+          {isLeave ? "Leave" : "Delete"} {confirmationType === "server" ? `'${server?.serverName}'` : "Channel"}
         </h2>
         <p>
           Are you sure you want to {isLeave ? "leave" : "delete"}{" "}
-          <strong>{server?.serverName}</strong>?
+          <strong>{confirmationType === "server" ? server?.serverName : channel?.channelName}</strong>?
           {isLeave
             ? " You won't be able to rejoin this server unless you are re-invited."
             : " This action cannot be undone."}
@@ -81,7 +93,7 @@ const DeleteConfirmation = () => {
             onClick={isLeave ? handleLeave : handleDelete}
             id="confirm-delete-button"
           >
-            {isLeave ? "Leave" : "Delete"} Server
+            {isLeave ? "Leave" : "Delete"} {confirmationType === "server" ? "Server" : "Channel"}
           </button>
         </div>
       </div>
