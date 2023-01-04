@@ -61,16 +61,17 @@ function App() {
         <ServerNavigation />
         <Switch>
           <Route exact path="/" component={Homepage} />
-          <Route path="/login" component={LoginFormPage} />
-          <Route path="/register" component={SignupFormPage} />
-          <Route path="/me" component={UserShowPage} />
+          <Route exact path="/login" component={LoginFormPage} />
+          <Route exact path="/register" component={SignupFormPage} />
+          <Route exact path="/me" component={UserShowPage} />
           <Route
+            exact
             path="/servers/:serverId/channels/:channelId"
             component={ServerShowPage}
           />
-          <Route path="/servers/:serverId" component={ServerShowPage} />
-          <Route path="/invite/:hash" component={Invite} />
-          <Route path="/error" component={NotFound} />
+          <Route exact path="/servers/:serverId" component={ServerShowPage} />
+          <Route exact path="/invite/:hash" component={Invite} />
+          <Route exact path="/error" component={NotFound} />
           <Redirect to="/error" />
         </Switch>
       </ModalContext.Provider>

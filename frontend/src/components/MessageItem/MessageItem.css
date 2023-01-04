@@ -1,0 +1,40 @@
+.message-item {
+  display: flex;
+  align-items: center;
+  margin: 17px 0;
+}
+
+.text {
+  margin-left: 7px;
+}
+
+.text p {
+  font-family: "gg-sans-med", sans-serif;
+  margin-top: 3px;
+}
+
+.message-user-squircle {
+  width: 40px;
+  height: 40px;
+  margin-left: 3px;
+  margin-right: 10px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.message-user-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: inherit;
+}
+
+#timestamp {
+  font-size: 0.75rem;
+  font-style: normal;
+  font-family: "gg-sans-med";
+  margin-left: 0.25rem;
+  color: var(--color-third-text);
+}
