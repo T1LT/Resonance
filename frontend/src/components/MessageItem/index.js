@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/logo.png";
 import "./MessageItem.css";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const MessageItem = ({ message }) => {
   const colors = ["blue", "mustard", "red", "green", "grey"];
   const randomColor = (id) => colors[id % 5];
+  const [msgcrudActive, setMsgcrudActive] = useState(false);
+  const hidden = { opacity: 0 };
+  const active = { opacity: 1 };
   const formatTimestamp = (timestamp) => {
     let dateObj = new Date(timestamp);
     let date = dateObj.getDate();
@@ -24,14 +29,18 @@ const MessageItem = ({ message }) => {
     }
     if (hours >= 12) {
       hours %= 12;
-      meridiem = "PM"
+      meridiem = "PM";
     }
     return `${month}/${date}/${year} ${hours}:${minutes} ${meridiem}`;
   };
   return (
     <>
       {message && (
-        <div className="message-item">
+        <div
+          className="message-item"
+          onMouseEnter={() => setMsgcrudActive(true)}
+          onMouseLeave={() => setMsgcrudActive(false)}
+        >
           <div
             className="message-user-squircle"
             id={randomColor(message.user.id)}
@@ -39,10 +48,20 @@ const MessageItem = ({ message }) => {
             <img src={logo} alt="logo" className="message-user-logo" />
           </div>
           <div className="text">
-            <h4>
-              {message.user.username}
-              <span id="timestamp">{formatTimestamp(message.createdAt)}</span>
-            </h4>
+            <div className="message-top">
+              <h4>
+                {message.user.username}
+                <span id="timestamp">{formatTimestamp(message.createdAt)}</span>
+              </h4>
+              <div className="message-buttons" style={msgcrudActive ? active : hidden}>
+                <div className="message-edit-button">
+                  <EditIcon fontSize="small" sx={{ m: "0 2px" }} />
+                </div>
+                <div className="message-delete-button">
+                  <DeleteIcon fontSize="small" sx={{ m: "0 2px" }} />
+                </div>
+              </div>
+            </div>
             <p>{message.body}</p>
           </div>
         </div>

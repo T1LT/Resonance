@@ -108,11 +108,11 @@
 }
 
 .rest-of-the-header {
-  width: calc(100% - 240px);
+  width: calc(100% - 320px);
   background-color: #36393F;
   color: white;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .rest-of-the-header h4 {
@@ -123,6 +123,19 @@
   margin-left: 15px;
   display: flex;
   align-items: center;
+}
+
+.channel-buttons {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.channel-edit-button, .channel-delete-button {
+  display: flex;
+  align-items: center;
+  margin: 0 5px;
+  cursor: pointer;
 }
 
 .menu-container {

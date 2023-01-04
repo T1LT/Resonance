@@ -17,8 +17,6 @@ const ServerHeader = ({
   server,
   isDropOpen,
   setIsDropOpen,
-  isChannelDropOpen,
-  setIsChannelDropOpen,
   handleOutsideClick,
 }) => {
   const {
@@ -30,7 +28,7 @@ const ServerHeader = ({
     setIsChannelModalOpen,
     setIsChannelEdit,
   } = useContext(ModalContext);
-  const { channelId } = useParams();
+  const { serverId, channelId } = useParams();
   const [copiedAlert, setCopiedAlert] = useState(false);
   const sessionUser = useSelector((store) => store.session.user);
   const channel = useSelector((store) => store.channels[channelId]);
@@ -147,43 +145,11 @@ const ServerHeader = ({
           </div>
         ) : null}
       </div>
-      <div
-        className="rest-of-the-header"
-        onClick={() => setIsChannelDropOpen(true)}
-      >
+      <div className="rest-of-the-header">
         <Alert sx={copiedAlert ? mountedStyle : unmountedStyle} severity="info">
           Link Copied!
         </Alert>
         <div className="channel-name">
-          {isChannelDropOpen && (
-            <div className="menu-container">
-              <ul className="menu">
-                <li className="menu-item">
-                  <button
-                    id="invite-button"
-                    onClick={() => {
-                      setIsChannelEdit(true);
-                      setIsChannelModalOpen(true);
-                    }}
-                  >
-                    Edit Channel
-                  </button>
-                </li>
-                <li>
-                  <div className="options-divider"></div>
-                </li>
-                <li
-                  className="menu-item"
-                  onClick={() => {
-                    setConfirmationType("channel");
-                    setIsDeleteOpen(true);
-                  }}
-                >
-                  <button id="delete-button">Delete Channel</button>
-                </li>
-              </ul>
-            </div>
-          )}
           {channel && (
             <>
               <TagIcon
@@ -193,6 +159,28 @@ const ServerHeader = ({
             </>
           )}
         </div>
+        {server.ownerId === sessionUser.id && (
+          <div className="channel-buttons">
+            <div
+              className="channel-edit-button"
+              onClick={() => {
+                setIsChannelEdit(true);
+                setIsChannelModalOpen(true);
+              }}
+            >
+              <EditIcon sx={{ opacity: "0.7" }} />
+            </div>
+            <div
+              className="channel-delete-button"
+              onClick={() => {
+                setConfirmationType("channel");
+                setIsDeleteOpen(true);
+              }}
+            >
+              <DeleteIcon sx={{ opacity: "0.7" }} />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

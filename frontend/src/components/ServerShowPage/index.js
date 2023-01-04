@@ -14,12 +14,8 @@ import ChannelShowPage from "../ChannelShowPage";
 import { ModalContext } from "../../App";
 
 const ServerShowPage = () => {
-  const {
-    setIsChannelModalOpen,
-    setIsChannelEdit
-  } = useContext(ModalContext);
+  const { setIsChannelModalOpen, setIsChannelEdit } = useContext(ModalContext);
   const [isDropOpen, setIsDropOpen] = useState(false);
-  const [isChannelDropOpen, setIsChannelDropOpen] = useState(false);
   const dispatch = useDispatch();
   const { serverId, channelId } = useParams();
   const sessionUser = useSelector((store) => store.session.user);
@@ -33,7 +29,6 @@ const ServerShowPage = () => {
     e.preventDefault();
     e.stopPropagation();
     setIsDropOpen(false);
-    setIsChannelDropOpen(false);
   };
   const handleCreateChannel = (e) => {
     e.preventDefault();
@@ -60,8 +55,6 @@ const ServerShowPage = () => {
               server={server}
               isDropOpen={isDropOpen}
               setIsDropOpen={setIsDropOpen}
-              isChannelDropOpen={isChannelDropOpen}
-              setIsChannelDropOpen={setIsChannelDropOpen}
               handleOutsideClick={handleOutsideClick}
             />
             <div className="panels-container">
