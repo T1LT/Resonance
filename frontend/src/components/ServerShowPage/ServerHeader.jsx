@@ -17,10 +17,19 @@ const ServerHeader = ({
   server,
   isDropOpen,
   setIsDropOpen,
+  isChannelDropOpen,
+  setIsChannelDropOpen,
   handleOutsideClick,
 }) => {
-  const { setIsOpen, setIsEdit, setIsDeleteOpen, setIsLeave, setConfirmationType } =
-    useContext(ModalContext);
+  const {
+    setIsOpen,
+    setIsEdit,
+    setIsDeleteOpen,
+    setIsLeave,
+    setConfirmationType,
+    setIsChannelModalOpen,
+    setIsChannelEdit,
+  } = useContext(ModalContext);
   const { channelId } = useParams();
   const [copiedAlert, setCopiedAlert] = useState(false);
   const sessionUser = useSelector((store) => store.session.user);
@@ -138,11 +147,43 @@ const ServerHeader = ({
           </div>
         ) : null}
       </div>
-      <div className="rest-of-the-header">
+      <div
+        className="rest-of-the-header"
+        onClick={() => setIsChannelDropOpen(true)}
+      >
         <Alert sx={copiedAlert ? mountedStyle : unmountedStyle} severity="info">
           Link Copied!
         </Alert>
         <div className="channel-name">
+          {isChannelDropOpen && (
+            <div className="menu-container">
+              <ul className="menu">
+                <li className="menu-item">
+                  <button
+                    id="invite-button"
+                    onClick={() => {
+                      setIsChannelEdit(true);
+                      setIsChannelModalOpen(true);
+                    }}
+                  >
+                    Edit Channel
+                  </button>
+                </li>
+                <li>
+                  <div className="options-divider"></div>
+                </li>
+                <li
+                  className="menu-item"
+                  onClick={() => {
+                    setConfirmationType("channel");
+                    setIsDeleteOpen(true);
+                  }}
+                >
+                  <button id="delete-button">Delete Channel</button>
+                </li>
+              </ul>
+            </div>
+          )}
           {channel && (
             <>
               <TagIcon
