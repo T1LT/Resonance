@@ -4,14 +4,18 @@ const QRCode = () => {
   return (
     <div>
       <center>
-        <div className='img-container'>
+        <div className="img-container">
           <img src={qrcode} height="200" />
         </div>
-        <h2>Resonance Github</h2>
-        <p className='secondary-text'>Scan this QR to view the Github Repo.</p>
+        <div className="qr-text">
+          <h2>Resonance Github</h2>
+          <p className="secondary-text">
+            Scan this QR to view the Github Repo.
+          </p>
+        </div>
       </center>
     </div>
-  )
+  );
 }
 
 export default QRCode

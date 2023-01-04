@@ -57,7 +57,7 @@ const ServerHeader = ({
     setCopiedAlert(true);
     setTimeout(() => {
       setCopiedAlert(false);
-    }, 2000);
+    }, 1500);
   };
   const unmountedStyle = {
     width: "120px",

@@ -16,9 +16,7 @@ import { ModalContext } from "../../App";
 const ServerShowPage = () => {
   const {
     setIsChannelModalOpen,
-    setIsChannelEdit,
-    setConfirmationType,
-    setIsDeleteOpen,
+    setIsChannelEdit
   } = useContext(ModalContext);
   const [isDropOpen, setIsDropOpen] = useState(false);
   const [isChannelDropOpen, setIsChannelDropOpen] = useState(false);
