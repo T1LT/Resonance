@@ -24,6 +24,7 @@ const ChannelShowPage = () => {
   const { setIsChannelModalOpen, setIsChannelEdit } = useContext(ModalContext);
   const { serverId, channelId } = useParams();
   const [body, setBody] = useState("");
+  const server = useSelector((store) => store.servers[serverId]);
   const channel = useSelector((store) => store.channels[channelId]);
   const messages = useSelector((store) => Object.values(store.messages));
   const sessionUser = useSelector((store) => store.session.user);
@@ -69,7 +70,7 @@ const ChannelShowPage = () => {
             </div>
             <div className="messages-container">
               {messages?.map((message, idx) => (
-                <MessageItem key={idx} message={message} />
+                <MessageItem key={idx} server={server} message={message} />
               ))}
             </div>
           </div>
