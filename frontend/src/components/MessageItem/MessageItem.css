@@ -84,3 +84,24 @@
 .message-delete-button:hover {
   background-color: var(--color-lighter-dark);
 }
+
+.edit-message-form {
+  width: 95%;
+}
+
+.edit-message-form > input {
+  width: calc(100% - 47px);
+  font-family: "gg-sans-med", sans-serif;
+  margin: 10px 0px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 7px;
+  border: none;
+  background: none;
+  color: var(--color-full-white);
+  background-color: var(--color-lightest-dark);
+}
+
+.edit-message-form > input:focus {
+  outline: none;
+}

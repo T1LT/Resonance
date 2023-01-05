@@ -4,13 +4,17 @@ import "./MessageItem.css";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ModalContext } from "../../App";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateMessage } from "../../store/message";
 
 const MessageItem = ({ server, message }) => {
   const { setIsDeleteOpen, setConfirmationType } = useContext(ModalContext);
   const colors = ["blue", "mustard", "red", "green", "grey"];
   const randomColor = (id) => colors[id % 5];
   const [msgcrudActive, setMsgcrudActive] = useState(false);
+  const [msgEdit, setMsgEdit] = useState(false);
+  const [msgInput, setMsgInput] = useState(message?.body);
+  const dispatch = useDispatch();
   const hidden = { opacity: 0 };
   const active = { opacity: 1 };
   const sessionUser = useSelector((store) => store.session.user);
@@ -36,6 +40,19 @@ const MessageItem = ({ server, message }) => {
       meridiem = "PM";
     }
     return `${month}/${date}/${year} ${hours}:${minutes} ${meridiem}`;
+  };
+  const handleEditMessage = (e) => {
+    e.preventDefault();
+    const messageData = { ...message, body: msgInput };
+    console.log(messageData);
+    setMsgEdit(false);
+    dispatch(updateMessage(messageData));
+  };
+  const handleCloseEdit = (e) => {
+    if (e.keyCode === 27) {
+      setMsgEdit(false);
+      setMsgInput(message.body);
+    }
   };
   return (
     <>
@@ -63,7 +80,10 @@ const MessageItem = ({ server, message }) => {
                   className="message-buttons"
                   style={msgcrudActive ? active : hidden}
                 >
-                  <div className="message-edit-button" onClick={() => {}}>
+                  <div
+                    className="message-edit-button"
+                    onClick={() => setMsgEdit(true)}
+                  >
                     <EditIcon fontSize="small" sx={{ m: "0 2px" }} />
                   </div>
                   <div
@@ -78,7 +98,22 @@ const MessageItem = ({ server, message }) => {
                 </div>
               )}
             </div>
-            <p>{message.body}</p>
+            {msgEdit ? (
+              <form className="edit-message-form" onSubmit={handleEditMessage}>
+                <input
+                  type="text"
+                  name="content"
+                  id="message"
+                  autoComplete="off"
+                  autoFocus
+                  value={msgInput}
+                  onChange={(e) => setMsgInput(e.target.value)}
+                  onKeyDown={handleCloseEdit}
+                />
+              </form>
+            ) : (
+              <p>{message.body}</p>
+            )}
           </div>
         </div>
       )}
