@@ -70,14 +70,7 @@
   padding: 3px;
   display: flex;
   align-items: center;
-}
-
-.message-edit-button {
-  border-radius: 5px 0 0 5px;
-}
-
-.message-delete-button {
-  border-radius: 0 5px 5px 0;
+  border-radius: 5px;
 }
 
 .message-edit-button:hover,
@@ -104,4 +97,19 @@
 
 .edit-message-form > input:focus {
   outline: none;
+}
+
+.msg-edit-info {
+  font-size: 12px;
+}
+
+.msg-edit-info > span {
+  font-family: "gg-sans", sans-serif;
+  color: var(--color-link-text);
+  font-style: normal;
+  cursor: pointer;
+}
+
+.msg-edit-info > span:hover {
+  text-decoration: underline;
 }

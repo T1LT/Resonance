@@ -80,12 +80,14 @@ const MessageItem = ({ server, message }) => {
                   className="message-buttons"
                   style={msgcrudActive ? active : hidden}
                 >
-                  <div
-                    className="message-edit-button"
-                    onClick={() => setMsgEdit(true)}
-                  >
-                    <EditIcon fontSize="small" sx={{ m: "0 2px" }} />
-                  </div>
+                  {message.user.id === sessionUser.id && (
+                    <div
+                      className="message-edit-button"
+                      onClick={() => setMsgEdit(true)}
+                    >
+                      <EditIcon fontSize="small" sx={{ m: "0 2px" }} />
+                    </div>
+                  )}
                   <div
                     className="message-delete-button"
                     onClick={() => {
@@ -110,6 +112,18 @@ const MessageItem = ({ server, message }) => {
                   onChange={(e) => setMsgInput(e.target.value)}
                   onKeyDown={handleCloseEdit}
                 />
+                <p className="msg-edit-info">
+                  escape to{" "}
+                  <span
+                    onClick={() => {
+                      setMsgEdit(false);
+                      setMsgInput(message.body);
+                    }}
+                  >
+                    cancel
+                  </span>{" "}
+                  &bull; enter to <span onClick={handleEditMessage}>save</span>
+                </p>
               </form>
             ) : (
               <p>{message.body}</p>
