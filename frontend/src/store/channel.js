@@ -38,36 +38,28 @@ export const fetchChannel = (channelId) => async dispatch => {
   }
 };
 
-export const createChannel = (channelData) => async dispatch => {
+export const createChannel = async (channelData) => {
   const res = await csrfFetch(`/api/servers/${channelData.server_id}/channels`, {
     method: "POST",
     body: JSON.stringify(channelData)
   });
   if (res.ok) {
     const channel = await res.json();
-    dispatch(addChannel(channel));
     return channel;
   }
 };
 
-export const updateChannel = (channel) => async dispatch => {
-  const res = await csrfFetch(`/api/channels/${channel.id}`, {
+export const updateChannel = (channel) => {
+  csrfFetch(`/api/channels/${channel.id}`, {
     method: "PATCH",
     body: JSON.stringify(channel)
   });
-  if (res.ok) {
-    const newChannel = await res.json();
-    dispatch(addChannel(newChannel));
-  }
 };
 
-export const deleteChannel = (channelId) => async dispatch => {
-  const res = await csrfFetch(`/api/channels/${channelId}`, {
+export const deleteChannel = (channelId) => {
+  csrfFetch(`/api/channels/${channelId}`, {
     method: "DELETE"
   });
-  if (res.ok) {
-    dispatch(removeChannel(channelId));
-  }
 };
 
 // REDUCER

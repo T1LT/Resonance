@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Redirect, useParams } from "react-router-dom";
-import { fetchChannels } from "../../store/channel";
+import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
+import { addChannel, fetchChannels, removeChannel } from "../../store/channel";
 import { fetchServer } from "../../store/server";
 import ServerHeader from "./ServerHeader";
 import "./ServerShowPage.css";
@@ -12,19 +12,17 @@ import DeleteConfirmation from "../DeleteConfirmation";
 import ServerFormPage from "../ServerFormPage";
 import ChannelShowPage from "../ChannelShowPage";
 import { ModalContext } from "../../App";
+import consumer from "../consumer";
 
 const ServerShowPage = () => {
   const { setIsChannelModalOpen, setIsChannelEdit } = useContext(ModalContext);
   const [isDropOpen, setIsDropOpen] = useState(false);
   const dispatch = useDispatch();
   const { serverId, channelId } = useParams();
+  const history = useHistory();
   const sessionUser = useSelector((store) => store.session.user);
   const server = useSelector((store) => store.servers[serverId]);
   const channels = useSelector((store) => Object.values(store.channels));
-  useEffect(() => {
-    dispatch(fetchServer(serverId));
-    dispatch(fetchChannels(serverId));
-  }, [dispatch, serverId]);
   const handleOutsideClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -36,6 +34,34 @@ const ServerShowPage = () => {
     setIsChannelEdit(false);
     setIsChannelModalOpen(true);
   };
+
+  useEffect(() => {
+    dispatch(fetchServer(serverId));
+    dispatch(fetchChannels(serverId));
+    const subscription = consumer.subscriptions.create(
+      { channel: 'ServersChannel', id: serverId },
+      {
+        received: (channelObj) => {
+          switch (channelObj.type) {
+            case "RECEIVE_CHANNEL":
+              dispatch(addChannel(channelObj));
+              // history.push(`/servers/${channelObj.serverId}/channels/${channelObj.id}`);
+              break;
+            case "UPDATE_CHANNEL":
+              dispatch(addChannel(channelObj));
+              break;
+            case "DESTROY_CHANNEL":
+              dispatch(removeChannel(channelObj.id));
+              break;
+            default:
+              console.log("Unhandled broadcast: ", type);
+              break;
+          }
+        }
+      }
+    );
+    return () => subscription?.unsubscribe();
+  }, [dispatch, serverId]);
 
   if (!sessionUser) return <Redirect to="/login" />;
   if (!channelId)

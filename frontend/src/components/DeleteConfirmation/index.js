@@ -44,11 +44,8 @@ const DeleteConfirmation = () => {
       dispatch(deleteServer(server.id));
       history.push("/me");
     } else if (confirmationType === "channel") {
-      return dispatch(deleteChannel(channel.id)).then(() => {
-        history.push(
-          `/servers/${serverId}/channels/${server.defaultChannel.id}`
-        );
-      });
+      deleteChannel(channel.id);
+      history.push(`/servers/${serverId}/channels/${server.defaultChannel.id}`);
     } else {
       deleteMessage(isDeleteOpen);
     }

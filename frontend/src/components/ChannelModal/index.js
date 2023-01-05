@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import { ModalContext } from "../../App";
 import "./ChannelModal.css";
 import { updateChannel, createChannel } from "../../store/channel";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
 const customStyles = {
@@ -12,8 +12,6 @@ const customStyles = {
     left: "50%",
     right: "auto",
     bottom: "auto",
-    // height: "100%",
-    // width: "100%",
     height: "200px",
     width: "440px",
     marginRight: "-50%",
@@ -35,13 +33,13 @@ const ChannelModal = ({ channel }) => {
     setIsChannelModalOpen,
     isChannelEdit,
     setIsDeleteOpen,
-    setConfirmationType
+    setConfirmationType,
   } = useContext(ModalContext);
-  const dispatch = useDispatch();
   const { serverId } = useParams();
   const history = useHistory();
   const server = useSelector((store) => store.servers[serverId]);
-  const handleSubmit = (e) => {
+  const channels = useSelector((store) => store.channels)
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (isChannelEdit) {
       const channelData = {
@@ -49,44 +47,18 @@ const ChannelModal = ({ channel }) => {
         channel_name: channelName,
         server_id: serverId,
       };
-      return dispatch(updateChannel(channelData))
-        .then(() => {
-          setIsChannelModalOpen(false);
-          setChannelName("");
-        })
-        .catch(async (res) => {
-          let data;
-          try {
-            data = await res.clone().json();
-          } catch {
-            data = await res.text();
-          }
-          if (data?.errors) setErrors(data.errors);
-          else if (data) setErrors([data]);
-          else setErrors([res.statusText]);
-        });
+      updateChannel(channelData);
+      setIsChannelModalOpen(false);
+      setChannelName("");
     } else {
       const channelData = {
         channel_name: channelName,
         server_id: serverId,
       };
-      return dispatch(createChannel(channelData))
-        .then((channel) => {
-          history.push(`/servers/${server.id}/channels/${channel.id}`)
-          setIsChannelModalOpen(false);
-          setChannelName("");
-        })
-        .catch(async (res) => {
-          let data;
-          try {
-            data = await res.clone().json();
-          } catch {
-            data = await res.text();
-          }
-          if (data?.errors) setErrors(data.errors);
-          else if (data) setErrors([data]);
-          else setErrors([res.statusText]);
-        });
+      createChannel(channelData);
+      // history.push(`/servers/${serverId}/channels/${newChannel.id}`);
+      setIsChannelModalOpen(false);
+      setChannelName("");
     }
   };
   const handleDelete = (e) => {
