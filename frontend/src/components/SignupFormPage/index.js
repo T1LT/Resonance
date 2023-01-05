@@ -65,6 +65,7 @@ const SignupFormPage = () => {
             type="email"
             name="email"
             id="email"
+            autoFocus
             autoComplete="off"
             value={email}
             onChange={(e) => setEmail(e.target.value)}

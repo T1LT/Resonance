@@ -84,6 +84,7 @@ const ServerForm = () => {
             type="text"
             name="name"
             id="name"
+            autoFocus
             autoComplete="off"
             value={serverName}
             onChange={(e) => setServerName(e.target.value)}

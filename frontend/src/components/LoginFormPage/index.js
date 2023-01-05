@@ -63,6 +63,7 @@ const LoginFormPage = () => {
             type="text"
             name="credential"
             id="credential"
+            autoFocus
             autoComplete="off"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}

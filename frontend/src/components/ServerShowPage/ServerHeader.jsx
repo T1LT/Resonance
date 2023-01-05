@@ -159,7 +159,7 @@ const ServerHeader = ({
             </>
           )}
         </div>
-        {server.ownerId === sessionUser.id && (
+        {server?.ownerId === sessionUser?.id && (
           <div className="channel-buttons">
             <div
               className="channel-edit-button"
@@ -170,15 +170,17 @@ const ServerHeader = ({
             >
               <EditIcon sx={{ opacity: "0.7" }} />
             </div>
-            {channel.id !== server.defaultChannel.id && (<div
-              className="channel-delete-button"
-              onClick={() => {
-                setConfirmationType("channel");
-                setIsDeleteOpen(true);
-              }}
-            >
-              <DeleteIcon sx={{ opacity: "0.7" }} />
-            </div>)}
+            {channel?.id !== server?.defaultChannel.id && (
+              <div
+                className="channel-delete-button"
+                onClick={() => {
+                  setConfirmationType("channel");
+                  setIsDeleteOpen(true);
+                }}
+              >
+                <DeleteIcon sx={{ opacity: "0.7" }} />
+              </div>
+            )}
           </div>
         )}
       </div>
