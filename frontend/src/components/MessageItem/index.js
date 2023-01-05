@@ -44,7 +44,6 @@ const MessageItem = ({ server, message }) => {
   const handleEditMessage = (e) => {
     e.preventDefault();
     const messageData = { ...message, body: msgInput };
-    console.log(messageData);
     setMsgEdit(false);
     dispatch(updateMessage(messageData));
   };
@@ -59,6 +58,7 @@ const MessageItem = ({ server, message }) => {
       {message && (
         <div
           className="message-item"
+          id={msgEdit && "message-edit-active"}
           onMouseEnter={() => setMsgcrudActive(true)}
           onMouseLeave={() => setMsgcrudActive(false)}
         >

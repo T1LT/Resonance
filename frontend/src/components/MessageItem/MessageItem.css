@@ -113,3 +113,7 @@
 .msg-edit-info > span:hover {
   text-decoration: underline;
 }
+
+#message-edit-active {
+  background-color: #32353B;
+}
