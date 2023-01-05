@@ -170,7 +170,7 @@ const ServerHeader = ({
             >
               <EditIcon sx={{ opacity: "0.7" }} />
             </div>
-            <div
+            {channel.id !== server.defaultChannel.id && (<div
               className="channel-delete-button"
               onClick={() => {
                 setConfirmationType("channel");
@@ -178,7 +178,7 @@ const ServerHeader = ({
               }}
             >
               <DeleteIcon sx={{ opacity: "0.7" }} />
-            </div>
+            </div>)}
           </div>
         )}
       </div>
