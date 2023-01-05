@@ -35,30 +35,19 @@ export const createMessage = (messageData) => {
     method: "POST",
     body: JSON.stringify(messageData)
   });
-  // if (res.ok) {
-  //   const message = await res.json();
-  //   dispatch(addMessage(message));
-  // }
 };
 
-export const updateMessage = (messageData) => async dispatch => {
-  const res = await csrfFetch(`/api/messages/${messageData.id}`, {
+export const updateMessage = (messageData) => {
+  csrfFetch(`/api/messages/${messageData.id}`, {
     method: "PATCH",
     body: JSON.stringify(messageData)
   });
-  if (res.ok) {
-    const message = await res.json();
-    dispatch(addMessage(message));
-  }
 };
 
 export const deleteMessage = (messageId) => {
   csrfFetch(`/api/messages/${messageId}`, {
     method: "DELETE"
   });
-  // if (res.ok) {
-  //   dispatch(removeMessage(messageId));
-  // }
 };
 
 // REDUCER

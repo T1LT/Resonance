@@ -60,6 +60,9 @@ const ChannelShowPage = () => {
             case 'RECEIVE_MESSAGE':
               dispatch(addMessage(messageObj));
               break;
+            case 'UPDATE_MESSAGE':
+              dispatch(addMessage(messageObj));
+              break;
             case 'DESTROY_MESSAGE':
               dispatch(removeMessage(messageObj.id));
               break;

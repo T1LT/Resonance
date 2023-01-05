@@ -4,7 +4,7 @@ import "./MessageItem.css";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ModalContext } from "../../App";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { updateMessage } from "../../store/message";
 
 const MessageItem = ({ server, message }) => {
@@ -14,7 +14,6 @@ const MessageItem = ({ server, message }) => {
   const [msgcrudActive, setMsgcrudActive] = useState(false);
   const [msgEdit, setMsgEdit] = useState(false);
   const [msgInput, setMsgInput] = useState(message?.body);
-  const dispatch = useDispatch();
   const hidden = { opacity: 0 };
   const active = { opacity: 1 };
   const sessionUser = useSelector((store) => store.session.user);
@@ -45,7 +44,7 @@ const MessageItem = ({ server, message }) => {
     e.preventDefault();
     const messageData = { ...message, body: msgInput };
     setMsgEdit(false);
-    dispatch(updateMessage(messageData));
+    updateMessage(messageData);
   };
   const handleCloseEdit = (e) => {
     if (e.keyCode === 27) {
