@@ -34,7 +34,6 @@ const ServerNavigation = () => {
               <li className="divider"></li>
               {Object.values(servers)?.map((server) => (
                 <NavLink
-                  // to={`/servers/${server?.id}/channels/${server?.defaultChannel?.id}`}
                   to={`/servers/${server.id}`}
                   key={server.id}
                   className="squircle purple-boi"

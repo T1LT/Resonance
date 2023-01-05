@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../assets/logo.png";
 import "./MessageItem.css";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { ModalContext } from "../../App";
 
 const MessageItem = ({ message }) => {
+  const { setIsDeleteOpen, setConfirmationType } = useContext(ModalContext);
   const colors = ["blue", "mustard", "red", "green", "grey"];
   const randomColor = (id) => colors[id % 5];
   const [msgcrudActive, setMsgcrudActive] = useState(false);
@@ -53,11 +55,17 @@ const MessageItem = ({ message }) => {
                 {message.user.username}
                 <span id="timestamp">{formatTimestamp(message.createdAt)}</span>
               </h4>
-              <div className="message-buttons" style={msgcrudActive ? active : hidden}>
-                <div className="message-edit-button">
+              <div
+                className="message-buttons"
+                style={msgcrudActive ? active : hidden}
+              >
+                <div className="message-edit-button" onClick={() => {}}>
                   <EditIcon fontSize="small" sx={{ m: "0 2px" }} />
                 </div>
-                <div className="message-delete-button">
+                <div className="message-delete-button" onClick={() => {
+                  setConfirmationType("message");
+                  setIsDeleteOpen(message.id);
+                }}>
                   <DeleteIcon fontSize="small" sx={{ m: "0 2px" }} />
                 </div>
               </div>

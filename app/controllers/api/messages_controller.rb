@@ -35,8 +35,8 @@ class Api::MessagesController < ApplicationController
     end
 
     def destroy
-        owner_id = Message.channel.server.owner_id
         @message = Message.find(params[:id])
+        owner_id = @message.channel.server.owner_id
         if @message.sender_id == owner_id || @message.sender_id == current_user.id
             if @message.destroy
                 render :show
