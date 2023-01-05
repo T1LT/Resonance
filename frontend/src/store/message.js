@@ -30,15 +30,15 @@ export const fetchMessages = (serverId, channelId) => async dispatch => {
   }
 };
 
-export const createMessage = (messageData) => async dispatch => {
-  const res = await csrfFetch("/api/messages", {
+export const createMessage = (messageData) => {
+  csrfFetch("/api/messages", {
     method: "POST",
     body: JSON.stringify(messageData)
   });
-  if (res.ok) {
-    const message = await res.json();
-    dispatch(addMessage(message));
-  }
+  // if (res.ok) {
+  //   const message = await res.json();
+  //   dispatch(addMessage(message));
+  // }
 };
 
 export const updateMessage = (messageData) => async dispatch => {
@@ -52,13 +52,13 @@ export const updateMessage = (messageData) => async dispatch => {
   }
 };
 
-export const deleteMessage = (messageId) => async dispatch => {
-  const res = await csrfFetch(`/api/messages/${messageId}`, {
+export const deleteMessage = (messageId) => {
+  csrfFetch(`/api/messages/${messageId}`, {
     method: "DELETE"
   });
-  if (res.ok) {
-    dispatch(removeMessage(messageId));
-  }
+  // if (res.ok) {
+  //   dispatch(removeMessage(messageId));
+  // }
 };
 
 // REDUCER

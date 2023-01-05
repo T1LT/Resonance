@@ -7,8 +7,9 @@ import TagIcon from "@mui/icons-material/Tag";
 import EditIcon from "@mui/icons-material/Edit";
 import { ModalContext } from "../../App";
 import ChannelModal from "../ChannelModal";
-import { createMessage, fetchMessages } from "../../store/message";
+import { addMessage, createMessage, fetchMessages, removeMessage } from "../../store/message";
 import MessageItem from "../MessageItem";
+import consumer from "../consumer";
 
 const useChatScroll = (dep) => {
   const ref = useRef(null);
@@ -44,13 +45,34 @@ const ChannelShowPage = () => {
       channel_id: channel.id,
       body,
     };
-    dispatch(createMessage(message));
+    createMessage(message);
     setBody("");
   };
+
   useEffect(() => {
     dispatch(fetchMessages(serverId, channelId));
     dispatch(fetchChannel(channelId));
+    const subscription = consumer.subscriptions.create(
+      { channel: 'ChannelsChannel', id: channelId },
+      {
+        received: (messageObj) => {
+          switch (messageObj.type) {
+            case 'RECEIVE_MESSAGE':
+              dispatch(addMessage(messageObj));
+              break;
+            case 'DESTROY_MESSAGE':
+              dispatch(removeMessage(messageObj.id));
+              break;
+            default:
+              console.log("Unhandled broadcast: ", type);
+              break;
+          }
+        }
+      }
+    );
+    return () => subscription?.unsubscribe();
   }, [dispatch, channelId]);
+
   return (
     <>
       <ChannelModal channel={channel} />

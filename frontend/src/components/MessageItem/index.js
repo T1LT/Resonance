@@ -58,7 +58,7 @@ const MessageItem = ({ server, message }) => {
       {message && (
         <div
           className="message-item"
-          id={msgEdit && "message-edit-active"}
+          id={msgEdit ? "message-edit-active" : undefined}
           onMouseEnter={() => setMsgcrudActive(true)}
           onMouseLeave={() => setMsgcrudActive(false)}
         >

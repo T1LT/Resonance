@@ -50,7 +50,7 @@ const DeleteConfirmation = () => {
         );
       });
     } else {
-      dispatch(deleteMessage(isDeleteOpen));
+      deleteMessage(isDeleteOpen);
     }
   };
   const handleLeave = (e) => {
