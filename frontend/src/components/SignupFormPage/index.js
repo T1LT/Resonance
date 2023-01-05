@@ -40,8 +40,8 @@ const SignupFormPage = () => {
   };
 
   return (
-    <div className="form-parent">
-      <div className="register-form-container">
+    <div className="form-parent m-scene">
+      <div className="register-form-container scene_element scene_element--fadeinup">
         <form onSubmit={handleSubmit} className="register-form">
           <div className="register-media-logo">
             <center>

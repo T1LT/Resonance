@@ -31,8 +31,8 @@ const LoginFormPage = () => {
   };
 
   return (
-    <div className="form-parent">
-      <div className="form-container">
+    <div className="form-parent m-scene">
+      <div className="form-container scene_element scene_element--fadeinup">
         <form onSubmit={handleSubmit} className="login-form">
           <div className="media-logo">
             <center>

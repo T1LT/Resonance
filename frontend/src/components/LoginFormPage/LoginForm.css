@@ -197,3 +197,39 @@ span {
     margin: 10px;
   }
 }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -10%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.m-scene .scene_element {
+  animation-duration: 0.25s;
+  transition-timing-function: linear;
+  animation-fill-mode: both;
+}
+
+.m-scene .scene_element--fadein {
+  animation-name: fadeIn;
+}
+
+.m-scene .scene_element--fadeinup {
+  animation-name: fadeInUp;
+}
