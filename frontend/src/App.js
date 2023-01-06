@@ -55,7 +55,7 @@ function App() {
             component={ServerShowPage}
           />
           <Route exact path="/servers/:serverId" component={ServerShowPage} />
-          <Route exact path="/invite/:hash" component={Invite} />
+          <Route path="/invite/:hash" component={Invite} />
           <Route exact path="/error" component={NotFound} />
           <Redirect to="/error" />
         </Switch>

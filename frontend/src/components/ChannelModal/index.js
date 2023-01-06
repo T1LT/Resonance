@@ -108,7 +108,7 @@ const ChannelModal = ({ channel }) => {
         <div className="server-form-footer">
           {isChannelEdit ? (
             <>
-              {channel?.id !== server.defaultChannel.id ? (
+              {channel?.id !== server?.defaultChannel?.id ? (
                 <button
                   type="button"
                   onClick={handleDelete}
