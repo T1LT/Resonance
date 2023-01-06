@@ -38,8 +38,8 @@ const ChannelModal = ({ channel }) => {
   const { serverId } = useParams();
   const history = useHistory();
   const server = useSelector((store) => store.servers[serverId]);
-  const channels = useSelector((store) => store.channels)
-  const handleSubmit = async (e) => {
+  // const channels = useSelector((store) => store.channels);
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (isChannelEdit) {
       const channelData = {
@@ -55,8 +55,8 @@ const ChannelModal = ({ channel }) => {
         channel_name: channelName,
         server_id: serverId,
       };
-      createChannel(channelData);
-      // history.push(`/servers/${serverId}/channels/${newChannel.id}`);
+      createChannel(channelData)
+        .then((channel) => history.push(`/servers/${serverId}/channels/${channel.id}`));
       setIsChannelModalOpen(false);
       setChannelName("");
     }
@@ -99,6 +99,7 @@ const ChannelModal = ({ channel }) => {
             type="text"
             name="channelName"
             id="channelName"
+            autoFocus
             autoComplete="off"
             value={channelName}
             onChange={(e) => setChannelName(e.target.value)}

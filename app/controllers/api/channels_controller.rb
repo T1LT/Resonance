@@ -19,7 +19,6 @@ class Api::ChannelsController < ApplicationController
             ServersChannel.broadcast_to @server,
                 type: 'RECEIVE_CHANNEL',
                 **from_template('api/channels/show', channel: @channel)
-            # from_template('api/channels/show', channel: @channel)
             render :show
         else
             render json: { errors: @channel.errors.full_messages }, status: 422
@@ -34,7 +33,6 @@ class Api::ChannelsController < ApplicationController
                 ServersChannel.broadcast_to @server,
                     type: 'UPDATE_CHANNEL',
                     **from_template('api/channels/show', channel: @channel)
-            # from_template('api/channels/show', channel: @channel)
             render :show
             else
                 render json: { errors: @channel.errors.full_messages }, status: 422

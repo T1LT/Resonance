@@ -45,7 +45,6 @@ const ServerShowPage = () => {
           switch (channelObj.type) {
             case "RECEIVE_CHANNEL":
               dispatch(addChannel(channelObj));
-              // history.push(`/servers/${channelObj.serverId}/channels/${channelObj.id}`);
               break;
             case "UPDATE_CHANNEL":
               dispatch(addChannel(channelObj));
