@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: resonance_production
-  username: resonance
-  password: <%= ENV["RESONANCE_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>

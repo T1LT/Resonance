@@ -29,3 +29,4 @@
 /config/master.key
 .byebug_history
 .DS_Store
+/public
