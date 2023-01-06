@@ -6,6 +6,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { ModalContext } from "../../App";
 import { useSelector } from "react-redux";
 import { updateMessage } from "../../store/message";
+import { formatTimestamp } from "../../utils/formattime";
 
 const MessageItem = ({ server, message }) => {
   const { setIsDeleteOpen, setConfirmationType } = useContext(ModalContext);
@@ -17,29 +18,7 @@ const MessageItem = ({ server, message }) => {
   const hidden = { opacity: 0 };
   const active = { opacity: 1 };
   const sessionUser = useSelector((store) => store.session.user);
-  const formatTimestamp = (timestamp) => {
-    let dateObj = new Date(timestamp);
-    let date = dateObj.getDate();
-    let month = dateObj.getMonth() + 1;
-    let year = dateObj.getFullYear();
-    let hours = dateObj.getHours();
-    let minutes = dateObj.getMinutes();
-    let meridiem = "AM";
-    if (date < 10) {
-      date = "0" + date;
-    }
-    if (month < 10) {
-      month = "0" + month;
-    }
-    if (minutes < 10) {
-      minutes = "0" + minutes;
-    }
-    if (hours >= 12) {
-      hours %= 12;
-      meridiem = "PM";
-    }
-    return `${month}/${date}/${year} ${hours}:${minutes} ${meridiem}`;
-  };
+
   const handleEditMessage = (e) => {
     e.preventDefault();
     const messageData = { ...message, body: msgInput };
