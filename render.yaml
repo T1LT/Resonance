@@ -1,0 +1,22 @@
+databases:
+	- name: resonance
+		user: nishant
+		plan: free
+		region: oregon
+
+services:
+	- type: web
+		name: resonance
+		plan: free
+		region: oregon
+		branch: main
+		env: ruby
+		buildCommand: "./bin/render-build.sh"
+		startCommand: "rails s"
+		envVars:
+			- key: DATABASE_URL
+				fromDatabase:
+					name: resonance
+					property: connectionString
+			- key: RAILS_MASTER_KEY
+				sync: false
