@@ -50,7 +50,10 @@ const ServerHeader = ({
       JSON.stringify(`${server.id}/channels/${server.defaultChannel.id}`),
       process.env.REACT_APP_SECRET_KEY
     );
-    const url = `http://localhost:3000/invite/${hash}`;
+    // development
+    // const url = `http://localhost:3000/invite/${hash}`;
+    // production
+    const url = `https://resonance-jzh3.onrender.com/invite/${hash}`;
     await navigator.clipboard.writeText(url);
     setCopiedAlert(true);
     setTimeout(() => {
