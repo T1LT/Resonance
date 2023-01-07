@@ -1,21 +1,21 @@
 @font-face {
   font-family: 'gg-sans';
-  src: url("./assets/ggsans.ttf ");
+  src: url("./assets/gg-sans-regular.woff2 ");
 }
 
 @font-face {
   font-family: 'gg-sans-med';
-  src: url("./assets/ggsans-med.ttf");
+  src: url("./assets/gg-sans-medium-1.woff2");
 }
 
 @font-face {
   font-family: 'gg-sans-bold';
-  src: url("./assets/ggsans-bold.ttf");
+  src: url("./assets/gg-sans-bold-1.woff2");
 }
 
 @font-face {
   font-family: 'antique-olive';
-  src: url("./assets/antique-olive.ttf");
+  src: url("./assets/logo-font.woff2");
 }
 
 * {

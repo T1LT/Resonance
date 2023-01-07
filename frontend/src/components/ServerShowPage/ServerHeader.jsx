@@ -89,8 +89,8 @@ const ServerHeader = ({
           )}
         </div>
         {isDropOpen ? (
-          <div className="menu-container">
-            <ul className="menu">
+          <div className="menu-container m-scene">
+            <ul className="menu scene_element scene_element--fadeinup">
               <li className="menu-item">
                 <button id="invite-button" onClick={handleInvite}>
                   Invite People

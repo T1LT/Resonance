@@ -73,5 +73,5 @@ Message.create!(sender_id: user3.id, channel_id: channel4.id, body: "*gasp*", pa
 Message.create!(sender_id: user5.id, channel_id: channel4.id, body: "*gasp*", parent_id: nil)
 
 Message.create!(sender_id: user2.id, channel_id: channel9.id, body: "yo", parent_id: nil)
-Message.create!(sender_id: user5.id, channel_id: channel9.id, body: "ready to lift?", parent_id: nil)
+Message.create!(sender_id: user5.id, channel_id: channel9.id, body: "you ready?", parent_id: nil)
 Message.create!(sender_id: user2.id, channel_id: channel9.id, body: "yeee", parent_id: nil)
