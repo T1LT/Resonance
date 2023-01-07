@@ -4,6 +4,7 @@ import csrfFetch from "./csrf";
 const ADD_MESSAGES = "messages/addMessages";
 const ADD_MESSAGE = "messages/addMessage";
 const REMOVE_MESSAGE = "messages/removeMessage";
+const CLEAR_MESSAGES = "messages/clearMessages";
 
 // ACTION CREATORS
 export const addMessages = (messages) => ({
@@ -19,6 +20,10 @@ export const addMessage = (message) => ({
 export const removeMessage = (messageId) => ({
   type: REMOVE_MESSAGE,
   payload: messageId,
+});
+
+export const clearMessages = () => ({
+  type: CLEAR_MESSAGES
 });
 
 // THUNK ACTION CREATORS
@@ -60,6 +65,8 @@ const messageReducer = (state = {}, action) => {
     case REMOVE_MESSAGE:
       const { [action.payload]: _, ...newState } = state;
       return newState;
+    case CLEAR_MESSAGES:
+      return {};
     default:
       return state;
   }

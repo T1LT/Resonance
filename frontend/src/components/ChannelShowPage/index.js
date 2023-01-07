@@ -7,7 +7,7 @@ import TagIcon from "@mui/icons-material/Tag";
 import EditIcon from "@mui/icons-material/Edit";
 import { ModalContext } from "../../App";
 import ChannelModal from "../ChannelModal";
-import { addMessage, createMessage, fetchMessages, removeMessage } from "../../store/message";
+import { addMessage, clearMessages, createMessage, fetchMessages, removeMessage } from "../../store/message";
 import MessageItem from "../MessageItem";
 import consumer from "../consumer";
 
@@ -50,6 +50,7 @@ const ChannelShowPage = () => {
   };
 
   useEffect(() => {
+    dispatch(clearMessages());
     dispatch(fetchMessages(serverId, channelId));
     dispatch(fetchChannel(channelId));
     const subscription = consumer.subscriptions.create(

@@ -28,7 +28,7 @@ const ServerHeader = ({
     setIsChannelModalOpen,
     setIsChannelEdit,
   } = useContext(ModalContext);
-  const { serverId, channelId } = useParams();
+  const { channelId } = useParams();
   const [copiedAlert, setCopiedAlert] = useState(false);
   const sessionUser = useSelector((store) => store.session.user);
   const channel = useSelector((store) => store.channels[channelId]);

@@ -1,7 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
-import { addChannel, fetchChannels, removeChannel } from "../../store/channel";
+import {
+  addChannel,
+  clearChannels,
+  fetchChannels,
+  removeChannel,
+} from "../../store/channel";
 import { fetchServer } from "../../store/server";
 import ServerHeader from "./ServerHeader";
 import "./ServerShowPage.css";
@@ -36,10 +41,11 @@ const ServerShowPage = () => {
   };
 
   useEffect(() => {
+    dispatch(clearChannels());
     dispatch(fetchServer(serverId));
     dispatch(fetchChannels(serverId));
     const subscription = consumer.subscriptions.create(
-      { channel: 'ServersChannel', id: serverId },
+      { channel: "ServersChannel", id: serverId },
       {
         received: (channelObj) => {
           switch (channelObj.type) {
@@ -56,7 +62,7 @@ const ServerShowPage = () => {
               console.log("Unhandled broadcast: ", type);
               break;
           }
-        }
+        },
       }
     );
     return () => subscription?.unsubscribe();
