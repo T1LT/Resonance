@@ -5,7 +5,6 @@ import { createMembership } from "../../store/server";
 import { useDispatch, useSelector } from "react-redux";
 
 const Invite = () => {
-  console.log("inside invite");
   const history = useHistory();
   const hash = history.location.pathname.substring(8);
   const [path, setPath] = useState();
@@ -16,7 +15,6 @@ const Invite = () => {
   useEffect(() => {
     const bytes = CryptoJS.AES.decrypt(hash, process.env.REACT_APP_SECRET_KEY);
     setPath(JSON.parse(bytes.toString(CryptoJS.enc.Utf8)));
-    console.log("inside useeffect");
     if (path) {
       id = path.substring(0, path.indexOf("/"));
       dispatch(

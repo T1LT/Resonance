@@ -1,6 +1,7 @@
 .error-ul {
   list-style-type: none;
   padding-left: 0;
+  margin-top: 15px;
 }
 
 .not-found-container {
@@ -10,16 +11,27 @@
 
 .not-found-container h1 {
   font-family: "antique-olive";
+  font-size: 44px;
+  margin-bottom: 10px;
   color: #5865F2;
 }
 
+.not-found-container p {
+  font-family: "gg-sans";
+  font-weight: bold;
+  font-size: 20px;
+}
+
 .error-ul li {
-  margin: 5px 0;
+  margin: 10px 0;
 }
 
 .error-ul a {
   text-decoration: none;
   color: #00aff4;
+  font-family: "gg-sans";
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .error-ul a:hover {

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
+import { NavLink, Redirect, useParams } from "react-router-dom";
 import {
   addChannel,
   clearChannels,
@@ -24,7 +24,6 @@ const ServerShowPage = () => {
   const [isDropOpen, setIsDropOpen] = useState(false);
   const dispatch = useDispatch();
   const { serverId, channelId } = useParams();
-  const history = useHistory();
   const sessionUser = useSelector((store) => store.session.user);
   const server = useSelector((store) => store.servers[serverId]);
   const channels = useSelector((store) => Object.values(store.channels));
