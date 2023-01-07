@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :messages, only: [:create, :show, :update, :destroy]
     resources :channels, only: [:update, :show, :destroy]
     resources :server_memberships, only: [:create, :destroy]
+    resources :friendships, only: [:index, :create, :update, :destroy]
   end
 
   get '*path', to: 'static_pages#frontend'
