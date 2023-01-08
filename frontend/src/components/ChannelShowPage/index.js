@@ -79,9 +79,9 @@ const ChannelShowPage = () => {
 
   return (
     <>
-      <ChannelModal channel={channel} />
       {channel && (
         <>
+          <ChannelModal channel={channel} />
           <div className="channel-main" ref={ref}>
             <div className="channel-info">
               <div className="channel-squircle">

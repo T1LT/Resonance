@@ -86,3 +86,104 @@
   background-color: #3F4248;
   color: white;
 }
+
+.vertical-divider {
+  width: 1px;
+  background: var(--color-full-white);
+  height: 50%;
+  border-radius: 1px;
+  opacity: 0.10;
+  margin: 10px 0 10px 15px;
+  z-index: 101;
+}
+
+.divider-width {
+  width: 105px;
+}
+
+.friend-options {
+  display: flex;
+  gap: 15px;
+  margin-left: 15px;
+}
+
+.friend-option-button {
+  background: none;
+  border: none;
+  font-family: "gg-sans-med", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  color: #B9BBBE;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+.friend-option-button:hover {
+  background-color: var(--color-lighter-dark);
+  color: white;
+}
+
+#friend-option-active {
+  background-color: var(--color-lighter-dark);
+  color: white;
+}
+
+.friend-show-main {
+  padding: 15px 20px;
+}
+
+.user-text-channels {
+  padding: 7px 5px 5px 5px;
+  margin-bottom: 3px;
+  height: 20px;
+  display: flex;
+  width: calc(100% - 30px);
+  justify-content: space-between;
+  align-items: center;
+  font-size: small;
+  user-select: none;
+  color: #B9BBBE;
+}
+
+.friend-show-li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.friend-show-li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.friend-show-li:hover.user-item-option {
+  background-color: #2A2C30;
+}
+
+.user-status {
+  font-family: "gg-sans", sans-serif !important;
+  font-size: 14px;
+  font-weight: bold;
+  color: #B9BBBE;
+}
+
+.friend-item-left {
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+}
+
+.friend-item-right {
+  display: flex;
+}
+
+#user-divider {
+  margin: 0 4px;
+  width: calc(100% - 8px);
+}
+
+.user-item-option {
+  background-color: #2F3136;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { fetchFriendships } from "../../store/friendship";
@@ -9,12 +9,14 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import AddIcon from "@mui/icons-material/Add";
 import "./UserShowPage.css";
 import ChannelShowPage from "../ChannelShowPage";
+import FriendsShowPage from "./FriendsShowPage";
 
 const UserShowPage = () => {
   const sessionUser = useSelector((store) => store.session.user);
   const friendships = useSelector((store) => Object.values(store.friendships));
   const dispatch = useDispatch();
   const friends = friendships.map((el) => el.friend);
+  const [friendTab, setFriendTab] = useState("online");
 
   useEffect(() => {
     dispatch(fetchFriendships());
@@ -29,10 +31,63 @@ const UserShowPage = () => {
           <h4 className="truncate">Friends</h4>
         </div>
         <div className="rest-of-the-header">
-          <div className="channel-name">
+          <div className="channel-name divider-width">
             <>
               <PeopleAltIcon sx={{ mr: "10px", opacity: "0.6" }} />
               <h4>Friends</h4>
+              <div className="vertical-divider">&nbsp;</div>
+              <ul className="friend-options">
+                <li>
+                  <button
+                    className="friend-option-button"
+                    id={
+                      friendTab === "online"
+                        ? "friend-option-active"
+                        : undefined
+                    }
+                    onClick={() => setFriendTab("online")}
+                  >
+                    Online
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="friend-option-button"
+                    id={
+                      friendTab === "all" ? "friend-option-active" : undefined
+                    }
+                    onClick={() => setFriendTab("all")}
+                  >
+                    All
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="friend-option-button"
+                    id={
+                      friendTab === "pending"
+                        ? "friend-option-active"
+                        : undefined
+                    }
+                    onClick={() => setFriendTab("pending")}
+                  >
+                    Pending
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="friend-option-button"
+                    id={
+                      friendTab === "blocked"
+                        ? "friend-option-active"
+                        : undefined
+                    }
+                    onClick={() => setFriendTab("blocked")}
+                  >
+                    Blocked
+                  </button>
+                </li>
+              </ul>
             </>
             {/* <>
               <AlternateEmailIcon sx={{ mr: "5px", opacity: "0.5" }} />
@@ -49,7 +104,7 @@ const UserShowPage = () => {
           <UserPanel users={friends} />
         </div>
         <div className="friends-info">
-          <h1>friends info/chat container</h1>
+          <FriendsShowPage friendTab={friendTab} />
         </div>
         {/* <ChannelShowPage /> */}
       </div>

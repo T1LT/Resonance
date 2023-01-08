@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 class Friendship < ApplicationRecord
-    validates :status, inclusion: { in: ["pending", "friends"] }
+    validates :status, inclusion: { in: ["pending", "friends", "blocked"] }
     validates :user1_id, uniqueness: { scope: :user2_id }
     validates :user2_id, uniqueness: { scope: :user1_id }
 

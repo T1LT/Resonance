@@ -76,6 +76,7 @@ const ServerHeader = ({
     opacity: 1,
     transition: "opacity 0.5s",
   };
+  console.log(server.ownerId);
 
   return (
     <div className="server-header" onClick={handleOutsideClick}>

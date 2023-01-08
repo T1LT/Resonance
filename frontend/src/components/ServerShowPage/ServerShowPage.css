@@ -119,6 +119,8 @@
   margin: 0;
   font-family: "gg-sans-bold-2", sans-serif;
   font-weight: bolder;
+  user-select: none;
+  white-space: nowrap;
 }
 
 .channel-name {
@@ -200,7 +202,7 @@
   background: var(--color-full-white);
   height: 1px;
   border-radius: 1px;
-  opacity: 0.15;
+  opacity: 0.10;
   margin: 3px 0;
 }
 
@@ -222,7 +224,7 @@
   align-items: center;
   font-size: small;
   user-select: none;
-  color: var(--color-third-text)
+  color: var(--color-third-text);
 }
 
 .text-channels:hover {
