@@ -8,6 +8,7 @@ import ServerNavigation from "./components/ServerNavigation";
 import ServerShowPage from "./components/ServerShowPage";
 import SignupFormPage from "./components/SignupFormPage";
 import UserShowPage from "./components/UserShowPage";
+import UserBottomPanel from "./components/UserShowPage/UserBottomPanel";
 import { writeToConsole } from "./utils/consolemessages";
 
 export const ModalContext = createContext();
@@ -40,10 +41,11 @@ function App() {
           isChannelEdit,
           setIsChannelEdit,
           confirmationType,
-          setConfirmationType
+          setConfirmationType,
         }}
       >
         <ServerNavigation />
+        <UserBottomPanel />
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/login" component={LoginFormPage} />

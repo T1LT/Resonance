@@ -1,14 +1,13 @@
 import React from "react";
 import logo from "../../assets/logo.png";
+import randomColor from "../../utils/logocolor";
 import "./UserPanel.css";
 
-const UserPanel = ({ server }) => {
-  const colors = ["blue", "mustard", "red", "green", "grey"];
-  const randomColor = (id) => colors[id % 5];
+const UserPanel = ({ users }) => {
   return (
     <ul className="user-panel-ul">
       {/* add onClick drop down here */}
-      {Object.values(server.users).map((user) => (
+      {Object.values(users).map((user) => (
         <li key={user.id}>
           <div className="user-squircle" id={randomColor(user.id)}>
             <img src={logo} alt="logo" className="user-logo" />

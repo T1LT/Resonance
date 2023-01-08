@@ -122,7 +122,7 @@ const ServerShowPage = () => {
                 <ChannelShowPage />
               </div>
               <div className="user-panel">
-                <UserPanel server={server} />
+                <UserPanel users={server.users} />
               </div>
             </div>
           </div>

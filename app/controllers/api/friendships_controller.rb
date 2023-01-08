@@ -1,5 +1,5 @@
 class Api::FriendshipsController < ApplicationController
-    wrap_parameters include: Message.attribute_names
+    wrap_parameters include: Friendship.attribute_names
 
     def index
         @friendships = current_user.friends

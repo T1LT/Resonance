@@ -21,10 +21,10 @@ ApplicationRecord.connection.reset_pk_sequence!('server_memberships')
 ApplicationRecord.connection.reset_pk_sequence!('messages')
 
 user1 = User.create!(username: "Demo", tag: "0001", email: "demo@demo.io", password: "password", status: "online")
-user2 = User.create!(username: "nishant", tag: "GGWP", email: "nishant.racherla@gmail.com", password: "password", status: "online")
-user3 = User.create!(username: "faker", tag: "2525", email: "faker@gmail.com", password: "password", status: "online")
+user2 = User.create!(username: "nishant", tag: "2525", email: "nishant.racherla@gmail.com", password: "password", status: "online")
+user3 = User.create!(username: "faker", tag: "ggwp", email: "faker@gmail.com", password: "password", status: "online")
 user4 = User.create!(username: "maxfong", tag: "6942", email: "maxfong@gmail.com", password: "password", status: "online")
-user5 = User.create!(username: "cbum", tag: "LIFT", email: "cbum@gmail.com", password: "password", status: "online")
+user5 = User.create!(username: "cbum", tag: "5000", email: "cbum@gmail.com", password: "password", status: "online")
 
 my_squad = Server.create!(server_name: "MySquad", owner_id: user1.id)
 js_moon = Server.create!(server_name: "JavaScript to the Moon", owner_id: user2.id)

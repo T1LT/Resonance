@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import channelReducer from './channel';
+import friendshipReducer from './friendship';
 import messageReducer from './message';
 import serverReducer from './server';
 import sessionReducer from './session';
@@ -10,7 +11,8 @@ export const rootReducer = combineReducers({
   session: sessionReducer,
   servers: serverReducer,
   channels: channelReducer,
-  messages: messageReducer
+  messages: messageReducer,
+  friendships: friendshipReducer
 });
 
 if (process.env.NODE_ENV === 'production') {

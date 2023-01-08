@@ -6,6 +6,7 @@ import configureStore from './store';
 import csrfFetch from './store/csrf';
 import * as sessionActions from './store/session';
 import * as serverActions from './store/server';
+import * as friendshipActions from './store/friendship';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -16,6 +17,7 @@ if (process.env.NODE_ENV !== "production") {
   window.csrfFetch = csrfFetch;
   window.sessionActions = sessionActions;
   window.serverActions = serverActions;
+  window.friendshipActions = friendshipActions;
 }
 
 const renderApplication = () => {
