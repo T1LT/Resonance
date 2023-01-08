@@ -5,6 +5,26 @@
   left: 80px;
   background-color: #2F3136;
   color: white;
+  display: flex;
+}
+
+.friends-info {
+  width: calc(100% - 320px);
+  background-color: var(--color-third-dark);
+  margin-top: 50px;
+}
+
+.friends-panel-container {
+  margin-top: 50px;
+}
+
+.user-show-header {
+  position: fixed;
+  left: 80px;
+}
+
+.user-show-header-left {
+  width: 240px;
 }
 
 .user-info-bottom {

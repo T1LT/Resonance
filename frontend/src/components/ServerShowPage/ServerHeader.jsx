@@ -156,7 +156,7 @@ const ServerHeader = ({
           {channel && (
             <>
               <TagIcon
-                sx={{ mr: "5px", transform: "skew(-10deg)", opacity: "0.5" }}
+                sx={{ mr: "5px", transform: "skew(-10deg)", opacity: "0.6" }}
               />
               <h4>{channel.channelName}</h4>
             </>

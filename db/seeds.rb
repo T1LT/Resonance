@@ -21,7 +21,7 @@ ApplicationRecord.connection.reset_pk_sequence!('server_memberships')
 ApplicationRecord.connection.reset_pk_sequence!('messages')
 
 user1 = User.create!(username: "Demo", tag: "0001", email: "demo@demo.io", password: "password", status: "online")
-user2 = User.create!(username: "nishant", tag: "2525", email: "nishant.racherla@gmail.com", password: "password", status: "online")
+user2 = User.create!(username: "Nishant", tag: "2525", email: "nishant.racherla@gmail.com", password: "password", status: "online")
 user3 = User.create!(username: "faker", tag: "ggwp", email: "faker@gmail.com", password: "password", status: "online")
 user4 = User.create!(username: "maxfong", tag: "6942", email: "maxfong@gmail.com", password: "password", status: "online")
 user5 = User.create!(username: "cbum", tag: "5000", email: "cbum@gmail.com", password: "password", status: "online")
