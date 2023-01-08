@@ -4,6 +4,8 @@ import logo from "../../assets/logo.png";
 import randomColor from "../../utils/logocolor";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import BootstrapTooltip from "./BootstrapTooltip";
+
 
 const FriendsShowItem = ({ friend }) => {
   return (
@@ -20,12 +22,26 @@ const FriendsShowItem = ({ friend }) => {
           </div>
         </div>
         <div className="friend-item-right">
-          <div className="user-squircle user-item-option">
-            <ChatBubbleIcon sx={{ fontSize: "18px", color: "#DCDDDE" }} />
-          </div>
-          <div className="user-squircle user-item-option">
-            <MoreVertIcon sx={{ fontSize: "18px", color: "#DCDDDE" }} />
-          </div>
+          <BootstrapTooltip
+            title="Message"
+            arrow
+            placement="top"
+            disableInteractive
+          >
+            <div className="user-squircle user-item-option">
+              <ChatBubbleIcon sx={{ fontSize: "18px", color: "#DCDDDE" }} />
+            </div>
+          </BootstrapTooltip>
+          <BootstrapTooltip
+            title="More"
+            arrow
+            placement="top"
+            disableInteractive
+          >
+            <div className="user-squircle user-item-option">
+              <MoreVertIcon sx={{ fontSize: "18px", color: "#DCDDDE" }} />
+            </div>
+          </BootstrapTooltip>
         </div>
       </li>
     </>

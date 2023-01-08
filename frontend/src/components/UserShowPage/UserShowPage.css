@@ -116,6 +116,7 @@
   color: #B9BBBE;
   padding: 3px 10px;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 .friend-option-button:hover {
