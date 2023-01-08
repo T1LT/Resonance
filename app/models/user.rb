@@ -70,6 +70,10 @@ class User < ApplicationRecord
         self.session_token
     end
 
+    def friends
+        Friendship.where('user1_id = ? OR user2_id = ?', self.id, self.id)
+    end
+
     private
     def ensure_session_token
         self.session_token ||= generate_unique_session_token

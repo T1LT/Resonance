@@ -12,6 +12,7 @@
 class Friendship < ApplicationRecord
     validates :status, inclusion: { in: ["pending", "friends"] }
     validates :user1_id, uniqueness: { scope: :user2_id }
+    validates :user2_id, uniqueness: { scope: :user1_id }
 
     belongs_to :request_sender,
         foreign_key: :user1_id,
