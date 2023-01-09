@@ -6,7 +6,6 @@ import ServerFormPage from "../ServerFormPage";
 import UserPanel from "../ServerShowPage/UserPanel";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import AddIcon from "@mui/icons-material/Add";
 import "./UserShowPage.css";
 import ChannelShowPage from "../ChannelShowPage";
 import FriendsShowPage from "./FriendsShowPage";

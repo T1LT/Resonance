@@ -151,6 +151,7 @@
 
 .menu {
   list-style-type: none;
+  position: relative;
   padding: 10px 5px;
   width: 210px;
   border-radius: 4px;

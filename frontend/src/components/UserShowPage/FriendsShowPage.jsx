@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import FriendsShowItem from "./FriendsShowItem";
+// import UserDropDown from "./UserDropDown";
 
 const FriendsShowPage = ({ friendTab }) => {
   const friendships = useSelector((store) => Object.values(store.friendships));
@@ -16,7 +17,10 @@ const FriendsShowPage = ({ friendTab }) => {
         </div>
         <ul>
           {onlineFriends.map((friend, idx) => (
-            <FriendsShowItem friend={friend} key={idx} />
+            <FriendsShowItem
+              friend={friend}
+              key={idx}
+            />
           ))}
         </ul>
         <div className="options-divider" id="user-divider"></div>
@@ -24,13 +28,16 @@ const FriendsShowPage = ({ friendTab }) => {
     );
   } else if (friendTab === "all") {
     return (
-      <div className="friend-show-main">
+      <div className="friend-show-main" onClick={() => setUserClicked(false)}>
         <div className="user-text-channels">
           <p>ALL FRIENDS &#8212; {friends.length}</p>
         </div>
         <ul>
           {friends.map((friend, idx) => (
-            <FriendsShowItem friend={friend} key={idx} />
+            <FriendsShowItem
+              friend={friend}
+              key={idx}
+            />
           ))}
         </ul>
         <div className="options-divider" id="user-divider"></div>
@@ -38,13 +45,16 @@ const FriendsShowPage = ({ friendTab }) => {
     );
   } else if (friendTab === "pending") {
     return (
-      <div className="friend-show-main">
+      <div className="friend-show-main" onClick={() => setUserClicked(false)}>
         <div className="user-text-channels">
           <p>PENDING &#8212; {pendingFriends.length}</p>
         </div>
         <ul>
           {pendingFriends.map((friend, idx) => (
-            <FriendsShowItem friend={friend} key={idx} />
+            <FriendsShowItem
+              friend={friend}
+              key={idx}
+            />
           ))}
         </ul>
         <div className="options-divider" id="user-divider"></div>
@@ -52,13 +62,16 @@ const FriendsShowPage = ({ friendTab }) => {
     );
   } else {
     return (
-      <div className="friend-show-main">
+      <div className="friend-show-main" onClick={() => setUserClicked(false)}>
         <div className="user-text-channels">
           <p>BLOCKED &#8212; {blockedFriends.length}</p>
         </div>
         <ul>
           {blockedFriends.map((friend, idx) => (
-            <FriendsShowItem friend={friend} key={idx} />
+            <FriendsShowItem
+              friend={friend}
+              key={idx}
+            />
           ))}
         </ul>
         <div className="options-divider" id="user-divider"></div>

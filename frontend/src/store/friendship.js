@@ -3,7 +3,7 @@ import csrfFetch from "./csrf";
 // TYPE CONSTANTS
 const ADD_FRIENDSHIP = "friendships/addFriendship";
 const ADD_FRIENDSHIPS = "friendships/addFriendships";
-const REMOVE_FRIENDSHIP = "friendships/removeFriendships";
+const REMOVE_FRIENDSHIP = "friendships/removeFriendship";
 
 // ACTION CREATORS
 export const addFriendship = (friendship) => ({
@@ -16,7 +16,7 @@ export const addFriendships = (friendships) => ({
   payload: friendships
 });
 
-export const removeFriendships = (friendshipId) => ({
+export const removeFriendship = (friendshipId) => ({
   type: REMOVE_FRIENDSHIP,
   payload: friendshipId
 });
@@ -57,7 +57,7 @@ export const deleteFriendship = (friendshipId) => async dispatch => {
     method: "DELETE"
   });
   if (res.ok) {
-    dispatch(removeFriendships(friendshipId));
+    dispatch(removeFriendship(friendshipId));
   }
 };
 
@@ -69,7 +69,7 @@ const friendshipReducer = (state = {}, action) => {
     case ADD_FRIENDSHIP:
       return { ...state, [action.payload.id]: action.payload };
     case REMOVE_FRIENDSHIP:
-      const { [action.payload.id]: _, ...newState } = state;
+      const { [action.payload]: _, ...newState } = state;
       return newState;
     default:
       return state;

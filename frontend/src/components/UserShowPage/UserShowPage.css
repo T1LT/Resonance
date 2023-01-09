@@ -130,6 +130,7 @@
 }
 
 .friend-show-main {
+  height: 100%;
   padding: 15px 20px;
 }
 
@@ -187,4 +188,8 @@
 
 .user-item-option {
   background-color: #2F3136;
+}
+
+.avoid-border {
+  right: 100px;
 }

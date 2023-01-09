@@ -60,6 +60,23 @@
   font-weight: bold;
 }
 
+.user-panel-item-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-panel-item-left {
+  display: flex;
+  align-items: center;
+}
+
+.user-panel-item-right {
+  display: flex;
+  gap: 5px;
+}
+
 #blue {
   background-color: #5C64F4;
 }

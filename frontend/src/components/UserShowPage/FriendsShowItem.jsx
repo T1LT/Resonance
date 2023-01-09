@@ -6,8 +6,7 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import BootstrapTooltip from "./BootstrapTooltip";
 
-
-const FriendsShowItem = ({ friend }) => {
+const FriendsShowItem = ({ friend, setUserClicked }) => {
   return (
     <>
       <div className="options-divider" id="user-divider"></div>
@@ -38,7 +37,13 @@ const FriendsShowItem = ({ friend }) => {
             placement="top"
             disableInteractive
           >
-            <div className="user-squircle user-item-option">
+            <div
+              className="user-squircle user-item-option"
+              onClick={(e) => {
+                e.stopPropagation();
+                setUserClicked(true);
+              }}
+            >
               <MoreVertIcon sx={{ fontSize: "18px", color: "#DCDDDE" }} />
             </div>
           </BootstrapTooltip>

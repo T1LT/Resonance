@@ -1,26 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import logo from "../../assets/logo.png";
-import randomColor from "../../utils/logocolor";
+import { fetchFriendships } from "../../store/friendship";
 import "./UserPanel.css";
+import UserPanelItem from "./UserPanelItem";
 
 const UserPanel = ({ users }) => {
   const location = useLocation();
+  const friendships = useSelector((store) => Object.values(store.friendships));
+  let friendIds = friendships.map((el) => el.friend.id);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFriendships());
+  }, [dispatch]);
+
   return (
     <ul className="user-panel-ul">
-      {/* add onClick drop down here */}
       {location.pathname !== "/me" && (
         <div className="text-channels">
           <p>ONLINE</p>
         </div>
       )}
       {Object.values(users).map((user) => (
-        <li key={user.id}>
-          <div className="user-squircle" id={randomColor(user.id)}>
-            <img src={logo} alt="logo" className="user-logo" />
-          </div>
-          <p className="user-text">{user.username}</p>
-        </li>
+        <UserPanelItem
+          user={user}
+          key={user.id}
+          friendships={friendships}
+          friendIds={friendIds}
+        />
       ))}
     </ul>
   );
