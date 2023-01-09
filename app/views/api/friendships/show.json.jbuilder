@@ -1,4 +1,4 @@
-json.extract! @friendship, :id, :created_at, :updated_at
+json.extract! @friendship, :id, :created_at, :updated_at, :status
 if @friendship.user1_id == current_user.id
     json.friend User.find(@friendship.user2_id)
 else

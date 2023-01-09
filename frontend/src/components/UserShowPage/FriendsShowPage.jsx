@@ -5,9 +5,22 @@ import FriendsShowItem from "./FriendsShowItem";
 
 const FriendsShowPage = ({ friendTab }) => {
   const friendships = useSelector((store) => Object.values(store.friendships));
-  const friends = friendships.map((el) => el.friend);
-  const onlineFriends = friends.filter((el) => el.status === "online");
-  const pendingFriends = friends.filter((el) => el.status === "pending");
+  const friends = friendships.map((el) => ({
+    friend: el.friend,
+    status: el.status,
+  }));
+  const onlineFriends = friends.filter(
+    (el) =>
+      el.friend.status === "online" &&
+      el.status !== "blocked" &&
+      el.status !== "pending"
+  );
+  const allFriends = friends.filter(
+    (el) => el.status !== "blocked" && el.status !== "pending"
+  );
+  const pendingFriends = friends.filter(
+    (el) => el.status === "pending" && el.status !== "blocked"
+  );
   const blockedFriends = friends.filter((el) => el.status === "blocked");
   if (friendTab === "online") {
     return (
@@ -16,11 +29,8 @@ const FriendsShowPage = ({ friendTab }) => {
           <p>ONLINE &#8212; {onlineFriends.length}</p>
         </div>
         <ul>
-          {onlineFriends.map((friend, idx) => (
-            <FriendsShowItem
-              friend={friend}
-              key={idx}
-            />
+          {onlineFriends.map((friendObj, idx) => (
+            <FriendsShowItem friend={friendObj.friend} key={idx} />
           ))}
         </ul>
         <div className="options-divider" id="user-divider"></div>
@@ -28,16 +38,13 @@ const FriendsShowPage = ({ friendTab }) => {
     );
   } else if (friendTab === "all") {
     return (
-      <div className="friend-show-main" onClick={() => setUserClicked(false)}>
+      <div className="friend-show-main">
         <div className="user-text-channels">
           <p>ALL FRIENDS &#8212; {friends.length}</p>
         </div>
         <ul>
-          {friends.map((friend, idx) => (
-            <FriendsShowItem
-              friend={friend}
-              key={idx}
-            />
+          {allFriends.map((friendObj, idx) => (
+            <FriendsShowItem friend={friendObj.friend} key={idx} />
           ))}
         </ul>
         <div className="options-divider" id="user-divider"></div>
@@ -45,16 +52,13 @@ const FriendsShowPage = ({ friendTab }) => {
     );
   } else if (friendTab === "pending") {
     return (
-      <div className="friend-show-main" onClick={() => setUserClicked(false)}>
+      <div className="friend-show-main">
         <div className="user-text-channels">
           <p>PENDING &#8212; {pendingFriends.length}</p>
         </div>
         <ul>
-          {pendingFriends.map((friend, idx) => (
-            <FriendsShowItem
-              friend={friend}
-              key={idx}
-            />
+          {pendingFriends.map((friendObj, idx) => (
+            <FriendsShowItem friend={friendObj.friend} key={idx} />
           ))}
         </ul>
         <div className="options-divider" id="user-divider"></div>
@@ -62,16 +66,13 @@ const FriendsShowPage = ({ friendTab }) => {
     );
   } else {
     return (
-      <div className="friend-show-main" onClick={() => setUserClicked(false)}>
+      <div className="friend-show-main">
         <div className="user-text-channels">
           <p>BLOCKED &#8212; {blockedFriends.length}</p>
         </div>
         <ul>
-          {blockedFriends.map((friend, idx) => (
-            <FriendsShowItem
-              friend={friend}
-              key={idx}
-            />
+          {blockedFriends.map((friendObj, idx) => (
+            <FriendsShowItem friend={friendObj.friend} key={idx} />
           ))}
         </ul>
         <div className="options-divider" id="user-divider"></div>
