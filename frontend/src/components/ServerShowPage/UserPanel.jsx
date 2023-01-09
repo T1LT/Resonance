@@ -9,7 +9,9 @@ const UserPanel = ({ users }) => {
   const location = useLocation();
   const friendships = useSelector((store) => Object.values(store.friendships));
   const sessionUser = useSelector((store) => store.session.user);
-  const friends = friendships.filter((el) => el.status !== "blocked").map((el) => el.friend);
+  const friends = friendships
+    .filter((el) => (el.status !== "blocked" && el.status !== "pending"))
+    .map((el) => el.friend);
   let friendIds = friendships.map((el) => el.friend.id);
   const dispatch = useDispatch();
 

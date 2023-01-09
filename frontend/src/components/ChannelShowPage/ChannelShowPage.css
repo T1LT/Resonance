@@ -1,6 +1,6 @@
 .channel-main {
   overflow-y: scroll;
-  max-height: 750px;
+  max-height: calc(100vh - 120px);
 }
 
 ::-webkit-scrollbar {

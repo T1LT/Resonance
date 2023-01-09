@@ -74,11 +74,25 @@ const UserPanelItem = ({ user, friendIds, friendships }) => {
           <div className="user-panel-item-right">
             {confirmation ? (
               <>
-                <YesIcon fontSize="small" onClick={handleYes} />
-                <NoIcon
-                  fontSize="small"
-                  onClick={() => setConfirmation(false)}
-                />
+                <BootstrapTooltip
+                  title="Confirm"
+                  arrow
+                  placement="top"
+                  disableInteractive
+                >
+                  <YesIcon fontSize="small" onClick={handleYes} />
+                </BootstrapTooltip>
+                <BootstrapTooltip
+                  title="Cancel"
+                  arrow
+                  placement="top"
+                  disableInteractive
+                >
+                  <NoIcon
+                    fontSize="small"
+                    onClick={() => setConfirmation(false)}
+                  />
+                </BootstrapTooltip>
               </>
             ) : (
               <>
