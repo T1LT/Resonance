@@ -10,8 +10,11 @@ const UserPanel = ({ users }) => {
   const friendships = useSelector((store) => Object.values(store.friendships));
   const sessionUser = useSelector((store) => store.session.user);
   const friends = friendships
-    .filter((el) => (el.status !== "blocked" && el.status !== "pending"))
+    .filter((el) => el.status !== "blocked" && el.status !== "pending")
     .map((el) => el.friend);
+  const blockedIds = friendships
+    .filter((el) => el.status === "blocked")
+    .map((el) => el.friend.id);
   let friendIds = friendships.map((el) => el.friend.id);
   const dispatch = useDispatch();
 
@@ -27,20 +30,22 @@ const UserPanel = ({ users }) => {
         </div>
       )}
       {!users
-        ? Object.values(friends).map((user) => (
+        ? Object.values(friends).map((user, idx) => (
             <UserPanelItem
               user={user}
-              key={user.id}
+              key={idx}
               friendships={friendships}
               friendIds={friendIds}
+              blockedIds={blockedIds}
             />
           ))
-        : Object.values(users).map((user) => (
+        : Object.values(users).map((user, idx) => (
             <UserPanelItem
               user={user}
-              key={user.id}
+              key={idx}
               friendships={friendships}
               friendIds={friendIds}
+              blockedIds={blockedIds}
             />
           ))}
     </ul>

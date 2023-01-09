@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom";
-import { logout } from "../../store/session";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { fetchServers } from "../../store/server";
 import "./ServerNavigation.css";
 import logo from "../../assets/logo.png";
+import ExploreIcon from "@mui/icons-material/Explore";
 import { ModalContext } from "../../App";
 
 const ServerNavigation = () => {
@@ -13,12 +13,13 @@ const ServerNavigation = () => {
   const servers = useSelector((store) => store.servers);
   const sessionUser = useSelector((store) => store.session.user);
   const history = useHistory();
+  const location = useLocation();
   useEffect(() => {
     if (sessionUser) {
       dispatch(fetchServers());
     }
   }, [dispatch, sessionUser]);
-  if (history.location.pathname === "/") return null;
+  if (location.pathname === "/") return null;
   return (
     <>
       {sessionUser && (
@@ -62,14 +63,13 @@ const ServerNavigation = () => {
               </li>
               <li
                 className="squircle green-boi"
-                onClick={() => {
-                  history.push("/login");
-                  dispatch(logout());
-                }}
+                onClick={() => history.push("/")}
               >
-                <p className="plus-minus">-</p>
+                <p className="plus-minus">
+                  <ExploreIcon />
+                </p>
                 <div className="popper-boi">
-                  <h4 className="popper-text">Logout</h4>
+                  <h4 className="popper-text">Homepage</h4>
                 </div>
               </li>
             </ul>

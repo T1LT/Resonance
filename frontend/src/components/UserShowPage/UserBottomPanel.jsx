@@ -1,22 +1,26 @@
 import React, { useState } from "react";
 import randomColor from "../../utils/logocolor";
 import logo from "../../assets/logo.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MicIcon from "@mui/icons-material/Mic";
 import MicOffIcon from "@mui/icons-material/MicOff";
 import HeadsetOffIcon from "@mui/icons-material/HeadsetOff";
 import HeadsetIcon from "@mui/icons-material/Headset";
 import SettingsIcon from "@mui/icons-material/Settings";
 import BootstrapTooltip from "./BootstrapTooltip";
+import { logout } from "../../store/session";
+import { useLocation } from "react-router-dom";
 
 const UserBottomPanel = () => {
   const sessionUser = useSelector((store) => store.session.user);
   const [micToggle, setMicToggle] = useState(true);
   const [deafenToggle, setDeafenToggle] = useState(true);
+  const dispatch = useDispatch();
+  const location = useLocation();
   if (
-    !sessionUser ||
+    location.pathname === "/" ||
     location.pathname === "/error" ||
-    location.pathname === "/"
+    !sessionUser
   ) {
     return null;
   } else {
@@ -81,12 +85,16 @@ const UserBottomPanel = () => {
             )}
           </BootstrapTooltip>
           <BootstrapTooltip
-            title="User Settings"
+            title="Logout"
             arrow
             placement="top"
             disableInteractive
           >
-            <SettingsIcon fontSize="small" className="settings-icon" />
+            <SettingsIcon
+              fontSize="small"
+              className="settings-icon"
+              onClick={() => dispatch(logout())}
+            />
           </BootstrapTooltip>
         </div>
       </div>

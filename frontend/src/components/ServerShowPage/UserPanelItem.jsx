@@ -4,6 +4,7 @@ import randomColor from "../../utils/logocolor";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import PersonRemoveAlt1Icon from "@mui/icons-material/PersonRemoveAlt1";
 import BlockIcon from "@mui/icons-material/Block";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import YesIcon from "@mui/icons-material/Check";
 import NoIcon from "@mui/icons-material/Close";
 import { useLocation } from "react-router-dom";
@@ -15,7 +16,7 @@ import {
 } from "../../store/friendship";
 import BootstrapTooltip from "../UserShowPage/BootstrapTooltip";
 
-const UserPanelItem = ({ user, friendIds, friendships }) => {
+const UserPanelItem = ({ user, friendIds, friendships, blockedIds }) => {
   const [confirmation, setConfirmation] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [confirmType, setConfirmType] = useState("");
@@ -24,7 +25,7 @@ const UserPanelItem = ({ user, friendIds, friendships }) => {
   const sessionUser = useSelector((store) => store.session.user);
 
   const handleYes = () => {
-    if (confirmType === "remove") {
+    if (confirmType === "remove" || confirmType === "unblock") {
       const friendshipId = friendships.find(
         (el) => el.friend.id === user.id
       ).id;
@@ -56,6 +57,11 @@ const UserPanelItem = ({ user, friendIds, friendships }) => {
     dispatch(createFriendship(friendshipData));
   };
 
+  const isBlocked = () => {
+    if (blockedIds.includes(user.id)) return true;
+    else return false;
+  };
+
   if (!sessionUser) return null;
   return (
     <li
@@ -74,25 +80,25 @@ const UserPanelItem = ({ user, friendIds, friendships }) => {
           <div className="user-panel-item-right">
             {confirmation ? (
               <>
-                <BootstrapTooltip
+                {/* <BootstrapTooltip
                   title="Confirm"
                   arrow
                   placement="top"
                   disableInteractive
-                >
+                > */}
                   <YesIcon fontSize="small" onClick={handleYes} />
-                </BootstrapTooltip>
-                <BootstrapTooltip
+                {/* </BootstrapTooltip> */}
+                {/* <BootstrapTooltip
                   title="Cancel"
                   arrow
                   placement="top"
                   disableInteractive
-                >
+                > */}
                   <NoIcon
                     fontSize="small"
                     onClick={() => setConfirmation(false)}
                   />
-                </BootstrapTooltip>
+                {/* </BootstrapTooltip> */}
               </>
             ) : (
               <>
@@ -124,20 +130,37 @@ const UserPanelItem = ({ user, friendIds, friendships }) => {
                     />
                   </BootstrapTooltip>
                 )}
-                <BootstrapTooltip
-                  title="Block User"
-                  arrow
-                  placement="top"
-                  disableInteractive
-                >
-                  <BlockIcon
-                    sx={{ fontSize: "16px", mt: "2px" }}
-                    onClick={() => {
-                      setConfirmType("block");
-                      setConfirmation(true);
-                    }}
-                  />
-                </BootstrapTooltip>
+                {isBlocked() ? (
+                  <BootstrapTooltip
+                    title="Unblock User"
+                    arrow
+                    placement="top"
+                    disableInteractive
+                  >
+                    <CheckCircleOutlineIcon
+                      sx={{ fontSize: "16px", mt: "2px" }}
+                      onClick={() => {
+                        setConfirmType("unblock");
+                        setConfirmation(true);
+                      }}
+                    />
+                  </BootstrapTooltip>
+                ) : (
+                  <BootstrapTooltip
+                    title="Block User"
+                    arrow
+                    placement="top"
+                    disableInteractive
+                  >
+                    <BlockIcon
+                      sx={{ fontSize: "16px", mt: "2px" }}
+                      onClick={() => {
+                        setConfirmType("block");
+                        setConfirmation(true);
+                      }}
+                    />
+                  </BootstrapTooltip>
+                )}
               </>
             )}
           </div>
