@@ -4,3 +4,115 @@
   background-color: white;
   color: black;
 }
+
+.homepage-nav {
+  top: 0;
+  width: 63%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.homepage-link {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  margin: 10px;
+}
+
+.homepage-link:hover {
+  text-decoration: underline;
+}
+
+.nav-left {
+  font-family: "antique-olive", sans-serif;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.section1 {
+  background-image: url(../../assets/homepage-banner.png);
+  background-position: center;
+  height: 625px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.homepage-below-nav {
+  padding: 120px 40px;
+  display: flex;
+  width: 800px;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepage-below-nav p {
+  margin-top: 40px;
+  font-family: "gg-sans-med";
+  font-size: 20px;
+  line-height: 1.625;
+}
+
+.homepage-main-heading {
+  font-family: "antique-olive", sans-serif;
+  font-size: 56px;
+}
+
+.homepage-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 28px;
+  font-weight: bold;
+  color: white;
+}
+
+.top-button {
+  font-size: 14px;
+  font-family: "gg-sans", sans-serif;
+  padding: 10px 16px;
+  background-color: white;
+  color: #23272A;
+  transition: all 0.2s ease-in-out;
+}
+
+.top-button:hover {
+  color: #5865F2;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 14px 28px, rgba(0, 0, 0, 0.05) 0px 10px 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.black-button {
+  margin-top: 24px;
+  padding: 16px 32px;
+  font-family: "gg-sans-med";
+  background-color: #23272A;
+  font-size: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.black-button:hover {
+  background-color: var(--color-third-dark);
+  box-shadow: rgba(0, 0, 0, 0.10) 0px 14px 28px, rgba(0, 0, 0, 0.10) 0px 10px 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.blue-button {
+  background-color: #5865F2;
+  padding: 16px 32px;
+  font-family: "gg-sans-med";
+  font-size: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.blue-button:hover {
+  background-color: #7983F5;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 14px 28px, rgba(0, 0, 0, 0.05) 0px 10px 10px;
+  transition: all 0.2s ease-in-out;
+}
