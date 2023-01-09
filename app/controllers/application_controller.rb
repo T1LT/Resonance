@@ -18,6 +18,7 @@ class ApplicationController < ActionController::API
     end
 
     def login!(user)
+        user.status = "online"
         session[:session_token] = user.reset_session_token!
     end
 

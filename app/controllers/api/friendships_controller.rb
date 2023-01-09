@@ -2,8 +2,12 @@ class Api::FriendshipsController < ApplicationController
     wrap_parameters include: Friendship.attribute_names
 
     def index
-        @friendships = current_user.friends
-        render :index
+        if current_user
+            @friendships = current_user.friends
+            render :index
+        else
+            render json: { errors: ["No user is logged in"] }, status: 422
+        end
     end
 
     def create

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { logout } from "../../store/session";
 import { fetchServers } from "../../store/server";
 import "./ServerNavigation.css";
@@ -12,11 +12,13 @@ const ServerNavigation = () => {
   const dispatch = useDispatch();
   const servers = useSelector((store) => store.servers);
   const sessionUser = useSelector((store) => store.session.user);
+  const history = useHistory();
   useEffect(() => {
     if (sessionUser) {
       dispatch(fetchServers());
     }
   }, [dispatch, sessionUser]);
+  if (history.location.pathname === "/") return null;
   return (
     <>
       {sessionUser && (
@@ -60,7 +62,10 @@ const ServerNavigation = () => {
               </li>
               <li
                 className="squircle green-boi"
-                onClick={() => dispatch(logout())}
+                onClick={() => {
+                  history.push("/login");
+                  dispatch(logout());
+                }}
               >
                 <p className="plus-minus">-</p>
                 <div className="popper-boi">

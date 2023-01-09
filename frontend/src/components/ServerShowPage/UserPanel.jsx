@@ -8,11 +8,13 @@ import UserPanelItem from "./UserPanelItem";
 const UserPanel = ({ users }) => {
   const location = useLocation();
   const friendships = useSelector((store) => Object.values(store.friendships));
+  const sessionUser = useSelector((store) => store.session.user);
+  const friends = friendships.filter((el) => el.status !== "blocked").map((el) => el.friend);
   let friendIds = friendships.map((el) => el.friend.id);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchFriendships());
+    if (sessionUser) dispatch(fetchFriendships());
   }, [dispatch]);
 
   return (
@@ -22,14 +24,23 @@ const UserPanel = ({ users }) => {
           <p>ONLINE</p>
         </div>
       )}
-      {Object.values(users).map((user) => (
-        <UserPanelItem
-          user={user}
-          key={user.id}
-          friendships={friendships}
-          friendIds={friendIds}
-        />
-      ))}
+      {!users
+        ? Object.values(friends).map((user) => (
+            <UserPanelItem
+              user={user}
+              key={user.id}
+              friendships={friendships}
+              friendIds={friendIds}
+            />
+          ))
+        : Object.values(users).map((user) => (
+            <UserPanelItem
+              user={user}
+              key={user.id}
+              friendships={friendships}
+              friendIds={friendIds}
+            />
+          ))}
     </ul>
   );
 };

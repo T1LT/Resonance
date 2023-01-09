@@ -13,6 +13,7 @@ import {
   deleteFriendship,
   updateFriendship,
 } from "../../store/friendship";
+import BootstrapTooltip from "../UserShowPage/BootstrapTooltip";
 
 const UserPanelItem = ({ user, friendIds, friendships }) => {
   const [confirmation, setConfirmation] = useState(false);
@@ -55,6 +56,7 @@ const UserPanelItem = ({ user, friendIds, friendships }) => {
     dispatch(createFriendship(friendshipData));
   };
 
+  if (!sessionUser) return null;
   return (
     <li
       key={user.id}
@@ -81,26 +83,47 @@ const UserPanelItem = ({ user, friendIds, friendships }) => {
             ) : (
               <>
                 {location.pathname === "/me" || friendIds.includes(user.id) ? (
-                  <PersonRemoveAlt1Icon
-                    fontSize="small"
+                  <BootstrapTooltip
+                    title="Remove Friend"
+                    arrow
+                    placement="top"
+                    disableInteractive
+                  >
+                    <PersonRemoveAlt1Icon
+                      fontSize="small"
+                      onClick={() => {
+                        setConfirmType("remove");
+                        setConfirmation(true);
+                      }}
+                    />
+                  </BootstrapTooltip>
+                ) : (
+                  <BootstrapTooltip
+                    title="Add Friend"
+                    arrow
+                    placement="top"
+                    disableInteractive
+                  >
+                    <PersonAddAlt1Icon
+                      fontSize="small"
+                      onClick={handleAddFriend}
+                    />
+                  </BootstrapTooltip>
+                )}
+                <BootstrapTooltip
+                  title="Block User"
+                  arrow
+                  placement="top"
+                  disableInteractive
+                >
+                  <BlockIcon
+                    sx={{ fontSize: "16px", mt: "2px" }}
                     onClick={() => {
-                      setConfirmType("remove");
+                      setConfirmType("block");
                       setConfirmation(true);
                     }}
                   />
-                ) : (
-                  <PersonAddAlt1Icon
-                    fontSize="small"
-                    onClick={handleAddFriend}
-                  />
-                )}
-                <BlockIcon
-                  sx={{ fontSize: "16px", mt: "2px" }}
-                  onClick={() => {
-                    setConfirmType("block");
-                    setConfirmation(true);
-                  }}
-                />
+                </BootstrapTooltip>
               </>
             )}
           </div>

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { fetchFriendships } from "../../store/friendship";
 import ServerFormPage from "../ServerFormPage";
 import UserPanel from "../ServerShowPage/UserPanel";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
@@ -12,15 +11,8 @@ import FriendsShowPage from "./FriendsShowPage";
 
 const UserShowPage = () => {
   const sessionUser = useSelector((store) => store.session.user);
-  const friendships = useSelector((store) => Object.values(store.friendships));
-  const dispatch = useDispatch();
-  const friends = friendships.map((el) => el.friend);
   const [friendTab, setFriendTab] = useState("online");
-
-  useEffect(() => {
-    dispatch(fetchFriendships());
-  }, [dispatch]);
-
+  
   if (!sessionUser) <Redirect to="/login" />;
   return (
     <>
@@ -100,7 +92,7 @@ const UserShowPage = () => {
           <div className="text-channels">
             <p>DIRECT MESSAGES</p>
           </div>
-          <UserPanel users={friends} />
+          <UserPanel />
         </div>
         <div className="friends-info">
           <FriendsShowPage friendTab={friendTab} />
