@@ -1,3 +1,8 @@
+body {
+  background-color: white !important;
+  text-rendering: optimizeLegibility;
+}
+
 .homepage-main {
   width: 100%;
   height: 100%;
@@ -31,6 +36,64 @@
   align-items: center;
 }
 
+.section-header {
+  font-family: "gg-sans-bold-2", sans-serif;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 1.15;
+}
+
+.section-header-bottom {
+  font-family: "antique-olive", sans-serif;
+  font-size: 40px;
+}
+
+.section-text {
+  margin-top: 24px;
+  font-family: "gg-sans-med", sans-serif;
+  font-size: 20px;
+  line-height: 1.625;
+}
+
+.section-container {
+  width: 1260px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 120px 40px;
+}
+
+.section-container-bottom {
+  width: 1260px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 120px 40px 80px;
+}
+
+.image-container {
+  width: 55%;
+  display: flex;
+  align-items: center;
+}
+
+.section-content {
+  width: 380px;
+}
+
+.section-content-bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.section5-img {
+  width: 1180px;
+  margin-top: 16px;
+}
+
 .section1 {
   background-image: url(../../assets/homepage-banner.png);
   background-position: center;
@@ -40,6 +103,38 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.section5 {
+  height: 1060px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section6 {
+  height: 285px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.section-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 680px;
+}
+
+.section-alt {
+  background-color: #F6F6F6;
+}
+
+.sparkles {
+  margin-bottom: -20px;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .homepage-below-nav {
@@ -108,6 +203,7 @@
   padding: 16px 32px;
   font-family: "gg-sans-med";
   font-size: 20px;
+  margin-top: 40px;
   transition: all 0.2s ease-in-out;
 }
 
