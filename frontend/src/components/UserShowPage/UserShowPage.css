@@ -169,6 +169,25 @@
   font-size: 14px;
   font-weight: bold;
   color: #B9BBBE;
+  user-select: none;
+}
+
+.user-text {
+  user-select: none;
+  display: flex;
+  align-items: center;
+}
+
+.hidden-user-tag {
+  font-style: normal;
+  color: var(--color-third-text);
+  font-family: "gg-sans", sans-serif;
+  font-size: 14px;
+  display: none;
+}
+
+#show-element {
+  display: flex;
 }
 
 .friend-item-left {
@@ -194,10 +213,14 @@
   right: 100px;
 }
 
-.accept-icon:hover {
+.accept-icon, .ignore-icon {
+  color: #DCDDDE;
+}
+
+.accept-icon-hover {
   color: #3BA45D;
 }
 
-.ignore-icon:hover {
+.ignore-icon-hover {
   color: #ED4245;
 }
