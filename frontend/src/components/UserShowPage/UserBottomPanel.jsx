@@ -9,7 +9,7 @@ import HeadsetIcon from "@mui/icons-material/Headset";
 import SettingsIcon from "@mui/icons-material/Settings";
 import BootstrapTooltip from "./BootstrapTooltip";
 import { logout } from "../../store/session";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 const UserBottomPanel = () => {
   const sessionUser = useSelector((store) => store.session.user);
@@ -17,6 +17,7 @@ const UserBottomPanel = () => {
   const [deafenToggle, setDeafenToggle] = useState(true);
   const dispatch = useDispatch();
   const location = useLocation();
+  const history = useHistory();
   if (
     location.pathname === "/" ||
     location.pathname === "/error" ||
@@ -93,7 +94,10 @@ const UserBottomPanel = () => {
             <SettingsIcon
               fontSize="small"
               className="settings-icon"
-              onClick={() => dispatch(logout())}
+              onClick={() => {
+                // history.push("/login");
+                dispatch(logout());
+              }}
             />
           </BootstrapTooltip>
         </div>

@@ -3,14 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import ServerFormPage from "../ServerFormPage";
 import UserPanel from "../ServerShowPage/UserPanel";
-import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import "./UserShowPage.css";
-import ChannelShowPage from "../ChannelShowPage";
 import FriendsShowPage from "./FriendsShowPage";
+// import ChannelShowPage from "../ChannelShowPage";
+// import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 
 const UserShowPage = () => {
   const sessionUser = useSelector((store) => store.session.user);
+  const friendships = useSelector((store) => Object.values(store.friendships));
+  const friends = friendships.map((el) => ({
+    friend: el.friend,
+    status: el.status,
+    friendshipId: el.id,
+  }));
+  const notiCount = friends.filter(
+    (el) => el.status === "pending" && !el.friend.user1Id
+  ).length;
   const [friendTab, setFriendTab] = useState("online");
   if (!sessionUser) <Redirect to="/login" />;
   return (
@@ -62,6 +71,9 @@ const UserShowPage = () => {
                     onClick={() => setFriendTab("pending")}
                   >
                     Pending
+                    {!!notiCount && (
+                      <span className="noti-count">{notiCount}</span>
+                    )}
                   </button>
                 </li>
                 <li>
@@ -94,7 +106,12 @@ const UserShowPage = () => {
           <UserPanel />
         </div>
         <div className="friends-info">
-          <FriendsShowPage friendTab={friendTab} />
+          <FriendsShowPage
+            friendTab={friendTab}
+            sessionUser={sessionUser}
+            friendships={friendships}
+            friends={friends}
+          />
         </div>
         {/* <ChannelShowPage /> */}
       </div>

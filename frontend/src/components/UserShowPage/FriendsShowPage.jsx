@@ -3,16 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import FriendsShowItem from "./FriendsShowItem";
 import consumer from "../consumer";
 import { addFriendship, removeFriendship } from "../../store/friendship";
+import { useHistory } from "react-router-dom";
 
-const FriendsShowPage = ({ friendTab }) => {
+const FriendsShowPage = ({ sessionUser, friendTab, friendships, friends }) => {
   const dispatch = useDispatch();
-  const sessionUserId = useSelector((store) => store.session.user.id);
-  const friendships = useSelector((store) => Object.values(store.friendships));
-  const friends = friendships.map((el) => ({
-    friend: el.friend,
-    status: el.status,
-    friendshipId: el.id,
-  }));
+  const sessionUserId = sessionUser?.id;
+  const history = useHistory();
+  if (!sessionUserId) history.push("/login");
+  
   const onlineFriends = friends.filter(
     (el) =>
       el.friend.status === "online" &&
@@ -26,12 +24,11 @@ const FriendsShowPage = ({ friendTab }) => {
     (el) => el.status === "pending" && el.status !== "blocked"
   );
   const blockedFriends = friends.filter((el) => el.status === "blocked");
-
+  
   useEffect(() => {
     const subscription = consumer.subscriptions.create(
       { channel: "FriendshipsChannel", id: sessionUserId },
       {
-        connected: () => console.log("connected"),
         received: (friendshipObj) => {
           switch (friendshipObj.type) {
             case "RECEIVE_FRIENDSHIP":

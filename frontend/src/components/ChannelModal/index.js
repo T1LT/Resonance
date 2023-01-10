@@ -5,6 +5,7 @@ import "./ChannelModal.css";
 import { updateChannel, createChannel } from "../../store/channel";
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import Tag from "@mui/icons-material/Tag";
 
 const customStyles = {
   content: {
@@ -55,8 +56,9 @@ const ChannelModal = ({ channel }) => {
         channel_name: channelName,
         server_id: serverId,
       };
-      createChannel(channelData)
-        .then((channel) => history.push(`/servers/${serverId}/channels/${channel.id}`));
+      createChannel(channelData).then((channel) =>
+        history.push(`/servers/${serverId}/channels/${channel.id}`)
+      );
       setIsChannelModalOpen(false);
       setChannelName("");
     }
@@ -95,15 +97,27 @@ const ChannelModal = ({ channel }) => {
               {errors.length ? `- ${errors[0]}` : ""}
             </span>
           </label>
-          <input
-            type="text"
-            name="channelName"
-            id="channelName"
-            autoFocus
-            autoComplete="off"
-            value={channelName}
-            onChange={(e) => setChannelName(e.target.value)}
-          />
+          <div className="input-wrapper">
+            <Tag
+              sx={{
+                color: "#2E3338",
+                position: "absolute",
+                boxSizing: "border-box",
+                transform: "skew(-10deg)",
+                ml: "5px",
+                fontSize: "20px",
+              }}
+            />
+            <input
+              type="text"
+              name="channelName"
+              id="channelName"
+              autoFocus
+              autoComplete="off"
+              value={channelName}
+              onChange={(e) => setChannelName(e.target.value)}
+            />
+          </div>
         </div>
         <div className="server-form-footer">
           {isChannelEdit ? (

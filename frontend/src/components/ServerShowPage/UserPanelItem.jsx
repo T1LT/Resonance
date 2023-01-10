@@ -8,7 +8,7 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import YesIcon from "@mui/icons-material/Check";
 import NoIcon from "@mui/icons-material/Close";
 import { useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   createFriendship,
   deleteFriendship,
@@ -20,7 +20,6 @@ const UserPanelItem = ({ user, friendIds, friendships, blockedIds }) => {
   const [confirmation, setConfirmation] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [confirmType, setConfirmType] = useState("");
-  const dispatch = useDispatch();
   const location = useLocation();
   const sessionUser = useSelector((store) => store.session.user);
 
@@ -35,18 +34,16 @@ const UserPanelItem = ({ user, friendIds, friendships, blockedIds }) => {
       if (friendIds.includes(user.id)) {
         const friendship = friendships.find((el) => el.friend.id === user.id);
         const friendshipData = { ...friendship, status: "blocked" };
-        updateFriendship(friendshipData).then(() =>
-          setConfirmation(false)
-        );
+        updateFriendship(friendshipData)
+        setConfirmation(false);
       } else {
         const friendshipData = {
           user1_id: sessionUser.id,
           user2_id: user.id,
           status: "blocked",
         };
-        createFriendship(friendshipData).then(() =>
-          setConfirmation(false)
-        );
+        createFriendship(friendshipData)
+        setConfirmation(false);
       }
     }
   };
