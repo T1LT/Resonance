@@ -193,3 +193,11 @@
 .avoid-border {
   right: 100px;
 }
+
+.accept-icon:hover {
+  color: #3BA45D;
+}
+
+.ignore-icon:hover {
+  color: #ED4245;
+}

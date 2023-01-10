@@ -1,13 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import FriendsShowItem from "./FriendsShowItem";
-// import UserDropDown from "./UserDropDown";
 
 const FriendsShowPage = ({ friendTab }) => {
   const friendships = useSelector((store) => Object.values(store.friendships));
   const friends = friendships.map((el) => ({
     friend: el.friend,
     status: el.status,
+    friendshipId: el.id
   }));
   const onlineFriends = friends.filter(
     (el) =>
@@ -30,7 +30,7 @@ const FriendsShowPage = ({ friendTab }) => {
         </div>
         <ul>
           {onlineFriends.map((friendObj, idx) => (
-            <FriendsShowItem friend={friendObj.friend} key={idx} />
+            <FriendsShowItem friendTab={friendTab} friendObj={friendObj} key={idx} friendships={friendships} />
           ))}
         </ul>
         <div className="options-divider" id="user-divider"></div>
@@ -44,7 +44,7 @@ const FriendsShowPage = ({ friendTab }) => {
         </div>
         <ul>
           {allFriends.map((friendObj, idx) => (
-            <FriendsShowItem friend={friendObj.friend} key={idx} />
+            <FriendsShowItem friendTab={friendTab} friendObj={friendObj} key={idx} friendships={friendships} />
           ))}
         </ul>
         <div className="options-divider" id="user-divider"></div>
@@ -58,7 +58,7 @@ const FriendsShowPage = ({ friendTab }) => {
         </div>
         <ul>
           {pendingFriends.map((friendObj, idx) => (
-            <FriendsShowItem friend={friendObj.friend} key={idx} />
+            <FriendsShowItem friendTab={friendTab} friendObj={friendObj} key={idx} friendships={friendships} />
           ))}
         </ul>
         <div className="options-divider" id="user-divider"></div>
@@ -72,7 +72,7 @@ const FriendsShowPage = ({ friendTab }) => {
         </div>
         <ul>
           {blockedFriends.map((friendObj, idx) => (
-            <FriendsShowItem friend={friendObj.friend} key={idx} />
+            <FriendsShowItem friendTab={friendTab} friendObj={friendObj} key={idx} friendships={friendships} />
           ))}
         </ul>
         <div className="options-divider" id="user-divider"></div>
