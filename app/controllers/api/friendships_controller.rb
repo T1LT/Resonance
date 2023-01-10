@@ -13,7 +13,11 @@ class Api::FriendshipsController < ApplicationController
     def create
         @friendship = Friendship.new(friendship_params)
         if @friendship.save
-            render :show
+            @user1 = User.find(@friendship.user1_id)
+            @user2 = User.find(@friendship.user2_id)
+            FriendshipsChannel.broadcast_to(@user1, type: 'RECEIVE_FRIENDSHIP', **from_template('api/friendships/show', friendship: @friendship, current_user: current_user))
+            FriendshipsChannel.broadcast_to(@user2, type: 'RECEIVE_FRIENDSHIP', **from_template('api/friendships/show', friendship: @friendship, current_user: current_user))
+            render json: nil, status: :ok
         else
             render json: { errors: @friendship.errors.full_messages }, status: 422
         end
@@ -22,7 +26,11 @@ class Api::FriendshipsController < ApplicationController
     def update
         @friendship = Friendship.find(params[:id])
         if @friendship.update(status_params)
-            render :show
+            @user1 = User.find(@friendship.user1_id)
+            @user2 = User.find(@friendship.user2_id)
+            FriendshipsChannel.broadcast_to(@user1, type: 'UPDATE_FRIENDSHIP', **from_template('api/friendships/show', friendship: @friendship, current_user: @user2))
+            FriendshipsChannel.broadcast_to(@user2, type: 'UPDATE_FRIENDSHIP', **from_template('api/friendships/show', friendship: @friendship, current_user: @user1))
+            render json: nil, status: :ok
         else
             render json: { errors: @friendship.errors.full_messages }, status: 422
         end
@@ -31,7 +39,11 @@ class Api::FriendshipsController < ApplicationController
     def destroy
         @friendship = Friendship.find(params[:id])
         if @friendship.destroy
-            head :no_content
+            @user1 = User.find(@friendship.user1_id)
+            @user2 = User.find(@friendship.user2_id)
+            FriendshipsChannel.broadcast_to(@user1, type: 'DESTROY_FRIENDSHIP', id: @friendship.id)
+            FriendshipsChannel.broadcast_to(@user2, type: 'DESTROY_FRIENDSHIP', id: @friendship.id)
+            render json: nil, status: :ok
         else
             render json: { errors: @friendship.errors.full_messages }, status: 422
         end

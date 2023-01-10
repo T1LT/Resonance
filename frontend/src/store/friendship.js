@@ -30,35 +30,24 @@ export const fetchFriendships = () => async dispatch => {
   }
 };
 
-export const createFriendship = (friendshipData) => async dispatch => {
-  const res = await csrfFetch("/api/friendships", {
+export const createFriendship = (friendshipData) => {
+  csrfFetch("/api/friendships", {
     method: "POST",
     body: JSON.stringify(friendshipData)
   });
-  if (res.ok) {
-    const friendship = await res.json();
-    dispatch(addFriendship(friendship));
-  }
 };
 
-export const updateFriendship = (friendshipData) => async dispatch => {
-  const res = await csrfFetch(`/api/friendships/${friendshipData.id}`, {
+export const updateFriendship = (friendshipData) => {
+  csrfFetch(`/api/friendships/${friendshipData.id}`, {
     method: "PATCH",
     body: JSON.stringify(friendshipData)
   });
-  if (res.ok) {
-    const friendship = await res.json();
-    dispatch(addFriendship(friendship));
-  }
 };
 
-export const deleteFriendship = (friendshipId) => async dispatch => {
-  const res = await csrfFetch(`/api/friendships/${friendshipId}`, {
+export const deleteFriendship = (friendshipId) => {
+  csrfFetch(`/api/friendships/${friendshipId}`, {
     method: "DELETE"
   });
-  if (res.ok) {
-    dispatch(removeFriendship(friendshipId));
-  }
 };
 
 // REDUCER

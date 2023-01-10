@@ -29,14 +29,13 @@ const UserPanelItem = ({ user, friendIds, friendships, blockedIds }) => {
       const friendshipId = friendships.find(
         (el) => el.friend.id === user.id
       ).id;
-      dispatch(deleteFriendship(friendshipId)).then(() => {
-        setConfirmation(false);
-      });
+      deleteFriendship(friendshipId);
+      setConfirmation(false);
     } else {
       if (friendIds.includes(user.id)) {
         const friendship = friendships.find((el) => el.friend.id === user.id);
         const friendshipData = { ...friendship, status: "blocked" };
-        dispatch(updateFriendship(friendshipData)).then(() =>
+        updateFriendship(friendshipData).then(() =>
           setConfirmation(false)
         );
       } else {
@@ -45,7 +44,7 @@ const UserPanelItem = ({ user, friendIds, friendships, blockedIds }) => {
           user2_id: user.id,
           status: "blocked",
         };
-        dispatch(createFriendship(friendshipData)).then(() =>
+        createFriendship(friendshipData).then(() =>
           setConfirmation(false)
         );
       }
@@ -54,7 +53,7 @@ const UserPanelItem = ({ user, friendIds, friendships, blockedIds }) => {
 
   const handleAddFriend = () => {
     const friendshipData = { user1_id: sessionUser.id, user2_id: user.id };
-    dispatch(createFriendship(friendshipData));
+    createFriendship(friendshipData);
   };
 
   const isBlocked = () => {

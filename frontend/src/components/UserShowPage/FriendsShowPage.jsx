@@ -1,13 +1,17 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import FriendsShowItem from "./FriendsShowItem";
+import consumer from "../consumer";
+import { addFriendship, removeFriendship } from "../../store/friendship";
 
 const FriendsShowPage = ({ friendTab }) => {
+  const dispatch = useDispatch();
+  const sessionUserId = useSelector((store) => store.session.user.id);
   const friendships = useSelector((store) => Object.values(store.friendships));
   const friends = friendships.map((el) => ({
     friend: el.friend,
     status: el.status,
-    friendshipId: el.id
+    friendshipId: el.id,
   }));
   const onlineFriends = friends.filter(
     (el) =>
@@ -22,6 +26,33 @@ const FriendsShowPage = ({ friendTab }) => {
     (el) => el.status === "pending" && el.status !== "blocked"
   );
   const blockedFriends = friends.filter((el) => el.status === "blocked");
+
+  useEffect(() => {
+    const subscription = consumer.subscriptions.create(
+      { channel: "FriendshipsChannel", id: sessionUserId },
+      {
+        connected: () => console.log("connected"),
+        received: (friendshipObj) => {
+          switch (friendshipObj.type) {
+            case "RECEIVE_FRIENDSHIP":
+              dispatch(addFriendship(friendshipObj));
+              break;
+            case "DESTROY_FRIENDSHIP":
+              dispatch(removeFriendship(friendshipObj.id));
+              break;
+            case "UPDATE_FRIENDSHIP":
+              dispatch(addFriendship(friendshipObj));
+              break;
+            default:
+              console.log("Unhandled broadcast: ", friendshipObj.type);
+              break;
+          }
+        },
+      }
+    );
+    return () => subscription?.unsubscribe();
+  }, [sessionUserId, dispatch]);
+
   if (friendTab === "online") {
     return (
       <div className="friend-show-main">
@@ -30,7 +61,12 @@ const FriendsShowPage = ({ friendTab }) => {
         </div>
         <ul>
           {onlineFriends.map((friendObj, idx) => (
-            <FriendsShowItem friendTab={friendTab} friendObj={friendObj} key={idx} friendships={friendships} />
+            <FriendsShowItem
+              friendTab={friendTab}
+              friendObj={friendObj}
+              key={idx}
+              friendships={friendships}
+            />
           ))}
         </ul>
         <div className="options-divider" id="user-divider"></div>
@@ -44,7 +80,12 @@ const FriendsShowPage = ({ friendTab }) => {
         </div>
         <ul>
           {allFriends.map((friendObj, idx) => (
-            <FriendsShowItem friendTab={friendTab} friendObj={friendObj} key={idx} friendships={friendships} />
+            <FriendsShowItem
+              friendTab={friendTab}
+              friendObj={friendObj}
+              key={idx}
+              friendships={friendships}
+            />
           ))}
         </ul>
         <div className="options-divider" id="user-divider"></div>
@@ -58,7 +99,12 @@ const FriendsShowPage = ({ friendTab }) => {
         </div>
         <ul>
           {pendingFriends.map((friendObj, idx) => (
-            <FriendsShowItem friendTab={friendTab} friendObj={friendObj} key={idx} friendships={friendships} />
+            <FriendsShowItem
+              friendTab={friendTab}
+              friendObj={friendObj}
+              key={idx}
+              friendships={friendships}
+            />
           ))}
         </ul>
         <div className="options-divider" id="user-divider"></div>
@@ -72,7 +118,12 @@ const FriendsShowPage = ({ friendTab }) => {
         </div>
         <ul>
           {blockedFriends.map((friendObj, idx) => (
-            <FriendsShowItem friendTab={friendTab} friendObj={friendObj} key={idx} friendships={friendships} />
+            <FriendsShowItem
+              friendTab={friendTab}
+              friendObj={friendObj}
+              key={idx}
+              friendships={friendships}
+            />
           ))}
         </ul>
         <div className="options-divider" id="user-divider"></div>

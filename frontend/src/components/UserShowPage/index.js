@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import ServerFormPage from "../ServerFormPage";
 import UserPanel from "../ServerShowPage/UserPanel";
@@ -12,7 +12,6 @@ import FriendsShowPage from "./FriendsShowPage";
 const UserShowPage = () => {
   const sessionUser = useSelector((store) => store.session.user);
   const [friendTab, setFriendTab] = useState("online");
-  
   if (!sessionUser) <Redirect to="/login" />;
   return (
     <>

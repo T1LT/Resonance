@@ -6,13 +6,11 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import BootstrapTooltip from "./BootstrapTooltip";
 import YesIcon from "@mui/icons-material/Check";
 import NoIcon from "@mui/icons-material/Close";
-import { useDispatch } from "react-redux";
 import { deleteFriendship, updateFriendship } from "../../store/friendship";
 import { useState } from "react";
 
 const FriendsShowItem = ({ friendTab, friendObj, friendships }) => {
   const friend = friendObj.friend;
-  const dispatch = useDispatch();
   const friendshipReceiver = !!friendObj.friend.user2Id;
   const [hovered, setHovered] = useState(false);
   const [acceptHovered, setAcceptHovered] = useState(false);
@@ -23,14 +21,13 @@ const FriendsShowItem = ({ friendTab, friendObj, friendships }) => {
     const friendship = friendships.find(
       (el) => el.id === friendObj.friendshipId
     );
-    console.log(friendships);
     const friendshipData = { ...friendship, status: "friends" };
-    dispatch(updateFriendship(friendshipData));
+    updateFriendship(friendshipData);
   };
 
   const handleIgnoreInvite = (e) => {
     e.preventDefault();
-    dispatch(deleteFriendship(friendObj.friendshipId));
+    deleteFriendship(friendObj.friendshipId);
   };
 
   return (
