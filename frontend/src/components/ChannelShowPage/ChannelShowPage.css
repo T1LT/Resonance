@@ -3,18 +3,18 @@
   max-height: calc(100vh - 120px);
 }
 
-::-webkit-scrollbar {
+.channel-main::-webkit-scrollbar {
   width: 8px;
 }
 
-::-webkit-scrollbar-track {
+.channel-main::-webkit-scrollbar-track {
   -webkit-border-radius: 10px;
   border-radius: 10px;
   background-color: #2E3338;
   margin: 3px 0;
 }
 
-::-webkit-scrollbar-thumb {
+.channel-main::-webkit-scrollbar-thumb {
   -webkit-border-radius: 10px;
   border-radius: 10px;
   background: var(--color-not-quite-black);

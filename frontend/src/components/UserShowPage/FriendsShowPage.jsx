@@ -18,7 +18,7 @@ const FriendsShowPage = ({ sessionUser, friendTab, friendships, friends }) => {
       el.status !== "pending"
   );
   const allFriends = friends.filter(
-    (el) => el.status !== "blocked" && el.status !== "pending"
+    (el) => el.status !== "pending" && el.status !== "blocked"
   );
   const pendingFriends = friends.filter(
     (el) => el.status === "pending" && el.status !== "blocked"
@@ -73,7 +73,7 @@ const FriendsShowPage = ({ sessionUser, friendTab, friendships, friends }) => {
     return (
       <div className="friend-show-main">
         <div className="user-text-channels">
-          <p>ALL FRIENDS &#8212; {friends.length}</p>
+          <p>ALL FRIENDS &#8212; {allFriends.length}</p>
         </div>
         <ul>
           {allFriends.map((friendObj, idx) => (

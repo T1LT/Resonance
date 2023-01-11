@@ -9,6 +9,13 @@ import section4 from "../../assets/section-4.svg";
 import section5 from "../../assets/section-5.svg";
 import sparkles from "../../assets/sparkles.svg";
 import usaFlag from "../../assets/usa-flag.png";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import PersonIcon from "@mui/icons-material/Person";
 
 const Homepage = () => {
   const sessionUser = useSelector((store) => store.session.user);
@@ -154,8 +161,51 @@ const Homepage = () => {
                 <img src={usaFlag} alt="USA Flag" className="flag-emoji" />
                 English, USA
               </div>
+              <div className="left3">
+                <a href="https://www.twitter.com/discord" target="_blank">
+                  <TwitterIcon sx={{ color: "white" }} />
+                </a>
+                <a href="https://www.instagram.com/discord" target="_blank">
+                  <InstagramIcon sx={{ color: "white", ml: "24px" }} />
+                </a>
+                <a href="https://www.facebook.com/discord" target="_blank">
+                  <FacebookIcon sx={{ color: "white", ml: "24px" }} />
+                </a>
+                <a href="https://www.youtube.com/discord" target="_blank">
+                  <YouTubeIcon
+                    sx={{ color: "white", ml: "24px", fontSize: "28px" }}
+                  />
+                </a>
+              </div>
             </div>
-            <div className="content-right"></div>
+            <div className="content-right">
+              <div className="icon-link-wrapper">
+                <GitHubIcon sx={{ color: "#5865f2", mr: "8px" }} />
+                <a
+                  href="https://github.com/T1LT/Resonance"
+                  target="_blank"
+                  className="footer-link"
+                >
+                  Github
+                </a>
+              </div>
+              <div className="icon-link-wrapper">
+                <LinkedInIcon sx={{ color: "#5865f2", mr: "8px" }} />
+                <a
+                  href="https://www.linkedin.com/in/nishant-racherla-a51370167/"
+                  target="_blank"
+                  className="footer-link"
+                >
+                  Linkedin
+                </a>
+              </div>
+              <div className="icon-link-wrapper">
+                <PersonIcon sx={{ color: "#5865f2", mr: "8px" }} />
+                <a href="#" className="footer-link">
+                  Portfolio
+                </a>
+              </div>
+            </div>
           </div>
           <div className="section7-content-bottom">
             <div className="section7-divider"></div>
