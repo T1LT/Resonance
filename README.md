@@ -6,7 +6,7 @@
 
 ## Technologies
 
-To build Resonance, I used a React-Redux frontend paired with a Ruby on Rails backend, and PostgreSQL as the database management system. For the general styling I used CSS, I used [MUI](https://mui.com/) for the icons and AnimateOnScroll for the animations on the splash page. I also used Action Cable for the websocket connections to enable live updates for most of my CRUD features. 
+To build Resonance, I used a React-Redux frontend paired with a Ruby on Rails backend, and PostgreSQL as the database management system. For the general styling I used CSS, I used [MUI](https://mui.com/) for the icons and [AnimateOnScroll](https://michalsnik.github.io/aos/) for the animations on the splash page. I also used Action Cable for the websocket connections to enable live updates for most of my CRUD features. 
 
 ## Features
 
