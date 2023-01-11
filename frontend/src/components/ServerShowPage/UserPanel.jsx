@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { fetchFriendships } from "../../store/friendship";
 import "./UserPanel.css";
 import UserPanelItem from "./UserPanelItem";
 
 const UserPanel = ({ users }) => {
-  const location = useLocation();
+  const { serverId } = useParams();
   const friendships = useSelector((store) => Object.values(store.friendships));
   const sessionUser = useSelector((store) => store.session.user);
   const friends = friendships
@@ -24,7 +24,7 @@ const UserPanel = ({ users }) => {
 
   return (
     <ul className="user-panel-ul">
-      {location.pathname !== "/me" && (
+      {serverId && (
         <div className="text-channels">
           <p>ONLINE</p>
         </div>

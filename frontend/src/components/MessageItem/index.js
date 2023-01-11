@@ -7,11 +7,10 @@ import { ModalContext } from "../../App";
 import { useSelector } from "react-redux";
 import { updateMessage } from "../../store/message";
 import { formatTimestamp } from "../../utils/formattime";
+import randomColor from "../../utils/logocolor";
 
 const MessageItem = ({ server, message }) => {
   const { setIsDeleteOpen, setConfirmationType } = useContext(ModalContext);
-  const colors = ["blue", "mustard", "red", "green", "grey"];
-  const randomColor = (id) => colors[id % 5];
   const [msgcrudActive, setMsgcrudActive] = useState(false);
   const [msgEdit, setMsgEdit] = useState(false);
   const [msgInput, setMsgInput] = useState(message?.body);
@@ -53,7 +52,7 @@ const MessageItem = ({ server, message }) => {
                 <span id="timestamp">{formatTimestamp(message.createdAt)}</span>
               </h4>
               {(message.user.id === sessionUser.id ||
-                server.ownerId === sessionUser.id) && (
+                server?.ownerId === sessionUser.id) && (
                 <div
                   className="message-buttons"
                   style={msgcrudActive ? active : hidden}

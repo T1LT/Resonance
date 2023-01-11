@@ -1,3 +1,9 @@
+.not-found-wrapper-full {
+  height: 100%;
+  width: 100%;
+  background-color: var(--color-dark);
+}
+
 .error-ul {
   list-style-type: none;
   padding-left: 0;
