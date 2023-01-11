@@ -34,6 +34,8 @@ body {
   font-size: 18px;
   display: flex;
   align-items: center;
+  color: white;
+  user-select: none;
 }
 
 .section-header {
@@ -115,9 +117,72 @@ body {
 .section6 {
   height: 285px;
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.section6-content {
+  width: 1260px;
+  padding: 0 40px;
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 120px;
+}
+
+.section7 {
+  height: 543px;
+  background-color: #23272A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section7-divider {
+  width: 1180px;
+  border-top: 1px solid #5865F2;
+  margin-bottom: 32px;
+}
+
+.section7-content-top, .section7-content-bottom {
+  padding: 0 40px;
+  width: 1180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content-left {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+}
+
+.left1 {
+  color: #5865f2;
+  font-family: "antique-olive", sans-serif;
+  font-size: 32;
+  line-height: 0.9;
+}
+
+.left2 {
+  display: flex;
+  align-items: center;
+  font-family: "gg-sans", sans-serif;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 24px;
+}
+
+.below-divider {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .section-hero {
@@ -200,15 +265,26 @@ body {
 
 .blue-button {
   background-color: #5865F2;
-  padding: 16px 32px;
+  color: white;
   font-family: "gg-sans-med";
+  transition: all 0.2s ease-in-out;
+}
+
+.big-button {
+  padding: 16px 32px;
   font-size: 20px;
   margin-top: 40px;
-  transition: all 0.2s ease-in-out;
 }
 
 .blue-button:hover {
   background-color: #7983F5;
+  color: white;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 14px 28px, rgba(0, 0, 0, 0.05) 0px 10px 10px;
   transition: all 0.2s ease-in-out;
+}
+
+.flag-emoji {
+  height: 16px;
+  width: 24px;
+  margin-right: 8px;
 }

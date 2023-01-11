@@ -8,6 +8,7 @@ import section3 from "../../assets/section-3.svg";
 import section4 from "../../assets/section-4.svg";
 import section5 from "../../assets/section-5.svg";
 import sparkles from "../../assets/sparkles.svg";
+import usaFlag from "../../assets/usa-flag.png";
 
 const Homepage = () => {
   const sessionUser = useSelector((store) => store.session.user);
@@ -130,17 +131,51 @@ const Homepage = () => {
       </div>
 
       <div className="section6 section-alt">
-        <img src={sparkles} alt="sparkles" className="sparkles" />
-        <h1>Ready to start your journey?</h1>
-        <button
-          className="homepage-button blue-button"
-          onClick={() => history.push("/me")}
-        >
-          Open Resonance
-        </button>
+        <div className="section6-content">
+          <img src={sparkles} alt="sparkles" className="sparkles" />
+          <h1>Ready to start your journey?</h1>
+          <button
+            className="homepage-button blue-button big-button"
+            onClick={() => history.push("/me")}
+          >
+            Open Resonance
+          </button>
+        </div>
       </div>
 
-      <div className="section7"></div>
+      <div className="section7">
+        <div className="section7-content">
+          <div className="section7-content-top">
+            <div className="content-left">
+              <div className="left1">
+                <h1>IMAGINE A PLACE</h1>
+              </div>
+              <div className="left2">
+                <img src={usaFlag} alt="USA Flag" className="flag-emoji" />
+                English, USA
+              </div>
+            </div>
+            <div className="content-right"></div>
+          </div>
+          <div className="section7-content-bottom">
+            <div className="section7-divider"></div>
+            <div className="below-divider">
+              <div className="nav-left">
+                <img src={logo} alt="logo" height="55px" />
+                <p>Resonance</p>
+              </div>
+              <div className="nav-right">
+                <button
+                  className="homepage-button top-button blue-button"
+                  onClick={() => history.push("/me")}
+                >
+                  {sessionUser ? "Open Resonance" : "Login"}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
