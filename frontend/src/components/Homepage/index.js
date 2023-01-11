@@ -83,7 +83,11 @@ const Homepage = () => {
       <div className="section-hero">
         <div data-aos="fade-up" className="section-container">
           <div className="image-container">
-            <img src={section2} alt="invite users image" />
+            <img
+              src={section2}
+              alt="invite users image"
+              className="img-media-scale"
+            />
           </div>
           <div className="section-content">
             <h1 className="section-header">
@@ -108,7 +112,11 @@ const Homepage = () => {
             </p>
           </div>
           <div className="image-container">
-            <img src={section3} alt="text channels" />
+            <img
+              src={section3}
+              alt="text channels"
+              className="img-media-scale"
+            />
           </div>
         </div>
       </div>
@@ -116,7 +124,7 @@ const Homepage = () => {
       <div className="section-hero">
         <div data-aos="fade-up" className="section-container">
           <div className="image-container">
-            <img src={section4} alt="moderation" />
+            <img src={section4} alt="moderation" className="img-media-scale" />
           </div>
           <div className="section-content">
             <h1 className="section-header">From few to a fandom</h1>
@@ -138,7 +146,7 @@ const Homepage = () => {
             <h1 className="section-header-bottom">
               RELIABLE TECH FOR STAYING CLOSE
             </h1>
-            <p className="section-text">
+            <p className="section-text section-text-bottom">
               Low-latency texting feels like you're in the same room. Gather up
               and chat with your friends in real-time.
             </p>
