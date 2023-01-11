@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Homepage.css";
 import logo from "../../assets/logo.png";
 import { useSelector } from "react-redux";
@@ -16,10 +16,16 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import PersonIcon from "@mui/icons-material/Person";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Homepage = () => {
   const sessionUser = useSelector((store) => store.session.user);
   const history = useHistory();
+
+  useEffect(() => {
+    Aos.init({ duration: 400 });
+  }, []);
 
   return (
     <div className="homepage-main">
@@ -75,7 +81,7 @@ const Homepage = () => {
       </div>
 
       <div className="section-hero">
-        <div className="section-container">
+        <div data-aos="fade-up" className="section-container">
           <div className="image-container">
             <img src={section2} alt="invite users image" />
           </div>
@@ -93,7 +99,7 @@ const Homepage = () => {
       </div>
 
       <div className="section-hero section-alt">
-        <div className="section-container">
+        <div data-aos="fade-up" className="section-container">
           <div className="section-content">
             <h1 className="section-header">Where hanging out is easy</h1>
             <p className="section-text">
@@ -108,7 +114,7 @@ const Homepage = () => {
       </div>
 
       <div className="section-hero">
-        <div className="section-container">
+        <div data-aos="fade-up" className="section-container">
           <div className="image-container">
             <img src={section4} alt="moderation" />
           </div>
@@ -123,7 +129,11 @@ const Homepage = () => {
       </div>
 
       <div className="section5 section-alt">
-        <div className="section-container-bottom">
+        <div
+          data-aos="fade-up"
+          data-aos-offset="-30"
+          className="section-container-bottom"
+        >
           <div className="section-content-bottom">
             <h1 className="section-header-bottom">
               RELIABLE TECH FOR STAYING CLOSE

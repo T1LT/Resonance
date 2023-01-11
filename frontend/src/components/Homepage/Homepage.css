@@ -326,3 +326,12 @@ body {
   width: 24px;
   margin-right: 8px;
 }
+
+.hidden {
+  opacity: 0;
+  transition: all 1s;
+}
+
+.show {
+  opacity: 1;
+}
