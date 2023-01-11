@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Redirect, useParams } from "react-router-dom";
+import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
 import {
   addChannel,
   clearChannels,
@@ -27,6 +27,7 @@ const ServerShowPage = () => {
   const sessionUser = useSelector((store) => store.session.user);
   const server = useSelector((store) => store.servers[serverId]);
   const channels = useSelector((store) => Object.values(store.channels));
+  const history = useHistory();
   const handleOutsideClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -56,6 +57,11 @@ const ServerShowPage = () => {
               break;
             case "DESTROY_CHANNEL":
               dispatch(removeChannel(channelObj.id));
+              if (+channelId === channelObj.id) {
+                history.push(
+                  `/servers/${serverId}/channels/${server.defaultChannel.id}`
+                );
+              }
               break;
             default:
               console.log("Unhandled broadcast: ", type);
@@ -65,7 +71,7 @@ const ServerShowPage = () => {
       }
     );
     return () => subscription?.unsubscribe();
-  }, [dispatch, serverId]);
+  }, [dispatch, serverId, channelId]);
 
   if (!sessionUser) return <Redirect to="/login" />;
   if (!channelId)

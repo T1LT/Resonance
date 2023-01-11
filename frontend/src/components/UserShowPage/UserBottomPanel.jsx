@@ -43,20 +43,22 @@ const UserBottomPanel = () => {
             placement="top"
             disableInteractive
           >
-            {micToggle ? (
-              <MicIcon
-                fontSize="small"
-                className="settings-icon"
-                onClick={() => setMicToggle(false)}
-              />
-            ) : (
-              <MicOffIcon
-                fontSize="small"
-                className="settings-icon"
-                sx={{ transform: "scaleX(-1)" }}
-                onClick={() => setMicToggle(true)}
-              />
-            )}
+            <div>
+              {micToggle ? (
+                <MicIcon
+                  fontSize="small"
+                  className="settings-icon"
+                  onClick={() => setMicToggle(false)}
+                />
+              ) : (
+                <MicOffIcon
+                  fontSize="small"
+                  className="settings-icon"
+                  sx={{ transform: "scaleX(-1)" }}
+                  onClick={() => setMicToggle(true)}
+                />
+              )}
+            </div>
           </BootstrapTooltip>
           <BootstrapTooltip
             title={deafenToggle ? "Deafen" : "Undeafen"}
@@ -64,26 +66,28 @@ const UserBottomPanel = () => {
             placement="top"
             disableInteractive
           >
-            {deafenToggle ? (
-              <HeadsetIcon
-                fontSize="small"
-                className="settings-icon"
-                onClick={() => {
-                  setDeafenToggle((prev) => !prev);
-                  setMicToggle(false);
-                }}
-              />
-            ) : (
-              <HeadsetOffIcon
-                fontSize="small"
-                className="settings-icon"
-                sx={{ transform: "scaleX(-1)" }}
-                onClick={() => {
-                  setDeafenToggle((prev) => !prev);
-                  setMicToggle(true);
-                }}
-              />
-            )}
+            <div>
+              {deafenToggle ? (
+                <HeadsetIcon
+                  fontSize="small"
+                  className="settings-icon"
+                  onClick={() => {
+                    setDeafenToggle((prev) => !prev);
+                    setMicToggle(false);
+                  }}
+                />
+              ) : (
+                <HeadsetOffIcon
+                  fontSize="small"
+                  className="settings-icon"
+                  sx={{ transform: "scaleX(-1)" }}
+                  onClick={() => {
+                    setDeafenToggle((prev) => !prev);
+                    setMicToggle(true);
+                  }}
+                />
+              )}
+            </div>
           </BootstrapTooltip>
           <BootstrapTooltip
             title="Logout"
