@@ -15,7 +15,7 @@ Message.destroy_all
 
 puts "Resetting primary keys..."
 ApplicationRecord.connection.reset_pk_sequence!('users')
-ApplicationRecord.connection.reset_pk_sequence!('server')
+ApplicationRecord.connection.reset_pk_sequence!('servers')
 ApplicationRecord.connection.reset_pk_sequence!('channels')
 ApplicationRecord.connection.reset_pk_sequence!('server_memberships')
 ApplicationRecord.connection.reset_pk_sequence!('messages')
