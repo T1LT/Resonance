@@ -116,16 +116,27 @@ const FriendsShowItem = ({ friendTab, friendObj, friendships }) => {
               )}
             </>
           ) : (
-            <BootstrapTooltip
-              title="Message"
-              arrow
-              placement="top"
-              disableInteractive
-            >
-              <div className="user-squircle user-item-option" onClick={() => history.push(`/me/channels/${friendObj.dmChannel.id}`)}>
-                <ChatBubbleIcon sx={{ fontSize: "18px", color: "#DCDDDE" }} />
-              </div>
-            </BootstrapTooltip>
+            <>
+              {friendTab !== "blocked" && (
+                <BootstrapTooltip
+                  title="Message"
+                  arrow
+                  placement="top"
+                  disableInteractive
+                >
+                  <div
+                    className="user-squircle user-item-option"
+                    onClick={() =>
+                      history.push(`/me/channels/${friendObj.dmChannel.id}`)
+                    }
+                  >
+                    <ChatBubbleIcon
+                      sx={{ fontSize: "18px", color: "#DCDDDE" }}
+                    />
+                  </div>
+                </BootstrapTooltip>
+              )}
+            </>
           )}
         </div>
       </li>
