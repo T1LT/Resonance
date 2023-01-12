@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_07_221822) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_11_233109) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "channels", force: :cascade do |t|
     t.string "channel_name", null: false
-    t.bigint "server_id", null: false
+    t.bigint "server_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "channel_type", default: "public", null: false

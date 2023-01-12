@@ -15,7 +15,8 @@ class Channel < ApplicationRecord
 
     belongs_to :server,
         foreign_key: :server_id,
-        class_name: :Server
+        class_name: :Server,
+        optional: true
 
     has_many :messages,
         foreign_key: :channel_id,

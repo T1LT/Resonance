@@ -8,7 +8,7 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import { ModalContext } from "../../App";
 
 const ServerNavigation = () => {
-  const { setIsEdit, setIsOpen } = useContext(ModalContext);
+  const { setIsEdit, setIsOpen, setIsDropOpen } = useContext(ModalContext);
   const dispatch = useDispatch();
   const servers = useSelector((store) => store.servers);
   const sessionUser = useSelector((store) => store.session.user);
@@ -23,7 +23,7 @@ const ServerNavigation = () => {
   return (
     <>
       {sessionUser && (
-        <div className="navbar">
+        <div className="navbar" onClick={() => setIsDropOpen(false)}>
           <nav>
             <ul className="squircles">
               <NavLink to="/me" className="squircle purple-boi">

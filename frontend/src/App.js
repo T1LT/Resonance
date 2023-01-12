@@ -20,6 +20,7 @@ function App() {
   const [isLeave, setIsLeave] = useState(false);
   const [isChannelModalOpen, setIsChannelModalOpen] = useState(false);
   const [isChannelEdit, setIsChannelEdit] = useState(true);
+  const [isDropOpen, setIsDropOpen] = useState(false);
   const [confirmationType, setConfirmationType] = useState("server");
   useEffect(() => {
     writeToConsole();
@@ -42,6 +43,8 @@ function App() {
           setIsChannelEdit,
           confirmationType,
           setConfirmationType,
+          isDropOpen,
+          setIsDropOpen
         }}
       >
         <ServerNavigation />
@@ -51,6 +54,7 @@ function App() {
           <Route exact path="/login" component={LoginFormPage} />
           <Route exact path="/register" component={SignupFormPage} />
           <Route exact path="/me" component={UserShowPage} />
+          <Route exact path="/me/channels/:channelId" component={UserShowPage} />
           <Route
             exact
             path="/servers/:serverId/channels/:channelId"

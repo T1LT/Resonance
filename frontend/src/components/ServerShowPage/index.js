@@ -20,8 +20,8 @@ import { ModalContext } from "../../App";
 import consumer from "../consumer";
 
 const ServerShowPage = () => {
-  const { setIsChannelModalOpen, setIsChannelEdit } = useContext(ModalContext);
-  const [isDropOpen, setIsDropOpen] = useState(false);
+  const { setIsChannelModalOpen, setIsChannelEdit, isDropOpen, setIsDropOpen } =
+    useContext(ModalContext);
   const dispatch = useDispatch();
   const { serverId, channelId } = useParams();
   const sessionUser = useSelector((store) => store.session.user);
