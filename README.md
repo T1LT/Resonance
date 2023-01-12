@@ -3,6 +3,7 @@
 ## Overview
 
 [Resonance](https://resonance-jzh3.onrender.com) is a clone of [Discord](https://discord.com), a VoIP and instant messaging social media platform. Discord has over 150 million active users as of 2022. Resonance is my attempt at making a website similar to Discord. Through Resonance users can communicate with each other via chat messages in real-time, create servers and channels, add other users as friends, and also invite other people to their servers.
+
 ![SplashPage](https://user-images.githubusercontent.com/65653163/212204576-01eb9b33-70e9-499b-8360-067bad81d5ad.gif)
 
 ## Technologies
