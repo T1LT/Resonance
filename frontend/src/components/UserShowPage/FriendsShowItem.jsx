@@ -127,7 +127,7 @@ const FriendsShowItem = ({ friendTab, friendObj, friendships }) => {
                   <div
                     className="user-squircle user-item-option"
                     onClick={() =>
-                      history.push(`/me/channels/${friendObj.dmChannel.id}`)
+                      history.push(`/me/channels/${friendObj.dmChannelId}`)
                     }
                   >
                     <ChatBubbleIcon

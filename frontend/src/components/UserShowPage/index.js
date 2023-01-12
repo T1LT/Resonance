@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import ServerFormPage from "../ServerFormPage";
@@ -19,7 +19,7 @@ const UserShowPage = () => {
     friend: el.friend,
     status: el.status,
     friendshipId: el.id,
-    dmChannel: el.dmChannel
+    dmChannelId: el.dmChannelId
   }));
   const notiCount = friends.filter(
     (el) => el.status === "pending" && !el.friend.user1Id
