@@ -48,3 +48,21 @@ useEffect(() => {
 
 return <>{!pause && <Redirect to={`/servers/${path}`} />}</>;
 ```
+
+### Association to find the channel used for Direct Messages
+When users add each other as friends, a new Direct Messaging channel is created and both the users are added to the newly created channel. But the data sent to the frontend only had the friendship object. To address this issue I had to write a custom association for the Friendship model which queried the database to find the associated channel. I initially had this as an O(n<sup>2</sup>) operation, but I later realized that the query I had was pretty similar to the [Two Sum problem](https://leetcode.com/problems/two-sum/) and ended up optimizing the query into an O(n) operation.
+```ruby
+def dm_channel
+    user1 = User.find(self.user1_id)
+    user2 = User.find(self.user2_id)
+    hash = {}
+    user1.dm_channels.each do |u1_channel|
+        hash[u1_channel.id] = u1_channel
+    end
+    user2.dm_channels.each do |u2_channel|
+        if hash[u2_channel.id]
+            return u2_channel
+        end
+    end
+end
+```
