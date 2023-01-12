@@ -17,7 +17,7 @@ Users can create their own servers and add as many channels as they like. Once t
 ### Invite Links
 Users can invite other users to the servers they created, but the invite link needs to be secure, otherwise anyone who knows the ID of a particular server can access the server without being a part of it. To handle this issue, I used AES encryption from the [CryptoJS](https://www.npmjs.com/package/crypto-js) library to encrypt the path to the server and copy the link to the user's clipboard. On the other end of this, I decrypted the link to get the path to redirect the user to.
 
-### Encryption
+#### Encryption
 ```javascript
 const handleInvite = async (e) => {
   e.stopPropagation();
@@ -30,7 +30,7 @@ const handleInvite = async (e) => {
 };
 ```
 
-### Decryption
+#### Decryption
 ```javascript
 useEffect(() => {
   const bytes = CryptoJS.AES.decrypt(hash, process.env.REACT_APP_SECRET_KEY);
