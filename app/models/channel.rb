@@ -4,10 +4,10 @@
 #
 #  id           :bigint           not null, primary key
 #  channel_name :string           not null
-#  server_id    :bigint           not null
-#  channel_type :string           default("public"), not null
+#  server_id    :bigint
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  channel_type :string           default("public"), not null
 #
 class Channel < ApplicationRecord
     validates :channel_name, presence: true
@@ -21,5 +21,15 @@ class Channel < ApplicationRecord
     has_many :messages,
         foreign_key: :channel_id,
         class_name: :Message,
+        dependent: :destroy
+
+    has_many :dm_user_memberships,
+        foreign_key: :channel_id,
+        class_name: :ChannelMembership,
+        dependent: :destroy
+
+    has_many :dm_users,
+        through: :dm_user_memberships,
+        source: :user,
         dependent: :destroy
 end

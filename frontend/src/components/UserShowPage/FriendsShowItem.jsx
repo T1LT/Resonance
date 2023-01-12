@@ -8,8 +8,10 @@ import YesIcon from "@mui/icons-material/Check";
 import NoIcon from "@mui/icons-material/Close";
 import { deleteFriendship, updateFriendship } from "../../store/friendship";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const FriendsShowItem = ({ friendTab, friendObj, friendships }) => {
+  const history = useHistory();
   const friend = friendObj.friend;
   const friendshipReceiver = !!friendObj.friend.user2Id;
   const [hovered, setHovered] = useState(false);
@@ -120,7 +122,7 @@ const FriendsShowItem = ({ friendTab, friendObj, friendships }) => {
               placement="top"
               disableInteractive
             >
-              <div className="user-squircle user-item-option">
+              <div className="user-squircle user-item-option" onClick={() => history.push(`/me/channels/${friendObj.dmChannel.id}`)}>
                 <ChatBubbleIcon sx={{ fontSize: "18px", color: "#DCDDDE" }} />
               </div>
             </BootstrapTooltip>

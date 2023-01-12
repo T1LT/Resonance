@@ -9,7 +9,11 @@ class Api::ChannelsController < ApplicationController
 
     def show
         @channel = Channel.find(params[:id])
-        render :show
+        if @channel.channel_type == "private"
+            render "api/channels/show_dm"
+        else
+            render :show
+        end
     end
 
     def create

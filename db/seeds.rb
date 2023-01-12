@@ -12,6 +12,7 @@ Server.destroy_all
 Channel.destroy_all
 ServerMembership.destroy_all
 Message.destroy_all
+Friendship.destroy_all
 
 puts "Resetting primary keys..."
 ApplicationRecord.connection.reset_pk_sequence!('users')

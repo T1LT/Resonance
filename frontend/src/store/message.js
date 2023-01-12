@@ -28,10 +28,20 @@ export const clearMessages = () => ({
 
 // THUNK ACTION CREATORS
 export const fetchMessages = (serverId, channelId) => async dispatch => {
-  const res = await csrfFetch(`/api/servers/${serverId}/channels/${channelId}/messages`);
-  if (res.ok) {
-    const messages = await res.json();
-    dispatch(addMessages(messages));
+  if (serverId) {
+    const res = await csrfFetch(`/api/servers/${serverId}/channels/${channelId}/messages`);
+    if (res.ok) {
+      const messages = await res.json();
+      dispatch(addMessages(messages));
+    }
+  } else {
+    const res = await csrfFetch(
+      `/api/channels/${channelId}/messages`
+    );
+    if (res.ok) {
+      const messages = await res.json();
+      dispatch(addMessages(messages));
+    }
   }
 };
 

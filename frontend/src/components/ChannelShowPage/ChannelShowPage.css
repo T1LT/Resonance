@@ -31,6 +31,28 @@
   justify-content: flex-end;
 }
 
+.dm-container {
+  max-height: 800px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.user-logo-large {
+  width: 65px;
+  height: 65px;
+  border-radius: inherit;
+}
+
+.dm-intro-msg {
+  margin-bottom: 16px !important;
+}
+
+.channel-intro-grey {
+  color: #B8BBBE !important;
+}
+
 .channel-info {
   margin-top: 15px;
   padding-left: 15px;

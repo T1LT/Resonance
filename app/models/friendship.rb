@@ -21,4 +21,18 @@ class Friendship < ApplicationRecord
     belongs_to :request_receiver,
         foreign_key: :user2_id,
         class_name: :User
+
+    def dm_channel
+        user1 = User.find(self.user1_id)
+        user2 = User.find(self.user2_id)
+        hash = {}
+        user1.dm_channels.each do |u1_channel|
+            hash[u1_channel.id] = u1_channel
+        end
+        user2.dm_channels.each do |u2_channel|
+            if hash[u2_channel.id]
+                return u2_channel
+            end
+        end
+    end
 end

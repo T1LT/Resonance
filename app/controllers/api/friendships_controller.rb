@@ -15,6 +15,9 @@ class Api::FriendshipsController < ApplicationController
         if @friendship.save
             @user1 = User.find(@friendship.user1_id)
             @user2 = User.find(@friendship.user2_id)
+            @dm_channel = Channel.create(channel_name: "#{@user1.username}_#{@user2.username}_dm", channel_type: "private")
+            ChannelMembership.create(user_id: @user1.id, channel_id: @dm_channel.id)
+            ChannelMembership.create(user_id: @user2.id, channel_id: @dm_channel.id)
             FriendshipsChannel.broadcast_to(@user1, type: 'RECEIVE_FRIENDSHIP', **from_template('api/friendships/show', friendship: @friendship, current_user: current_user))
             FriendshipsChannel.broadcast_to(@user2, type: 'RECEIVE_FRIENDSHIP', **from_template('api/friendships/show', friendship: @friendship, current_user: current_user))
             render json: nil, status: :ok
@@ -28,6 +31,7 @@ class Api::FriendshipsController < ApplicationController
         if @friendship.update(status_params)
             @user1 = User.find(@friendship.user1_id)
             @user2 = User.find(@friendship.user2_id)
+            @dm_channel = @friendship.dm_channel
             FriendshipsChannel.broadcast_to(@user1, type: 'UPDATE_FRIENDSHIP', **from_template('api/friendships/show', friendship: @friendship, current_user: @user2))
             FriendshipsChannel.broadcast_to(@user2, type: 'UPDATE_FRIENDSHIP', **from_template('api/friendships/show', friendship: @friendship, current_user: @user1))
             render json: nil, status: :ok

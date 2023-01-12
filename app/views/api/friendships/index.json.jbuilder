@@ -12,5 +12,6 @@
                 json.user2_id friendship.user2_id
             end
         end
+        json.dm_channel friendship.dm_channel
     end
 end
