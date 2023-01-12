@@ -17,7 +17,14 @@
 }
 
 .text p {
+  width: 80%;
+  overflow-wrap: break-word;
   font-family: "gg-sans-med", sans-serif;
+}
+
+.linkify-link a {
+  color: var(--color-link-text);
+  text-decoration: none;
 }
 
 .message-user-squircle {

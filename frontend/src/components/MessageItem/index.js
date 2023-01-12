@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { updateMessage } from "../../store/message";
 import { formatTimestamp } from "../../utils/formattime";
 import randomColor from "../../utils/logocolor";
+import Linkify from "react-linkify";
 
 const MessageItem = ({ server, message }) => {
   const { setIsDeleteOpen, setConfirmationType } = useContext(ModalContext);
@@ -103,7 +104,9 @@ const MessageItem = ({ server, message }) => {
                 </p>
               </form>
             ) : (
-              <p>{message.body}</p>
+              <Linkify>
+                <p className="linkify-link">{message.body}</p>
+              </Linkify>
             )}
           </div>
         </div>
