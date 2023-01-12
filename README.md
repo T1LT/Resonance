@@ -3,6 +3,7 @@
 ## Overview
 
 [Resonance](https://resonance-jzh3.onrender.com) is a clone of [Discord](https://discord.com), a VoIP and instant messaging social media platform. Discord has over 150 million active users as of 2022. Resonance is my attempt at making a website similar to Discord. Through Resonance users can communicate with each other via chat messages in real-time, create servers and channels, add other users as friends, and also invite other people to their servers.
+![SplashPage](https://user-images.githubusercontent.com/65653163/212204576-01eb9b33-70e9-499b-8360-067bad81d5ad.gif)
 
 ## Technologies
 
@@ -11,6 +12,12 @@ To build Resonance, I used a React-Redux frontend paired with a Ruby on Rails ba
 ## Features
 
 Users can create their own servers and add as many channels as they like. Once they create servers and channels they can also edit or delete them. Users can send messages in these channels to talk with each other in real-time. They can also edit or delete their messages (if the user is the owner of the server, they can delete anyone's messages!).
+
+### Live Messages
+![LiveMessages](https://user-images.githubusercontent.com/65653163/212205435-8030ddd5-c3e5-4e1b-b0d2-07d0f42ab949.gif)
+
+### Message CRUD
+![MessageCRUD](https://user-images.githubusercontent.com/65653163/212205820-773672fd-6be5-4b75-b182-3f402869f095.gif)
 
 ## Significant Code
 
@@ -66,3 +73,14 @@ def dm_channel
     end
 end
 ```
+
+## Other Visuals
+### User Show Page
+![UserShowPage](https://user-images.githubusercontent.com/65653163/212204894-d27cd38f-3237-463e-876c-107c6d3fc494.gif)
+
+### Server Show Page
+![ServerShowPage](https://user-images.githubusercontent.com/65653163/212204904-5da318ca-001d-4bf0-b1c3-d231fd2fac93.gif)
+
+
+### Direct Messaging
+![DirectMessages](https://user-images.githubusercontent.com/65653163/212204931-ed3ce22b-b6c5-4e52-8258-c64cbc0925e3.gif)
