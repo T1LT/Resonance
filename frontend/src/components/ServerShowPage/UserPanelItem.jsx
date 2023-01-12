@@ -24,7 +24,7 @@ const UserPanelItem = ({ user, friendIds, friendships, blockedIds }) => {
   const location = useLocation();
   const history = useHistory();
   const sessionUser = useSelector((store) => store.session.user);
-  const friendship = friendships.find(el => el.friend.id === user.id);
+  const friendship = friendships.find((el) => el.friend.id === user.id);
 
   const handleYes = (e) => {
     e.stopPropagation();
@@ -38,7 +38,7 @@ const UserPanelItem = ({ user, friendIds, friendships, blockedIds }) => {
       if (friendIds.includes(user.id)) {
         const friendship = friendships.find((el) => el.friend.id === user.id);
         const friendshipData = { ...friendship, status: "blocked" };
-        updateFriendship(friendshipData)
+        updateFriendship(friendshipData);
         setConfirmation(false);
       } else {
         const friendshipData = {
@@ -46,13 +46,13 @@ const UserPanelItem = ({ user, friendIds, friendships, blockedIds }) => {
           user2_id: user.id,
           status: "blocked",
         };
-        createFriendship(friendshipData)
+        createFriendship(friendshipData);
         setConfirmation(false);
       }
     }
   };
 
-  const handleAddFriend = () => {
+  const handleAddFriend = (e) => {
     e.stopPropagation();
     const friendshipData = { user1_id: sessionUser.id, user2_id: user.id };
     createFriendship(friendshipData);

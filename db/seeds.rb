@@ -13,6 +13,7 @@ Channel.destroy_all
 ServerMembership.destroy_all
 Message.destroy_all
 Friendship.destroy_all
+ChannelMembership.destroy_all
 
 puts "Resetting primary keys..."
 ApplicationRecord.connection.reset_pk_sequence!('users')
@@ -20,6 +21,8 @@ ApplicationRecord.connection.reset_pk_sequence!('servers')
 ApplicationRecord.connection.reset_pk_sequence!('channels')
 ApplicationRecord.connection.reset_pk_sequence!('server_memberships')
 ApplicationRecord.connection.reset_pk_sequence!('messages')
+ApplicationRecord.connection.reset_pk_sequence!('friendships')
+ApplicationRecord.connection.reset_pk_sequence!('channel_memberships')
 
 user1 = User.create!(username: "Demo", tag: "0001", email: "demo@demo.io", password: "password", status: "online")
 user2 = User.create!(username: "Nishant", tag: "2525", email: "nishant.racherla@gmail.com", password: "password", status: "online")
@@ -29,11 +32,13 @@ user5 = User.create!(username: "cbum", tag: "5000", email: "cbum@gmail.com", pas
 user6 = User.create!(username: "Kaushal", tag: "theG", email: "kaushalk@gmail.com", password: "password", status: "online")
 user7 = User.create!(username: "Christine", tag: "dogs", email: "christine@gmail.com", password: "password", status: "online")
 
+puts "Creating servers..."
 my_squad = Server.create!(server_name: "MySquad", owner_id: user1.id)
 js_moon = Server.create!(server_name: "JavaScript to the Moon", owner_id: user2.id)
 fit_buds = Server.create!(server_name: "Fitness Buddies", owner_id: user5.id)
 puppies = Server.create!(server_name: "Puppies", owner_id: user7.id)
 
+puts "Creating channels..."
 channel1 = Channel.create!(channel_name: "general", server_id: my_squad.id)
 channel2 = Channel.create!(channel_name: "memes", server_id: my_squad.id)
 channel3 = Channel.create!(channel_name: "coding-stuff", server_id: my_squad.id)
@@ -53,6 +58,7 @@ channel13 = Channel.create!(channel_name: "general", server_id: puppies.id)
 channel14 = Channel.create!(channel_name: "puppy-pics", server_id: puppies.id)
 channel15 = Channel.create!(channel_name: "dogs-vs-cats", server_id: puppies.id)
 
+puts "Creating servermemberships..."
 ServerMembership.create!(user_id: user1.id, server_id: my_squad.id)
 ServerMembership.create!(user_id: user2.id, server_id: my_squad.id)
 ServerMembership.create!(user_id: user3.id, server_id: my_squad.id)
@@ -74,11 +80,12 @@ ServerMembership.create!(user_id: user7.id, server_id: puppies.id)
 ServerMembership.create!(user_id: user2.id, server_id: puppies.id)
 ServerMembership.create!(user_id: user6.id, server_id: puppies.id)
 
+puts "Creating messages..."
 Message.create!(sender_id: user1.id, channel_id: channel1.id, body: "hey yall!", parent_id: nil)
 Message.create!(sender_id: user2.id, channel_id: channel1.id, body: "hey hey", parent_id: nil)
 Message.create!(sender_id: user1.id, channel_id: channel1.id, body: "sup", parent_id: nil)
 Message.create!(sender_id: user3.id, channel_id: channel1.id, body: "yooo", parent_id: nil)
-Message.create!(sender_id: user2.id, channel_id: channel1.id, body: "is this up and running??", parent_id: nil)
+Message.create!(sender_id: user2.id, channel_id: channel1.id, body: "is this working?", parent_id: nil)
 Message.create!(sender_id: user1.id, channel_id: channel1.id, body: "yessir!", parent_id: nil)
 
 Message.create!(sender_id: user4.id, channel_id: channel4.id, body: "*clears throat*", parent_id: nil)
