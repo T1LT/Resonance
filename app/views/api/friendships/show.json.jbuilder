@@ -10,6 +10,4 @@ else
         json.user2_id friendship.user2_id
     end
 end
-json.dm_channel
-    render 'api/channels/channel', channel: friendship.dm_channel
-end
+json.dm_channel_id friendship.dm_channel.id

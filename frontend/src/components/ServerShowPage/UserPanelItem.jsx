@@ -7,7 +7,7 @@ import BlockIcon from "@mui/icons-material/Block";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import YesIcon from "@mui/icons-material/Check";
 import NoIcon from "@mui/icons-material/Close";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   createFriendship,
@@ -20,10 +20,14 @@ const UserPanelItem = ({ user, friendIds, friendships, blockedIds }) => {
   const [confirmation, setConfirmation] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [confirmType, setConfirmType] = useState("");
+  const { serverId, channelId } = useParams();
   const location = useLocation();
+  const history = useHistory();
   const sessionUser = useSelector((store) => store.session.user);
+  const friendship = friendships.find(el => el.friend.id === user.id);
 
-  const handleYes = () => {
+  const handleYes = (e) => {
+    e.stopPropagation();
     if (confirmType === "remove" || confirmType === "unblock") {
       const friendshipId = friendships.find(
         (el) => el.friend.id === user.id
@@ -49,6 +53,7 @@ const UserPanelItem = ({ user, friendIds, friendships, blockedIds }) => {
   };
 
   const handleAddFriend = () => {
+    e.stopPropagation();
     const friendshipData = { user1_id: sessionUser.id, user2_id: user.id };
     createFriendship(friendshipData);
   };
@@ -64,6 +69,11 @@ const UserPanelItem = ({ user, friendIds, friendships, blockedIds }) => {
       key={user.id}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      onClick={() => {
+        if (!serverId && user.id !== sessionUser.id) {
+          history.push(`/me/channels/${friendship.dmChannelId}`);
+        }
+      }}
     >
       <div className="user-panel-item-container">
         <div className="user-panel-item-left">
@@ -92,7 +102,10 @@ const UserPanelItem = ({ user, friendIds, friendships, blockedIds }) => {
                 >
                   <NoIcon
                     fontSize="small"
-                    onClick={() => setConfirmation(false)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setConfirmation(false);
+                    }}
                   />
                 </BootstrapTooltip>
               </>
@@ -107,7 +120,8 @@ const UserPanelItem = ({ user, friendIds, friendships, blockedIds }) => {
                   >
                     <PersonRemoveAlt1Icon
                       fontSize="small"
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.stopPropagation();
                         setConfirmType("remove");
                         setConfirmation(true);
                       }}
@@ -135,7 +149,8 @@ const UserPanelItem = ({ user, friendIds, friendships, blockedIds }) => {
                   >
                     <CheckCircleOutlineIcon
                       sx={{ fontSize: "16px", mt: "2px" }}
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.stopPropagation();
                         setConfirmType("unblock");
                         setConfirmation(true);
                       }}
@@ -150,7 +165,8 @@ const UserPanelItem = ({ user, friendIds, friendships, blockedIds }) => {
                   >
                     <BlockIcon
                       sx={{ fontSize: "16px", mt: "2px" }}
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.stopPropagation();
                         setConfirmType("block");
                         setConfirmation(true);
                       }}
