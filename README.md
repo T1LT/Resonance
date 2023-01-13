@@ -85,3 +85,10 @@ end
 
 ### Direct Messaging
 ![DirectMessages](https://user-images.githubusercontent.com/65653163/212204931-ed3ce22b-b6c5-4e52-8258-c64cbc0925e3.gif)
+
+## Future Features
+* Add Websocket connections for all the CRUD features
+* Implement a notification system
+* Allow group DMs
+* Reactions for messages
+* Server roles/moderation
