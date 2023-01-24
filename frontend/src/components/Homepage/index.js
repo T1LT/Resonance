@@ -44,7 +44,7 @@ const Homepage = () => {
               Github
             </a>
             <a
-              href="https://www.linkedin.com/in/nishant-racherla-a51370167/"
+              href="https://www.linkedin.com/in/nishantracherla/"
               target="_blank"
               className="homepage-link"
             >
