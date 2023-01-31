@@ -51,7 +51,7 @@ const Homepage = () => {
               Linkedin
             </a>
             <a
-              href="https://nishantracherla.com/"
+              href="https://www.nishantracherla.com/"
               target="_blank"
               className="homepage-link"
             >
