@@ -50,7 +50,10 @@ const Homepage = () => {
             >
               Linkedin
             </a>
-            <a href="#" className="homepage-link">
+            <a
+              href="https://www.nishantracherla.com/"
+              className="homepage-link"
+            >
               Portfolio
             </a>
           </div>
