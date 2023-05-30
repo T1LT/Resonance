@@ -214,7 +214,7 @@ const Homepage = () => {
               <div className="icon-link-wrapper">
                 <LinkedInIcon sx={{ color: "#5865f2", mr: "8px" }} />
                 <a
-                  href="https://www.linkedin.com/in/nishant-racherla-a51370167/"
+                  href="https://www.linkedin.com/in/nishantracherla/"
                   target="_blank"
                   className="footer-link"
                 >
@@ -223,7 +223,7 @@ const Homepage = () => {
               </div>
               <div className="icon-link-wrapper">
                 <PersonIcon sx={{ color: "#5865f2", mr: "8px" }} />
-                <a href="#" className="footer-link">
+                <a href="https://nishantracherla.com" className="footer-link">
                   Portfolio
                 </a>
               </div>
