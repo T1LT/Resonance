@@ -41,14 +41,14 @@ const Homepage = () => {
               target="_blank"
               className="homepage-link"
             >
-              Github
+              GitHub
             </a>
             <a
               href="https://www.linkedin.com/in/nishantracherla/"
               target="_blank"
               className="homepage-link"
             >
-              Linkedin
+              LinkedIn
             </a>
             <a
               href="https://nishantracherla.com/"
@@ -208,7 +208,7 @@ const Homepage = () => {
                   target="_blank"
                   className="footer-link"
                 >
-                  Github
+                  GitHub
                 </a>
               </div>
               <div className="icon-link-wrapper">
@@ -218,7 +218,7 @@ const Homepage = () => {
                   target="_blank"
                   className="footer-link"
                 >
-                  Linkedin
+                  LinkedIn
                 </a>
               </div>
               <div className="icon-link-wrapper">
